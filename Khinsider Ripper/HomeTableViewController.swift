@@ -89,7 +89,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         GlobalVar.album_url = completed_url
         let task = URLSession.shared.dataTask(with: completed_url!) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)! // store the received data as a string to be processed
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata) // start swiftsoup tasks
 
@@ -173,7 +173,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         let completed_url = URL(string: base_url + base_search_url + search)
         let task = URLSession.shared.dataTask(with: completed_url!) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 //print(self.recdata)
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata)

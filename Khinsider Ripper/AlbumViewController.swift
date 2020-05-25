@@ -56,7 +56,7 @@ class AlbumViewController: UIViewController {
                 guard let data = data, error == nil else { return }
                 print(response?.suggestedFilename ?? URL(string: GlobalVar.coverURL[0].addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!.lastPathComponent )
                 print("Download Finished")
-                DispatchQueue.main.async() {
+                DispatchQueue.main.async {
                     self.albumCover.image = UIImage(data: data)
                 }
             }
@@ -106,7 +106,7 @@ class AlbumViewController: UIViewController {
         let completed_url = URL(string: "https://downloads.khinsider.com" + toDownload[currentTr])!
         let task = URLSession.shared.dataTask(with: completed_url) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata)
                     let link: Element = try doc.getElementById("EchoTopic")!

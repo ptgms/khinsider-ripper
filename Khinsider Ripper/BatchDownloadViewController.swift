@@ -26,7 +26,7 @@ class BatchDownloadViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: true);
+        self.navigationItem.setHidesBackButton(true, animated: true)
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let dataPath = documentsDirectory.appendingPathComponent(GlobalVar.AlbumName)
         
@@ -43,7 +43,7 @@ class BatchDownloadViewController: UIViewController, UITableViewDelegate {
         
         // create queue for downloads since normally its async, and we dont want that
         let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1;
+        queue.maxConcurrentOperationCount = 1
         print(GlobalVar.download_queue)
         self.load(url: GlobalVar.download_queue, name: GlobalVar.tracks, type: GlobalVar.download_type)
         
@@ -76,7 +76,7 @@ class BatchDownloadViewController: UIViewController, UITableViewDelegate {
                 try FileManager.default.moveItem(at: fileURL, to: savedURL)
                 self.downloading = true
                 print("Done!")
-                DispatchQueue.main.async() {
+                DispatchQueue.main.async {
                     self.progressText.text = "Downloading " + String(self.inte + 2) + " / " + String(self.total)
                     self.downloading = false
                     self.inte += 1
@@ -88,7 +88,7 @@ class BatchDownloadViewController: UIViewController, UITableViewDelegate {
                     
                 }
             } catch {
-                DispatchQueue.main.async() {
+                DispatchQueue.main.async {
                     self.progressText.text = "Downloading " + String(self.inte + 2) + " / " + String(self.total)
                     self.downloading = false
                     self.inte += 1

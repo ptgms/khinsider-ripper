@@ -9,8 +9,6 @@
 import Cocoa
 
 class TrackViewController: NSTableView, NSTableViewDataSource, NSTableViewDelegate {
-    
-    
     fileprivate enum CellIdentifiers {
         static let NameCell = "trackCell"
         static let pathCell = "pathCell"

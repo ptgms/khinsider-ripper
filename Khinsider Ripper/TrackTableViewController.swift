@@ -45,17 +45,17 @@ class TrackTableViewController: UITableViewController {
         }
         let downloadTrack = UITableViewRowAction(style: .normal, title: "Download Track") { (action, indexPath) in
             let alert = UIAlertController(title: "Question", message: "As what format do you want to save the file?", preferredStyle: .alert)
-            if (GlobalVar.mp3) {
+            if GlobalVar.mp3 {
                 alert.addAction(UIAlertAction(title: "MP3", style: .default, handler: { action in
                     self.download(type: ".mp3", toDownload: GlobalVar.trackURL[indexPath.row], name: GlobalVar.tracks[indexPath.row])
                 }))
             }
-            if (GlobalVar.flac) {
+            if GlobalVar.flac {
                 alert.addAction(UIAlertAction(title: "FLAC", style: .default, handler: { action in
                     self.download(type: ".flac", toDownload: GlobalVar.trackURL[indexPath.row], name: GlobalVar.tracks[indexPath.row])
                 }))
             }
-            if (GlobalVar.ogg) {
+            if GlobalVar.ogg {
                 alert.addAction(UIAlertAction(title: "ogg", style: .default, handler: { action in
                     self.download(type: ".ogg", toDownload: GlobalVar.trackURL[indexPath.row], name: GlobalVar.tracks[indexPath.row])
                 }))
@@ -74,7 +74,7 @@ class TrackTableViewController: UITableViewController {
         let task = URLSession.shared.dataTask(with: completed_url!) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
             //print(String(data: data!, encoding: .utf8)!)
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 print(self.recdata)
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata)
@@ -91,7 +91,10 @@ class TrackTableViewController: UITableViewController {
                             self.navigationController?.pushViewController(preView, animated: true)
                             break
                         } else {
-                            //TODO: Add error popup
+                            let alertController = UIAlertController(title: "Error!", message: "Couldn't fetch media file! This really isn't even supposed to happen! Make an GitHub issue saying what album this is!", preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "Okay!", style: .default))
+                            
+                            self.present(alertController, animated: true, completion: nil)
                         }
                     }
                 } catch Exception.Error( _, let message) {
@@ -109,7 +112,7 @@ class TrackTableViewController: UITableViewController {
         let completed_url = URL(string: "https://downloads.khinsider.com" + toDownload)!
         let task = URLSession.shared.dataTask(with: completed_url) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata)
                     let link: Element = try doc.getElementById("EchoTopic")!

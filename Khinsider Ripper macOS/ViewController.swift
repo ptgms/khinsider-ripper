@@ -47,8 +47,8 @@ class ViewController: NSViewController {
     
     var tags = [String]()
     
-    var dataSource1 : TrackViewController!
-    var dataSource2 : AlbumViewController!
+    var dataSource1: TrackViewController!
+    var dataSource2: AlbumViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +102,7 @@ class ViewController: NSViewController {
         let completed_url = URL(string: base_url + base_search_url + search)
         let task = URLSession.shared.dataTask(with: completed_url!) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 //print(self.recdata)
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata)
@@ -149,7 +149,7 @@ class ViewController: NSViewController {
         let task = URLSession.shared.dataTask(with: completed_url!) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
             //print(String(data: data!, encoding: .utf8)!)
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 print(self.recdata)
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata)
@@ -185,7 +185,7 @@ class ViewController: NSViewController {
             guard let data = data, error == nil else { return }
             print(response?.suggestedFilename ?? URL(string: GlobalVar.coverURL[0].addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!.lastPathComponent)
             print("Download Finished")
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 self.albumArt.image = NSImage(data: data)
                 self.albumBlurred.image = NSImage(data: data)
             }
@@ -307,7 +307,7 @@ class ViewController: NSViewController {
         let completed_url = URL(string: "https://downloads.khinsider.com" + toDownload[currentTr])!
         let task = URLSession.shared.dataTask(with: completed_url) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata)
                     let link: Element = try doc.getElementById("EchoTopic")!
@@ -383,7 +383,7 @@ class ViewController: NSViewController {
         let completed_url = URL(string: "https://downloads.khinsider.com" + toDownload)!
         let task = URLSession.shared.dataTask(with: completed_url) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata)
                     let link: Element = try doc.getElementById("EchoTopic")!
@@ -423,7 +423,7 @@ class ViewController: NSViewController {
                                             create: false)
                 let savedURL = documentsURL.appendingPathComponent("Khinsider/" + name)
                 try FileManager.default.moveItem(at: fileURL, to: savedURL)
-                DispatchQueue.main.sync() {
+                DispatchQueue.main.sync {
                     self.downloadSelect.stringValue = "downloadselected".localized
                 }
             } catch {
@@ -474,7 +474,7 @@ class ViewController: NSViewController {
         GlobalVar.album_url = completed_url
         let task = URLSession.shared.dataTask(with: completed_url!) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)! // store the received data as a string to be processed
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata) // start swiftsoup tasks
                     

@@ -31,7 +31,7 @@ class PlayerViewController: UIViewController {
             guard let data = data, error == nil else { return }
             print(response?.suggestedFilename ?? URL(string: GlobalVar.coverURL[0].addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!.lastPathComponent)
             print("Download Finished")
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 self.albumArt.image = UIImage(data: data)
                 self.behindCover.image = UIImage(data: data)
             }
