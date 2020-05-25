@@ -148,6 +148,12 @@ class TrackTableViewController: UITableViewController {
                                             create: false)
                 let savedURL = documentsURL.appendingPathComponent(name)
                 try FileManager.default.moveItem(at: fileURL, to: savedURL)
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Done!", message: "Track has been saved into the Apps document Fodler! Open the File app to look at it!", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Okay!", style: .default))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
             } catch {
                 print ("file error: \(error)")
             }

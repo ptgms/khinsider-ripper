@@ -71,7 +71,7 @@ class BatchDownloadViewController: UIViewController, UITableViewDelegate {
                                             in: .userDomainMask,
                                             appropriateFor: nil,
                                             create: false)
-                let savedURL = documentsURL.appendingPathComponent(GlobalVar.AlbumName + "/" + name[self.inte] + GlobalVar.download_type)
+                let savedURL = documentsURL.appendingPathComponent(GlobalVar.AlbumName + "/" + String(self.inte + 1) + ": " + name[self.inte] + GlobalVar.download_type)
                 
                 try FileManager.default.moveItem(at: fileURL, to: savedURL)
                 self.downloading = true

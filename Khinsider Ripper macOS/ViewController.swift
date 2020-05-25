@@ -28,6 +28,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var availableFormats: NSTextField!
     @IBOutlet weak var downloadWith: NSPopUpButton!
     @IBOutlet weak var progressIndic: NSProgressIndicator!
+    @IBOutlet weak var blurArt: NSVisualEffectView!
     
     // --- Initialization of project specific variables
     
@@ -51,6 +52,8 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        blurArt.blendingMode = .behindWindow
         
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let dataPath = documentsDirectory.appendingPathComponent("Khinsider")
@@ -177,6 +180,7 @@ class ViewController: NSViewController {
     }
     
     func setAlbumArt() {
+        blurArt.blendingMode = .withinWindow
         getData(from: URL(string: GlobalVar.coverURL[0].addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!) { data, response, error in
             guard let data = data, error == nil else { return }
             print(response?.suggestedFilename ?? URL(string: GlobalVar.coverURL[0].addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!.lastPathComponent)
@@ -235,10 +239,10 @@ class ViewController: NSViewController {
         if (GlobalVar.currentLink == "") {
             return
         } else {
-            downloadSelect.stringValue = "Downloading..."
+            downloadSelect.stringValue = "downloadingdot".localized
             let a = NSAlert()
-            a.messageText = "Question"
-            a.informativeText = "As what format do you want to save the file?"
+            a.messageText = "question".localized
+            a.informativeText = "formatconfirm".localized
             if (GlobalVar.mp3) {
                 a.addButton(withTitle: "MP3")
             }
@@ -267,10 +271,13 @@ class ViewController: NSViewController {
     }
     
     @IBAction func downloadAll(_ sender: Any) {
+        GlobalVar.download_queue = []
+        progressIndic.doubleValue = Double(0)
+        progressIndic.maxValue = Double(GlobalVar.trackURL.count)
         currentTr = 0
         let a = NSAlert()
-        a.messageText = "Question"
-        a.informativeText = "As what format do you want to save the file?"
+        a.messageText = "question".localized
+        a.informativeText = "formatconfirm".localized
         if (GlobalVar.mp3) {
             a.addButton(withTitle: "MP3")
         }
@@ -297,7 +304,6 @@ class ViewController: NSViewController {
     }
     
     func initDownloadAll(type: String, toDownload: [String], name: [String]) {
-        progressIndic.maxValue = Double(GlobalVar.trackURL.count)
         let completed_url = URL(string: "https://downloads.khinsider.com" + toDownload[currentTr])!
         let task = URLSession.shared.dataTask(with: completed_url) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
@@ -311,21 +317,15 @@ class ViewController: NSViewController {
                         if (url_prev.hasSuffix(type)) {
                             print(url_prev)
                             self.currentTr += 1
-                            self.view.window?.title = "Gathering direct links " + String(GlobalVar.download_queue.count) + " / " +
+                            self.view.window?.title = "gatheringlinks".localized + String(GlobalVar.download_queue.count) + " / " +
                                 String(GlobalVar.trackURL.count)
                             self.progressIndic!.increment(by: 1)
                             GlobalVar.download_queue.append(URL(string: url_prev)!)
                             if (GlobalVar.download_queue.count == GlobalVar.trackURL.count) {
-                                self.view.window?.title = "Khinsider Ripper"
-                                if (self.downloadWith.titleOfSelectedItem == "Download directly") {
-                                    let storyboard = NSStoryboard(name: "Main", bundle: nil)
-                                    let batchWindow = storyboard.instantiateController(withIdentifier: "downloaderWindow") as! NSWindowController
-                                    
-                                    if let batchWindows = batchWindow.window {
-                                        
-                                        let application = NSApplication.shared
-                                        application.runModal(for: batchWindows)
-                                    }
+                                self.view.window?.title = "khinsiderripper".localized
+                                if (self.downloadWith.titleOfSelectedItem == "downloaddirect".localized) {
+                                    let batch = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "downloaderWindow") as! NSWindowController
+                                    batch.showWindow(self)
                                 } else {
                                     var toExport = ""
                                     let exportFile = self.getDocumentsDirectory().appendingPathComponent("Khinsider").appendingPathComponent("").appendingPathComponent(GlobalVar.AlbumName + ".txt")
@@ -339,17 +339,17 @@ class ViewController: NSViewController {
                                     do {
                                         try toExport.data(using: .utf8)!.write(to: exportFile)
                                         let a = NSAlert()
-                                        a.messageText = "Done!"
-                                        a.informativeText = "File has been saved in your Documents under the Khinsider Folder!"
-                                        a.addButton(withTitle: "OK")
+                                        a.messageText = "done".localized
+                                        a.informativeText = "filesaved".localized
+                                        a.addButton(withTitle: "ok".localized)
                                         a.alertStyle = NSAlert.Style.informational
                                         a.beginSheetModal(for: self.view.window!, completionHandler: nil)
                                     } catch {
                                         print("Failed to save the file!")
                                         let a = NSAlert()
-                                        a.messageText = "Error!"
-                                        a.informativeText = "Couldn't save the file!!"
-                                        a.addButton(withTitle: "OK")
+                                        a.messageText = "error".localized
+                                        a.informativeText = "savefail".localized
+                                        a.addButton(withTitle: "ok".localized)
                                         a.alertStyle = NSAlert.Style.critical
                                         a.beginSheetModal(for: self.view.window!, completionHandler: nil)
                                     }
@@ -410,6 +410,7 @@ class ViewController: NSViewController {
     
     func loadOne(url: URL, name: String) {
         print("Got here with request " + url.absoluteString)
+        self.downloadSelect.stringValue = "Downloading"
         let downloadTask = URLSession.shared.downloadTask(with: url) {
             urlOrNil, responseOrNil, errorOrNil in
             
@@ -423,7 +424,7 @@ class ViewController: NSViewController {
                 let savedURL = documentsURL.appendingPathComponent("Khinsider/" + name)
                 try FileManager.default.moveItem(at: fileURL, to: savedURL)
                 DispatchQueue.main.sync() {
-                    self.downloadSelect.stringValue = "Download selected"
+                    self.downloadSelect.stringValue = "downloadselected".localized
                 }
             } catch {
                 print ("file error: \(error)")
@@ -539,7 +540,7 @@ class ViewController: NSViewController {
                     print(self.tracklist.count)
                     print(self.tracklisturl.count)
                     
-                    var available = "Available Formats: "
+                    var available = "availableformat".localized
                     if (GlobalVar.mp3) {
                         available += "MP3 "
                     }
@@ -619,76 +620,9 @@ struct GlobalVar {
     static var currentName = ""
 }
 
-class TrackViewController: NSTableView, NSTableViewDataSource, NSTableViewDelegate {
-    
-    
-    fileprivate enum CellIdentifiers {
-        static let NameCell = "trackCell"
-        static let pathCell = "pathCell"
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
     }
-    
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        var text: String = ""
-        var _: String = ""
-        var cellIdentifier: String = ""
-        
-        
-        // 1
-        let item = String(row + 1) + ": " + GlobalVar.tracks[row]
-        let item2 = GlobalVar.trackURL[row]
-        
-        // 2
-        if tableColumn == tableView.tableColumns[0] {
-            text = item
-            cellIdentifier = CellIdentifiers.NameCell
-        } else if tableColumn == tableView.tableColumns[1] {
-            text = item2
-            cellIdentifier = CellIdentifiers.pathCell
-        }
-        // 3
-        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = text
-            return cell
-        }
-        return nil
-    }
-    
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return GlobalVar.tracks.count
-    }
-    
 }
 
-class AlbumViewController: NSTableView, NSTableViewDataSource, NSTableViewDelegate {
-    
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return GlobalVar.textArray.count
-    }
-    
-    fileprivate enum CellIdentifiers {
-        static let NameCell = "albumCell"
-    }
-    
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        var text: String = ""
-        var cellIdentifier: String = ""
-        
-        
-        // 1
-        let item = GlobalVar.textArray[row]
-        
-        // 2
-        if tableColumn == tableView.tableColumns[0] {
-            text = item
-            cellIdentifier = CellIdentifiers.NameCell
-        }
-        // 3
-        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = text
-            return cell
-        }
-        return nil
-    }
-}

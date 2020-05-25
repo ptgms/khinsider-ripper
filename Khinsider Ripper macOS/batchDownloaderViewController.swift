@@ -12,6 +12,8 @@ import Foundation
 class batchDownloaderViewController: NSViewController {
     @IBOutlet weak var progressLabel: NSTextField!
     @IBOutlet weak var progressText: NSTextField!
+    @IBOutlet weak var closeButton: NSButton!
+    @IBOutlet weak var progressBar: NSProgressIndicator!
     
     var recdata = ""
     var total = GlobalVar.tracks.count
@@ -20,6 +22,8 @@ class batchDownloaderViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        progressBar.maxValue = Double(total)
         
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let dataPath = documentsDirectory.appendingPathComponent("/Khinsider/" + GlobalVar.AlbumName)
@@ -30,8 +34,8 @@ class batchDownloaderViewController: NSViewController {
             print("Error creating directory: \(error.localizedDescription)")
         }
         
-        progressLabel.stringValue = "Downloading " + GlobalVar.AlbumName
-        progressText.stringValue = "Downloading 1 / " + String(total)
+        progressLabel.stringValue = "downloading".localized + GlobalVar.AlbumName
+        progressText.stringValue = "downloading".localized + "1 / " + String(total + 1)
         
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1;
@@ -41,54 +45,68 @@ class batchDownloaderViewController: NSViewController {
     
     func transitionToMain() {
         print("RETURN TO MAIN!")
+        DispatchQueue.main.async {
+            self.view.window?.close()
+        }
+    }
+    
+    @IBAction func closePressed(_ sender: NSButton) {
         self.view.window?.close()
     }
     
+    
     func load(url: [URL], name: [String], type: String) {
         print("Got here with request " + url[inte].absoluteString)
+        // create your document folder url
+        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! as URL
+        let documentsFolderUrl = documentsUrl.appendingPathComponent("Khinsider/").appendingPathComponent(GlobalVar.AlbumName)
+        // your destination file url
+        let destinationUrl = documentsFolderUrl.appendingPathComponent(url[inte].lastPathComponent)
         
-        let downloadTask = URLSession.shared.downloadTask(with: url[inte]) {
-            urlOrNil, responseOrNil, errorOrNil in
-
-            guard let fileURL = urlOrNil else { return }
-            do {
-                let documentsURL = try
-                    FileManager.default.url(for: .documentDirectory,
-                                            in: .userDomainMask,
-                                            appropriateFor: nil,
-                                            create: false)
-                let savedURL = documentsURL.appendingPathComponent("/Khinsider/" + GlobalVar.AlbumName + "/" + name[self.inte] + GlobalVar.download_type)
-                
-                try FileManager.default.moveItem(at: fileURL, to: savedURL)
-                self.downloading = true
-                print("Done!")
-                DispatchQueue.main.sync() {
-                    self.progressText.stringValue = "Downloading " + String(self.inte + 2) + " / " + String(self.total)
-                    self.downloading = false
-                    self.inte += 1
-                    if self.inte == GlobalVar.trackURL.count {
-                        self.transitionToMain()
-                        return
-                    }
-                    self.load(url: url, name: name, type: type)
-                    
-                }
-            } catch {
-                DispatchQueue.main.sync() {
-                    self.progressText.stringValue = "Downloading " + String(self.inte + 2) + " / " + String(self.total)
-                    self.downloading = false
-                    self.inte += 1
-                    if self.inte == GlobalVar.trackURL.count {
-                        self.transitionToMain()
-                        return
-                    }
-                    self.load(url: url, name: name, type: type)
-                }
-                print ("file error: \(error)")
+        print(destinationUrl)
+        if FileManager().fileExists(atPath: destinationUrl.path) {
+            print("file saved")
+            self.progressText.stringValue = "downloading".localized + String(self.inte + 2) + " / " + String(self.total + 1)
+            self.progressBar.increment(by: Double(2))
+            self.downloading = false
+            self.inte += 1
+            if self.inte == GlobalVar.trackURL.count {
+                self.closeButton.isEnabled = true
+                return
             }
-        }
-        downloadTask.resume()
+            self.load(url: url, name: name, type: type)
+        } else {
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: {
+                if let myAudioDataFromUrl = try? Data(contentsOf: url[self.inte]){
+                    // after downloading your data you need to save it to your destination url
+                    if (try? myAudioDataFromUrl.write(to: destinationUrl, options: [.atomic])) != nil {
+                        print("file saved")
+                        self.progressText.stringValue = "downloading".localized + String(self.inte + 2) + " / " + String(self.total + 1)
+                        self.progressBar.increment(by: Double(2))
+                        self.downloading = false
+                        self.inte += 1
+                        if self.inte == GlobalVar.trackURL.count {
+                            self.closeButton.isEnabled = true
+                            return
+                        }
+                        self.load(url: url, name: name, type: type)
+                        
+                    }
+                } else {
+                    print("error saving file")
+                    self.progressText.stringValue = "downloading".localized + String(self.inte + 2) + " / " + String(self.total + 1)
+                    self.progressBar.increment(by: Double(1))
+                    self.downloading = false
+                    self.inte += 1
+                    if self.inte == GlobalVar.trackURL.count {
+                        self.closeButton.isEnabled = true
+                        return
+                    }
+                    self.load(url: url, name: name, type: type)
+                    }
+                })
+            }
     }
-    
 }
+
 
