@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C078046F91C88FE93A26A48 /* Pods_Khinsider_Ripper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2713A9F33BD1B12DFD063CA8 /* Pods_Khinsider_Ripper.framework */; };
+		521F2F20248403840054CB7B /* FavsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F2F1F248403840054CB7B /* FavsTableViewController.swift */; };
 		5221E906247BC1A40076E0A7 /* generalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5221E905247BC1A40076E0A7 /* generalController.swift */; };
 		5260DFC024785996009BC1B8 /* BatchDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5260DFBF24785996009BC1B8 /* BatchDownloadViewController.swift */; };
 		5260DFC224786B38009BC1B8 /* TestUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5260DFC124786B38009BC1B8 /* TestUIViewController.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		2713A9F33BD1B12DFD063CA8 /* Pods_Khinsider_Ripper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Khinsider_Ripper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F0AD74EF1EDF73DA86BFE6E /* Pods-Khinsider Ripper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khinsider Ripper.release.xcconfig"; path = "Target Support Files/Pods-Khinsider Ripper/Pods-Khinsider Ripper.release.xcconfig"; sourceTree = "<group>"; };
+		521F2F1F248403840054CB7B /* FavsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsTableViewController.swift; sourceTree = "<group>"; };
 		5221E905247BC1A40076E0A7 /* generalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generalController.swift; sourceTree = "<group>"; };
 		5260DFBF24785996009BC1B8 /* BatchDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchDownloadViewController.swift; sourceTree = "<group>"; };
 		5260DFC124786B38009BC1B8 /* TestUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUIViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				52DD6035247830C9003CD214 /* PlayerViewController.swift */,
 				5260DFBF24785996009BC1B8 /* BatchDownloadViewController.swift */,
 				5260DFC124786B38009BC1B8 /* TestUIViewController.swift */,
+				521F2F1F248403840054CB7B /* FavsTableViewController.swift */,
 			);
 			path = "Khinsider Ripper";
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				TargetAttributes = {
 					5288AD042479573E00D0846D = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1030;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -224,6 +228,7 @@
 					};
 					52EBF5F024770BFA00143906 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1030;
 					};
 				};
 			};
@@ -375,6 +380,7 @@
 				52EBF5F524770BFA00143906 /* AppDelegate.swift in Sources */,
 				52DD6036247830C9003CD214 /* PlayerViewController.swift in Sources */,
 				5260DFC024785996009BC1B8 /* BatchDownloadViewController.swift in Sources */,
+				521F2F20248403840054CB7B /* FavsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,11 +428,11 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Ripper-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -444,11 +450,11 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Ripper-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -503,7 +509,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -558,7 +564,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -576,13 +582,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 89946UN8X8;
 				INFOPLIST_FILE = "Khinsider Ripper/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Ripper";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Rip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -595,13 +602,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 89946UN8X8;
 				INFOPLIST_FILE = "Khinsider Ripper/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Ripper";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Rip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

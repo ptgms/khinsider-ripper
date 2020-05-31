@@ -6,7 +6,7 @@ target 'Khinsider Ripper' do
   use_frameworks!
 
   # Pods for Khinsider Ripper
-  pod 'SwiftSoup', '1.7.4'
+  pod 'SwiftSoup'
 end
 
 target 'Khinsider Ripper macOS' do
@@ -14,5 +14,5 @@ target 'Khinsider Ripper macOS' do
   use_frameworks!
 
   # Pods for Khinsider Ripper macOS
-  pod 'SwiftSoup', '1.7.4'
+  pod 'SwiftSoup'
 end

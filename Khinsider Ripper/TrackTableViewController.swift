@@ -41,7 +41,11 @@ class TrackTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let openInBrowser = UITableViewRowAction(style: .normal, title: "Open Track in Browser") { (action, indexPath) in
             let url = URL(string: GlobalVar.base_url + GlobalVar.trackURL[indexPath.row])
-            UIApplication.shared.open(url!)
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url!)
+            } else {
+                UIApplication.shared.openURL(url!)
+            }
         }
         let downloadTrack = UITableViewRowAction(style: .normal, title: "Download Track") { (action, indexPath) in
             let alert = UIAlertController(title: "Question", message: "As what format do you want to save the file?", preferredStyle: .alert)
@@ -66,8 +70,6 @@ class TrackTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let preView = storyboard.instantiateViewController(withIdentifier: "player")
         GlobalVar.nowplaying = GlobalVar.tracks[indexPath.row]
         let nowplaying = GlobalVar.trackURL[indexPath.row]
         let completed_url = URL(string: GlobalVar.base_url + nowplaying)
@@ -84,17 +86,12 @@ class TrackTableViewController: UITableViewController {
                         let url_prev = try! link.attr("href")
                         if (url_prev.hasSuffix(".mp3")) {
                             GlobalVar.nowplayingurl = url_prev
-                            self.navigationController?.pushViewController(preView, animated: true)
+                            self.tabBarController?.selectedIndex = 2
                             break
                         } else if (url_prev.hasSuffix(".ogg")) {
                             GlobalVar.nowplayingurl = url_prev
-                            self.navigationController?.pushViewController(preView, animated: true)
+                            self.tabBarController?.selectedIndex = 2
                             break
-                        } else {
-                            let alertController = UIAlertController(title: "Error!", message: "Couldn't fetch media file! This really isn't even supposed to happen! Make an GitHub issue saying what album this is!", preferredStyle: .alert)
-                            alertController.addAction(UIAlertAction(title: "Okay!", style: .default))
-                            
-                            self.present(alertController, animated: true, completion: nil)
                         }
                     }
                 } catch Exception.Error( _, let message) {

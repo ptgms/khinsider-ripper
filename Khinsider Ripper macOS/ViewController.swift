@@ -512,7 +512,7 @@ class ViewController: NSViewController {
                                     GlobalVar.tags = self.tags
                                 }
                                 var temptag = [String]()
-                                let songname = self.tags.index(of: "Song Name")!
+                                let songname = self.tags.firstIndex(of: "Song Name")!
                                 for titlename in try! title.select("td") {
                                     temptag.append(try! titlename.text())
                                     let titleurl = try! titlename.select("a").attr("href")

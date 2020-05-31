@@ -22,19 +22,40 @@ class AlbumViewController: UIViewController {
     @IBOutlet weak var gatherLinkBar: UIProgressView!
     @IBOutlet weak var gatherLinkPanel: UIView!
     
+    @IBOutlet weak var backgroundVFX: UIVisualEffectView!
+    @IBOutlet weak var buttonGroup: UIVisualEffectView!
+    @IBOutlet weak var shareAlbumButton: UIVisualEffectView!
+    @IBOutlet weak var addFavButton: UIVisualEffectView!
+    @IBOutlet weak var addFavText: UILabel!
+    
     
     var currentTr = 0
     var recdata = ""
     //var count = 0
     var total = GlobalVar.trackURL.count
+    var image: Data = Data()
+    
+    var tapped = 0
+    
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         albumName.text = GlobalVar.AlbumName
+        self.albumCover.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         trackAmount.text = "Contains " + String(GlobalVar.tracks.count) + " Tracks"
         navigControl.title = GlobalVar.AlbumName
         currentTr = 0
         gatherLinkPanel.isHidden = true
+        
+        buttonGroup.roundCorners(corners: [.bottomLeft, .bottomRight, .topRight], radius: 8.0)
+        
+        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressHappened))
+        albumCover.addGestureRecognizer(recognizer)
+        
+        let recognizer2 = UITapGestureRecognizer(target: self, action: #selector(backDropPressed))
+        backgroundVFX.addGestureRecognizer(recognizer2)
+        
         
         var avaible = "Available Formats: "
         
@@ -58,8 +79,17 @@ class AlbumViewController: UIViewController {
                 print("Download Finished")
                 DispatchQueue.main.async {
                     self.albumCover.image = UIImage(data: data)
+                    self.image = data
                 }
             }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if (GlobalVar.fav_link.contains(GlobalVar.album_url!.absoluteString)) {
+            addFavText.text = "Remove from Favorites"
+        } else {
+            addFavText.text = "Add to Favorites"
         }
     }
     
@@ -69,7 +99,11 @@ class AlbumViewController: UIViewController {
 
     @IBAction func viewButton(_ sender: Any) {
         let url = GlobalVar.album_url
-        UIApplication.shared.open(url!)
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url!)
+        } else {
+            UIApplication.shared.openURL(url!)
+        }
     }
     
     @IBAction func downloadAllPressed(_ sender: Any) {
@@ -140,5 +174,97 @@ class AlbumViewController: UIViewController {
             }
         }
         task.resume()
+    }
+    
+    @objc func longPressHappened(gestureRecognizer : UILongPressGestureRecognizer) {
+        print("yes")
+        if (gestureRecognizer.state == .began) {
+            if #available(iOS 10.0, *) {
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                if (tapped != 1) {
+                    generator.impactOccurred()
+                }
+            }
+            backgroundVFX.isHidden = false
+            backgroundVFX.alpha = 0.0
+            UIView.animate(withDuration: 0.2, animations: {
+                self.backgroundVFX.alpha = 1.0
+                self.albumCover.transform = CGAffineTransform.identity
+            })
+            
+        } else if (gestureRecognizer.state == .ended) {
+            shareAlbumButton.effect = UIBlurEffect(style: .dark)
+            addFavButton.effect = UIBlurEffect(style: .dark)
+            UIView.animate(withDuration: 0.2, animations: {
+                self.backgroundVFX.alpha = 0.0
+                self.albumCover.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            }, completion: { _ in
+                self.backgroundVFX.isHidden = true
+            })
+            
+            switch tapped {
+            case 1:
+                let items: [Any] = ["Check out this Album from Khinsider!\n" + GlobalVar.album_url!.absoluteString]
+                let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                present(ac, animated: true)
+            case 2:
+                if (GlobalVar.fav_name.contains(GlobalVar.AlbumName)) {
+                    let remove = GlobalVar.fav_name.firstIndex(of: GlobalVar.AlbumName)!
+                    GlobalVar.fav_name.remove(at: remove)
+                    GlobalVar.fav_link.remove(at: remove)
+                    addFavText.text = "Add to Favorites"
+                } else {
+                    GlobalVar.fav_name.append(GlobalVar.AlbumName)
+                    GlobalVar.fav_link.append(GlobalVar.album_url?.absoluteString ?? "")
+                    addFavText.text = "Remove from Favorites"
+                }
+                print(GlobalVar.fav_name)
+                defaults.set(GlobalVar.fav_name, forKey: "fav_name")
+                defaults.set(GlobalVar.fav_link, forKey: "fav_link")
+            default:
+                return
+            }
+        } else if (gestureRecognizer.state) == .changed {
+            let point = gestureRecognizer.location(in: buttonGroup)
+            
+            if (shareAlbumButton.frame.contains(point)) {
+                shareAlbumButton.effect = UIBlurEffect(style: .light)
+                addFavButton.effect = UIBlurEffect(style: .dark)
+                if #available(iOS 10.0, *) {
+                    let generator = UIImpactFeedbackGenerator(style: .light)
+                    if (tapped != 1) {
+                        generator.impactOccurred()
+                    }
+                }
+                tapped = 1
+            } else if (addFavButton.frame.contains(point)) {
+                shareAlbumButton.effect = UIBlurEffect(style: .dark)
+                addFavButton.effect = UIBlurEffect(style: .light)
+                if #available(iOS 10.0, *) {
+                    let generator = UIImpactFeedbackGenerator(style: .light)
+                    if (tapped != 2) {
+                        generator.impactOccurred()
+                    }
+                }
+                tapped = 2
+            } else {
+                shareAlbumButton.effect = UIBlurEffect(style: .dark)
+                addFavButton.effect = UIBlurEffect(style: .dark)
+                tapped = 0
+            }
+        }
+        
+    }
+    
+    @objc func backDropPressed(gestureRecognizer : UITapGestureRecognizer) {
+        backgroundVFX.isHidden = true
+        shareAlbumButton.isHidden = true
+        addFavButton.isHidden = true
+    }
+    
+    @objc func sharePressed(_ sender: Any) {
+        let items: [Any] = ["Check out this Album from Khinsider!\n" + GlobalVar.album_url!.absoluteString]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
     }
 }

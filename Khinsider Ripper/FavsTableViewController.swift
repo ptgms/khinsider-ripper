@@ -1,59 +1,44 @@
 //
-//  HomeTableViewController.swift
+//  FavsTableViewController.swift
 //  Khinsider Ripper
 //
-//  Created by ptgms on 22.05.20.
+//  Created by ptgms on 31.05.20.
 //  Copyright © 2020 ptgms. All rights reserved.
 //
 
 import UIKit
 import SwiftSoup
 
-class HomeTableViewController: UITableViewController, UISearchBarDelegate {
+class FavsTableViewController: UITableViewController {
 
-    @IBOutlet var tableViewer: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    
-    // --- Initialization of project specific variables
-    var linkArray = [String]()
-    var textArray = [String]()
     
     let base_url = "https://downloads.khinsider.com/"
     let base_search_url = "search?search="
     let base_soundtrack_album_url = "game-soundtracks/album/"
     
-    var debug = 0
-    
     var recdata = ""
     
+    var tags = [String]()
     var album_name = ""
     var tracklist = [String]()
     var tracklisturl = [String]()
     var titlelength = [String]()
+    var linkArray = [String]()
+    var textArray = [String]()
+    let defaults = UserDefaults.standard
     
-    var tags = [String]()
-    // ----
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let defaults = UserDefaults.standard
-        
-        GlobalVar.fav_name = defaults.stringArray(forKey: "fav_name") ?? [String]()
-        GlobalVar.fav_link = defaults.stringArray(forKey: "fav_link") ?? [String]()
 
-        searchBar.showsScopeBar = true
-        searchBar.delegate = self
-        
-        if #available(iOS 11.0, *) {
-            
-        } else {
-            let alertController = UIAlertController(title: "Warning!", message: "You are using the App on an iOS Version below 11. You won't be able to view downloaded tracks in the files app, you'll need iTunes or an File app with jailbroken devices.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Okay!", style: .default))
-            
-            self.present(alertController, animated: true, completion: nil)
-        }
-        
-        //update()
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -65,24 +50,25 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return textArray.count
+        return GlobalVar.fav_name.count
     }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "khinCell", for: indexPath)
-        
-        cell.textLabel?.text = textArray[indexPath.row]
-        cell.detailTextLabel?.text = "Path: " + linkArray[indexPath.row].replacingOccurrences(of: base_url, with: "")
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath)
+
+        cell.textLabel?.text = GlobalVar.fav_name[indexPath.row]
+        cell.detailTextLabel?.text = GlobalVar.fav_link[indexPath.row]
+
         return cell
     }
     
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let preView = storyboard.instantiateViewController(withIdentifier: "albumDetails")
         
-        // resseting all Variables to empty in case another album got selected before
-        
+        recdata = ""
         GlobalVar.mp3 = false
         GlobalVar.flac = false
         GlobalVar.ogg = false
@@ -97,16 +83,14 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         GlobalVar.tracks = [String]()
         GlobalVar.trackURL = [String]()
         
-        // ---
-        
-        let completed_url = URL(string: base_url + linkArray[indexPath.row].replacingOccurrences(of: base_url, with: "")) // build the URL to process
+        let completed_url = URL(string: base_url + GlobalVar.fav_link[indexPath.row].replacingOccurrences(of: base_url, with: "")) // build the URL to process
         GlobalVar.album_url = completed_url
         let task = URLSession.shared.dataTask(with: completed_url!) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)! // store the received data as a string to be processed
             DispatchQueue.main.async {
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata) // start swiftsoup tasks
-
+                    
                     for element in try doc.select("img").array(){ // for every image on the site store the URL
                         let imgurl = try! element.attr("src")
                         if (imgurl.hasPrefix("/album_views.php")){
@@ -161,7 +145,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
                     
                     GlobalVar.tracks = self.tracklist
                     GlobalVar.trackURL = self.tracklisturl
-                    GlobalVar.AlbumName = self.textArray[indexPath.row]
+                    GlobalVar.AlbumName = GlobalVar.fav_name[indexPath.row]
                     self.navigationController?.pushViewController(preView, animated: true)
                     
                     print(self.tracklist.count)
@@ -176,96 +160,17 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
         task.resume()
-        
-    }
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        linkArray.removeAll()
-        textArray.removeAll()
-        searchBar.resignFirstResponder()
-        let search = searchBar.text!.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
-        let completed_url = URL(string: base_url + base_search_url + search)
-        let task = URLSession.shared.dataTask(with: completed_url!) {(data, response, error) in
-            self.recdata = String(data: data!, encoding: .utf8)!
-            DispatchQueue.main.async {
-                //print(self.recdata)
-                do {
-                    let doc: Document = try SwiftSoup.parse(self.recdata)
-                    let link: Element = try doc.getElementById("EchoTopic")!
-                   
-                    for row in try! link.select("p") {
-                        for col in try! row.select("a") {
-                            if (try col.attr("href").contains("game-soundtracks/browse/") || col.attr("href").contains("/forums/")) {
-                                continue
-                            }
-                            let colContent = try! col.text()
-                            let colHref = try! col.attr("href")
-                            
-                            self.textArray.append(colContent)
-                            self.linkArray.append(colHref)
-                        }
-                    }
-                    
-                    print(self.textArray.count)
-                    print(self.linkArray.count)
-                    
-                    self.update()
-                    
-                } catch Exception.Error( _, let message) {
-                    print(message)
-                } catch {
-                    print("error")
-                }
-            }
-        }
-        task.resume()
-        
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let fav = UITableViewRowAction(style: .normal, title: "Favorite") { (action, indexPath) in
-            let url = URL(string: GlobalVar.base_url + GlobalVar.trackURL[indexPath.row])
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url!)
-            } else {
-                UIApplication.shared.openURL(url!)
-            }
+        let remove = UITableViewRowAction(style: .destructive, title: "Remove") { (action, indexPath) in
+            GlobalVar.fav_name.remove(at: indexPath.row)
+            GlobalVar.fav_link.remove(at: indexPath.row)
+            self.defaults.set(GlobalVar.fav_name, forKey: "fav_name")
+            self.defaults.set(GlobalVar.fav_link, forKey: "fav_link")
+            self.tableView.reloadData()
         }
-        return [fav]
-    }
-    
-    func update() {
-        if (linkArray.count == textArray.count) {
-            tableViewer.reloadData()
-        } else {
-            print("Mismatch on both arrays, this shouldn't happen!")
-        }
+        return [remove]
     }
 
-}
-
-struct GlobalVar {
-    static var tracks = [String]()
-    static var AlbumName = ""
-    static var trackURL = [String]()
-    static var coverURL = [String]()
-    static var tags = [String]()
-    
-    static let base_url = "https://downloads.khinsider.com"
-    
-    static var ogg = false
-    static var mp3 = false
-    static var flac = false
-    
-    static var nowplaying = ""
-    static var nowplayingurl = ""
-    
-    static var download_type = ""
-    
-    static var album_url = URL(string: "")
-    
-    static var download_queue: [URL] = []
-    
-    static var fav_name = [String]()
-    static var fav_link = [String]()
 }
