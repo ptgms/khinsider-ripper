@@ -21,6 +21,7 @@
 		52DD603224780520003CD214 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD603124780520003CD214 /* AlbumViewController.swift */; };
 		52DD603424780531003CD214 /* TrackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD603324780531003CD214 /* TrackTableViewController.swift */; };
 		52DD6036247830C9003CD214 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD6035247830C9003CD214 /* PlayerViewController.swift */; };
+		52E97A02248518F8002B3E1F /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E97A01248518F8002B3E1F /* TabController.swift */; };
 		52EBF5F524770BFA00143906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBF5F424770BFA00143906 /* AppDelegate.swift */; };
 		52EBF5FA24770BFA00143906 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EBF5F824770BFA00143906 /* Main.storyboard */; };
 		52EBF5FC24770BFB00143906 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52EBF5FB24770BFB00143906 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		52DD603124780520003CD214 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		52DD603324780531003CD214 /* TrackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewController.swift; sourceTree = "<group>"; };
 		52DD6035247830C9003CD214 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		52E97A01248518F8002B3E1F /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		52EBF5F124770BFA00143906 /* Khinsider Ripper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Khinsider Ripper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EBF5F424770BFA00143906 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52EBF5F924770BFA00143906 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				5260DFBF24785996009BC1B8 /* BatchDownloadViewController.swift */,
 				5260DFC124786B38009BC1B8 /* TestUIViewController.swift */,
 				521F2F1F248403840054CB7B /* FavsTableViewController.swift */,
+				52E97A01248518F8002B3E1F /* TabController.swift */,
 			);
 			path = "Khinsider Ripper";
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				52EBF5F524770BFA00143906 /* AppDelegate.swift in Sources */,
 				52DD6036247830C9003CD214 /* PlayerViewController.swift in Sources */,
 				5260DFC024785996009BC1B8 /* BatchDownloadViewController.swift in Sources */,
+				52E97A02248518F8002B3E1F /* TabController.swift in Sources */,
 				521F2F20248403840054CB7B /* FavsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

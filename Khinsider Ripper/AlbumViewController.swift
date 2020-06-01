@@ -41,6 +41,7 @@ class AlbumViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         albumName.text = GlobalVar.AlbumName
         self.albumCover.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         trackAmount.text = "Contains " + String(GlobalVar.tracks.count) + " Tracks"
@@ -48,13 +49,13 @@ class AlbumViewController: UIViewController {
         currentTr = 0
         gatherLinkPanel.isHidden = true
         
-        buttonGroup.roundCorners(corners: [.bottomLeft, .bottomRight, .topRight], radius: 8.0)
-        
         let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressHappened))
         albumCover.addGestureRecognizer(recognizer)
         
         let recognizer2 = UITapGestureRecognizer(target: self, action: #selector(backDropPressed))
         backgroundVFX.addGestureRecognizer(recognizer2)
+        
+        
         
         
         var avaible = "Available Formats: "
@@ -83,7 +84,12 @@ class AlbumViewController: UIViewController {
                 }
             }
         }
+        
+        buttonGroup.layer.masksToBounds = false
+        buttonGroup.layer.cornerRadius = 8
+        buttonGroup.clipsToBounds = true
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         if (GlobalVar.fav_link.contains(GlobalVar.album_url!.absoluteString)) {
@@ -193,8 +199,8 @@ class AlbumViewController: UIViewController {
             })
             
         } else if (gestureRecognizer.state == .ended) {
-            shareAlbumButton.effect = UIBlurEffect(style: .dark)
-            addFavButton.effect = UIBlurEffect(style: .dark)
+            shareAlbumButton.effect = UIBlurEffect(style: .light)
+            addFavButton.effect = UIBlurEffect(style: .light)
             UIView.animate(withDuration: 0.2, animations: {
                 self.backgroundVFX.alpha = 0.0
                 self.albumCover.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
@@ -228,8 +234,8 @@ class AlbumViewController: UIViewController {
             let point = gestureRecognizer.location(in: buttonGroup)
             
             if (shareAlbumButton.frame.contains(point)) {
-                shareAlbumButton.effect = UIBlurEffect(style: .light)
-                addFavButton.effect = UIBlurEffect(style: .dark)
+                shareAlbumButton.effect = UIBlurEffect(style: .extraLight)
+                addFavButton.effect = UIBlurEffect(style: .light)
                 if #available(iOS 10.0, *) {
                     let generator = UIImpactFeedbackGenerator(style: .light)
                     if (tapped != 1) {
@@ -238,8 +244,8 @@ class AlbumViewController: UIViewController {
                 }
                 tapped = 1
             } else if (addFavButton.frame.contains(point)) {
-                shareAlbumButton.effect = UIBlurEffect(style: .dark)
-                addFavButton.effect = UIBlurEffect(style: .light)
+                shareAlbumButton.effect = UIBlurEffect(style: .light)
+                addFavButton.effect = UIBlurEffect(style: .extraLight)
                 if #available(iOS 10.0, *) {
                     let generator = UIImpactFeedbackGenerator(style: .light)
                     if (tapped != 2) {
@@ -248,8 +254,8 @@ class AlbumViewController: UIViewController {
                 }
                 tapped = 2
             } else {
-                shareAlbumButton.effect = UIBlurEffect(style: .dark)
-                addFavButton.effect = UIBlurEffect(style: .dark)
+                shareAlbumButton.effect = UIBlurEffect(style: .light)
+                addFavButton.effect = UIBlurEffect(style: .light)
                 tapped = 0
             }
         }
@@ -266,5 +272,88 @@ class AlbumViewController: UIViewController {
         let items: [Any] = ["Check out this Album from Khinsider!\n" + GlobalVar.album_url!.absoluteString]
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(ac, animated: true)
+    }
+    
+}
+
+@IBDesignable
+extension UIVisualEffectView {
+    // Shadow
+    @IBInspectable var shadow: Bool {
+        get {
+            return layer.shadowOpacity > 0.0
+        }
+        set {
+            if newValue == true {
+                self.addShadow()
+            }
+        }
+    }
+    
+    fileprivate func addShadow(shadowColor: CGColor = UIColor.black.cgColor, shadowOffset: CGSize = CGSize(width: 3.0, height: 3.0), shadowOpacity: Float = 0.35, shadowRadius: CGFloat = 5.0) {
+        let layer = self.layer
+        layer.masksToBounds = false
+        
+        layer.shadowColor = shadowColor
+        layer.shadowOffset = shadowOffset
+        layer.shadowRadius = shadowRadius
+        layer.shadowOpacity = shadowOpacity
+        layer.shadowPath = UIBezierPath(roundedRect: layer.bounds, cornerRadius: layer.cornerRadius).cgPath
+        
+        let backgroundColor = self.backgroundColor?.cgColor
+        self.backgroundColor = nil
+        layer.backgroundColor =  backgroundColor
+    }
+    
+    
+    // Corner radius
+    @IBInspectable var circle: Bool {
+        get {
+            return layer.cornerRadius == self.bounds.width*0.5
+        }
+        set {
+            if newValue == true {
+                self.cornerRadius = self.bounds.width*0.5
+            }
+        }
+    }
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return self.layer.cornerRadius
+        }
+        
+        set {
+            self.layer.cornerRadius = newValue
+        }
+    }
+    
+    
+    // Borders
+    // Border width
+    @IBInspectable
+    public var borderWidth: CGFloat {
+        set {
+            layer.borderWidth = newValue
+        }
+        
+        get {
+            return layer.borderWidth
+        }
+    }
+    
+    // Border color
+    @IBInspectable
+    public var borderColor: UIColor? {
+        set {
+            layer.borderColor = newValue?.cgColor
+        }
+        
+        get {
+            if let borderColor = layer.borderColor {
+                return UIColor(cgColor: borderColor)
+            }
+            return nil
+        }
     }
 }

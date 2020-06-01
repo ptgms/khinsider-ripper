@@ -41,7 +41,9 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
         self.albumArt.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         
-        saveGroupFX.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 8.0)
+        saveGroupFX.layer.masksToBounds = false
+        saveGroupFX.layer.cornerRadius = 8
+        saveGroupFX.clipsToBounds = true
         
         if (GlobalVar.nowplaying == "") {
             GlobalVar.nowplaying = "Nothing playing!"
@@ -161,6 +163,8 @@ class PlayerViewController: UIViewController {
             return
         }
         if (gestureRecognizer.state == .began) {
+            saveButtonBackground.effect = UIBlurEffect(style: .light)
+            addFavButton.effect = UIBlurEffect(style: .light)
             if #available(iOS 10.0, *) {
                 let generator = UIImpactFeedbackGenerator(style: .light)
                 if (tapped != 1) {
@@ -169,8 +173,6 @@ class PlayerViewController: UIViewController {
             }
             saveBackDropFX.isHidden = false
             saveButton.isHidden = false
-            saveButtonBackground.isHidden = false
-            addFavButton.isHidden = false
             saveBackDropFX.alpha = 0.0
             UIView.animate(withDuration: 0.2, animations: {
                 self.saveBackDropFX.alpha = 1.0
@@ -186,8 +188,6 @@ class PlayerViewController: UIViewController {
             })
             saveBackDropFX.isHidden = true
             saveButton.isHidden = true
-            saveButtonBackground.isHidden = true
-            addFavButton.isHidden = true
             switch tapped {
             case 1:
                 if let pickedImage = albumArt.image {
@@ -214,8 +214,8 @@ class PlayerViewController: UIViewController {
             let point = gestureRecognizer.location(in: saveGroupFX)
             
             if (saveButtonBackground.frame.contains(point)) {
-                saveButtonBackground.effect = UIBlurEffect(style: .light)
-                addFavButton.effect = UIBlurEffect(style: .dark)
+                saveButtonBackground.effect = UIBlurEffect(style: .extraLight)
+                addFavButton.effect = UIBlurEffect(style: .light)
                 if #available(iOS 10.0, *) {
                     let generator = UIImpactFeedbackGenerator(style: .light)
                     if (tapped != 1) {
@@ -224,8 +224,8 @@ class PlayerViewController: UIViewController {
                 }
                 tapped = 1
             } else if (addFavButton.frame.contains(point)) {
-                saveButtonBackground.effect = UIBlurEffect(style: .dark)
-                addFavButton.effect = UIBlurEffect(style: .light)
+                saveButtonBackground.effect = UIBlurEffect(style: .light)
+                addFavButton.effect = UIBlurEffect(style: .extraLight)
                 if #available(iOS 10.0, *) {
                     let generator = UIImpactFeedbackGenerator(style: .light)
                     if (tapped != 2) {
@@ -234,8 +234,8 @@ class PlayerViewController: UIViewController {
                 }
                 tapped = 2
             } else {
-                saveButtonBackground.effect = UIBlurEffect(style: .dark)
-                addFavButton.effect = UIBlurEffect(style: .dark)
+                saveButtonBackground.effect = UIBlurEffect(style: .light)
+                addFavButton.effect = UIBlurEffect(style: .light)
                 tapped = 0
             }
         }

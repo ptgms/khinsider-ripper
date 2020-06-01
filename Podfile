@@ -7,6 +7,7 @@ target 'Khinsider Ripper' do
 
   # Pods for Khinsider Ripper
   pod 'SwiftSoup'
+  pod 'SwipeableTabBarController'
 end
 
 target 'Khinsider Ripper macOS' do

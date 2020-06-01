@@ -63,7 +63,16 @@ class FavsTableViewController: UITableViewController {
         return cell
     }
     
-
+    @IBAction func optionsButton(_ sender: Any) {
+        if(self.tableView.isEditing == true) {
+            self.tableView.isEditing = false
+            self.navigationItem.rightBarButtonItem?.title = "Done"
+        } else {
+            self.tableView.isEditing = true
+            self.navigationItem.rightBarButtonItem?.title = "Edit"
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let preView = storyboard.instantiateViewController(withIdentifier: "albumDetails")

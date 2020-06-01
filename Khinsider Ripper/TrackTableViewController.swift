@@ -105,6 +105,17 @@ class TrackTableViewController: UITableViewController {
         
     }
     
+    @IBAction func optionsPressed(_ sender: Any) {
+        if(self.tableView.isEditing == true) {
+            self.tableView.isEditing = false
+            self.navigationItem.rightBarButtonItem?.title = "Done"
+        } else {
+            self.tableView.isEditing = true
+            self.navigationItem.rightBarButtonItem?.title = "Options"
+        }
+    }
+    
+    
     func download(type: String, toDownload: String, name: String) {
         let completed_url = URL(string: "https://downloads.khinsider.com" + toDownload)!
         let task = URLSession.shared.dataTask(with: completed_url) {(data, response, error) in
