@@ -4,22 +4,6 @@
    <FileRef
       location = "group:Khinsider Ripper.xcodeproj">
    </FileRef>
-   <Group
-      location = "group:"
-      name = "Frameworks">
-      <FileRef
-         location = "build:SwiftSoup.framework"
-         assignedFileDataType = "com.apple.framework">
-      </FileRef>
-      <FileRef
-         location = "build:Pods_Khinsider_Ripper.framework"
-         assignedFileDataType = "com.apple.framework">
-      </FileRef>
-      <FileRef
-         location = "build:Pods_Khinsider_Ripper_macOS.framework"
-         assignedFileDataType = "com.apple.framework">
-      </FileRef>
-   </Group>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
