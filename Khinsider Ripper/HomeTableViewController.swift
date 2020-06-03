@@ -47,8 +47,8 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         if #available(iOS 11.0, *) {
             
         } else {
-            let alertController = UIAlertController(title: "Warning!", message: "You are using the App on an iOS Version below 11. You won't be able to view downloaded tracks in the files app, you'll need iTunes or an File app with jailbroken devices.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Okay!", style: .default))
+            let alertController = UIAlertController(title: "warning".localized, message: "legacy_warning".localized, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "ok".localized, style: .default))
             
             self.present(alertController, animated: true, completion: nil)
         }
@@ -223,7 +223,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let fav = UITableViewRowAction(style: .normal, title: "Favorite") { (action, indexPath) in
+        let fav = UITableViewRowAction(style: .normal, title: "fav".localized) { (action, indexPath) in
             let url = URL(string: GlobalVar.base_url + GlobalVar.trackURL[indexPath.row])
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url!)
@@ -268,4 +268,10 @@ struct GlobalVar {
     
     static var fav_name = [String]()
     static var fav_link = [String]()
+}
+
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
+    }
 }

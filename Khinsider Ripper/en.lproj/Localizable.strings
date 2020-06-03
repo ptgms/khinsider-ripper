@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  Khinsider Ripper
+
+  Created by ptgms on 03.06.20.
+  Copyright © 2020 ptgms. All rights reserved.
+*/
+
+// Warning popups
+"warning" = "Warning!";
+"legacy_warning" = "You are using the App on an iOS Version below 11. You won't be able to view downloaded tracks in the files app, you'll need iTunes or an File app with jailbroken devices.";
+"ok" = "Okay";
+
+// General App Strings
+"fav" = "Favorite";
+"av_formats" = "Available Formats: ";
+"remove_fav" = "Remove from Favorites";
+"addfav" = "Add to Favorites";
+"open_browser" = "Open Track in Browser";
+"done" = "Done";
+"options" = "Options";
+"nothingplay" = "Nothing playing!";
+"downloading" = "Downloading";
+"edit" = "Edit";
+"rmv" = "Remove";
+"base_dir" = "In Directory: Documents/";
+"gobackdir" = "Go back a directory";
+"contains" = "Contains ";
+"tracks" = " Tracks";
+
+// Info popups
+"question" = "Question";
+"format_ask" = "As what format do you want to save the file?";
+"gathering" = "Gathering direct links";
+"download_all" = "Download all Tracks";
+"checkout" = "Check out this Album from Khinsider!\n";
+"download_track" = "Download Track";
+"trackdone" = "Track has been saved into the Apps document Fodler! Open the File app to look at it!";

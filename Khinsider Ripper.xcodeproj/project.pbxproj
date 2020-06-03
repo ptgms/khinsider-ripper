@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2C078046F91C88FE93A26A48 /* Pods_Khinsider_Ripper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2713A9F33BD1B12DFD063CA8 /* Pods_Khinsider_Ripper.framework */; };
+		521CF4C82488008500F7F46E /* DownloadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CF4C72488008500F7F46E /* DownloadsTableViewController.swift */; };
+		521CF4CE248814DB00F7F46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 521CF4D0248814DB00F7F46E /* Localizable.strings */; };
+		521CF4D22488162900F7F46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 521CF4D42488162900F7F46E /* Localizable.strings */; };
 		521F2F20248403840054CB7B /* FavsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F2F1F248403840054CB7B /* FavsTableViewController.swift */; };
 		5221E906247BC1A40076E0A7 /* generalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5221E905247BC1A40076E0A7 /* generalController.swift */; };
 		5260DFC024785996009BC1B8 /* BatchDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5260DFBF24785996009BC1B8 /* BatchDownloadViewController.swift */; };
@@ -28,13 +31,20 @@
 		52EBF5FF24770BFB00143906 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EBF5FD24770BFB00143906 /* LaunchScreen.storyboard */; };
 		52EFF5D1247BB5510092399A /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EFF5D0247BB5510092399A /* AlbumViewController.swift */; };
 		52EFF5D3247BB5730092399A /* TrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EFF5D2247BB5730092399A /* TrackViewController.swift */; };
-		52EFF5D5247BB7440092399A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52EFF5D4247BB7440092399A /* Localizable.strings */; };
 		A2DC332AB7B96DD61577643B /* Pods_Khinsider_Ripper_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A5E13758D9D5AAF9B9C6EE /* Pods_Khinsider_Ripper_macOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2713A9F33BD1B12DFD063CA8 /* Pods_Khinsider_Ripper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Khinsider_Ripper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F0AD74EF1EDF73DA86BFE6E /* Pods-Khinsider Ripper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khinsider Ripper.release.xcconfig"; path = "Target Support Files/Pods-Khinsider Ripper/Pods-Khinsider Ripper.release.xcconfig"; sourceTree = "<group>"; };
+		521CF4C72488008500F7F46E /* DownloadsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsTableViewController.swift; sourceTree = "<group>"; };
+		521CF4CB248813B100F7F46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		521CF4CC248813B100F7F46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		521CF4CD248813B100F7F46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		521CF4CF248814DB00F7F46E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		521CF4D1248814DF00F7F46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		521CF4D32488162900F7F46E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		521CF4D5248816EB00F7F46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		521F2F1F248403840054CB7B /* FavsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsTableViewController.swift; sourceTree = "<group>"; };
 		5221E905247BC1A40076E0A7 /* generalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generalController.swift; sourceTree = "<group>"; };
 		5260DFBF24785996009BC1B8 /* BatchDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchDownloadViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +72,6 @@
 		52EBF60024770BFC00143906 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52EFF5D0247BB5510092399A /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		52EFF5D2247BB5730092399A /* TrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewController.swift; sourceTree = "<group>"; };
-		52EFF5D4247BB7440092399A /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		82C2CA39CF07318D21743038 /* Pods-Khinsider Ripper macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khinsider Ripper macOS.debug.xcconfig"; path = "Target Support Files/Pods-Khinsider Ripper macOS/Pods-Khinsider Ripper macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B3A5E13758D9D5AAF9B9C6EE /* Pods_Khinsider_Ripper_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Khinsider_Ripper_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFFB52FB206181A5AE8EAA7A /* Pods-Khinsider Ripper macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khinsider Ripper macOS.release.xcconfig"; path = "Target Support Files/Pods-Khinsider Ripper macOS/Pods-Khinsider Ripper macOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,7 +121,7 @@
 				5286613224798A0F00B73BD2 /* batchDownloaderViewController.swift */,
 				52EFF5D0247BB5510092399A /* AlbumViewController.swift */,
 				52EFF5D2247BB5730092399A /* TrackViewController.swift */,
-				52EFF5D4247BB7440092399A /* Localizable.strings */,
+				521CF4D42488162900F7F46E /* Localizable.strings */,
 				5221E905247BC1A40076E0A7 /* generalController.swift */,
 			);
 			path = "Khinsider Ripper macOS";
@@ -154,6 +163,8 @@
 				5260DFC124786B38009BC1B8 /* TestUIViewController.swift */,
 				521F2F1F248403840054CB7B /* FavsTableViewController.swift */,
 				52E97A01248518F8002B3E1F /* TabController.swift */,
+				521CF4C72488008500F7F46E /* DownloadsTableViewController.swift */,
+				521CF4D0248814DB00F7F46E /* Localizable.strings */,
 			);
 			path = "Khinsider Ripper";
 			sourceTree = "<group>";
@@ -242,6 +253,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 52EBF5E824770BFA00143906;
 			productRefGroup = 52EBF5F224770BFA00143906 /* Products */;
@@ -260,7 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5288AD0C2479573F00D0846D /* Assets.xcassets in Resources */,
-				52EFF5D5247BB7440092399A /* Localizable.strings in Resources */,
+				521CF4D22488162900F7F46E /* Localizable.strings in Resources */,
 				5288AD0F2479573F00D0846D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EBF5FF24770BFB00143906 /* LaunchScreen.storyboard in Resources */,
+				521CF4CE248814DB00F7F46E /* Localizable.strings in Resources */,
 				52EBF5FC24770BFB00143906 /* Assets.xcassets in Resources */,
 				52EBF5FA24770BFA00143906 /* Main.storyboard in Resources */,
 			);
@@ -381,6 +394,7 @@
 				5260DFC224786B38009BC1B8 /* TestUIViewController.swift in Sources */,
 				52DD603424780531003CD214 /* TrackTableViewController.swift in Sources */,
 				52EBF5F524770BFA00143906 /* AppDelegate.swift in Sources */,
+				521CF4C82488008500F7F46E /* DownloadsTableViewController.swift in Sources */,
 				52DD6036247830C9003CD214 /* PlayerViewController.swift in Sources */,
 				5260DFC024785996009BC1B8 /* BatchDownloadViewController.swift in Sources */,
 				52E97A02248518F8002B3E1F /* TabController.swift in Sources */,
@@ -391,10 +405,29 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		521CF4D0248814DB00F7F46E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				521CF4CF248814DB00F7F46E /* en */,
+				521CF4D1248814DF00F7F46E /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		521CF4D42488162900F7F46E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				521CF4D32488162900F7F46E /* en */,
+				521CF4D5248816EB00F7F46E /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		5288AD0D2479573F00D0846D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5288AD0E2479573F00D0846D /* Base */,
+				521CF4CD248813B100F7F46E /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -403,6 +436,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				52EBF5F924770BFA00143906 /* Base */,
+				521CF4CB248813B100F7F46E /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -411,6 +445,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				52EBF5FE24770BFB00143906 /* Base */,
+				521CF4CC248813B100F7F46E /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -466,6 +501,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -527,6 +563,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -46,7 +46,7 @@ class PlayerViewController: UIViewController {
         saveGroupFX.clipsToBounds = true
         
         if (GlobalVar.nowplaying == "") {
-            GlobalVar.nowplaying = "Nothing playing!"
+            GlobalVar.nowplaying = "nothingplay".localized
             GlobalVar.coverURL.append("https://i.ibb.co/cgRJ97N/unknown.png")
             playable = false
         } else {
@@ -84,9 +84,9 @@ class PlayerViewController: UIViewController {
                 }
             }
             if (GlobalVar.fav_link.contains(GlobalVar.album_url!.absoluteString)) {
-                addFavText.text = "Remove from Favorites"
+                addFavText.text = "remove_fav".localized
             } else {
-                addFavText.text = "Add to Favorites"
+                addFavText.text = "addfav".localized
             }
         }
         nowPlaying.text = GlobalVar.nowplaying
@@ -198,11 +198,11 @@ class PlayerViewController: UIViewController {
                     let remove = GlobalVar.fav_name.firstIndex(of: GlobalVar.AlbumName)!
                     GlobalVar.fav_name.remove(at: remove)
                     GlobalVar.fav_link.remove(at: remove)
-                    addFavText.text = "Add to Favorites"
+                    addFavText.text = "addfav".localized
                 } else {
                     GlobalVar.fav_name.append(GlobalVar.AlbumName)
                     GlobalVar.fav_link.append(GlobalVar.album_url?.absoluteString ?? "")
-                    addFavText.text = "Remove from Favorites"
+                    addFavText.text = "remove_fav".localized
                 }
                 print(GlobalVar.fav_name)
                 defaults.set(GlobalVar.fav_name, forKey: "fav_name")

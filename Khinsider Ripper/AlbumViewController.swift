@@ -44,7 +44,7 @@ class AlbumViewController: UIViewController {
         
         albumName.text = GlobalVar.AlbumName
         self.albumCover.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        trackAmount.text = "Contains " + String(GlobalVar.tracks.count) + " Tracks"
+        trackAmount.text = "contains".localized + String(GlobalVar.tracks.count) + "tracks".localized
         navigControl.title = GlobalVar.AlbumName
         currentTr = 0
         gatherLinkPanel.isHidden = true
@@ -58,7 +58,7 @@ class AlbumViewController: UIViewController {
         
         
         
-        var avaible = "Available Formats: "
+        var avaible = "av_formats".localized
         
         if (GlobalVar.flac) {
             avaible += "FLAC "
@@ -93,9 +93,9 @@ class AlbumViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if (GlobalVar.fav_link.contains(GlobalVar.album_url!.absoluteString)) {
-            addFavText.text = "Remove from Favorites"
+            addFavText.text = "remove_fav".localized
         } else {
-            addFavText.text = "Add to Favorites"
+            addFavText.text = "addfav".localized
         }
     }
     
@@ -114,7 +114,7 @@ class AlbumViewController: UIViewController {
     
     @IBAction func downloadAllPressed(_ sender: Any) {
         currentTr = 0
-        let alert = UIAlertController(title: "Question", message: "As what format do you want to save the file?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "question".localized, message: "format_ask".localized, preferredStyle: .alert)
         if (GlobalVar.mp3) {
             alert.addAction(UIAlertAction(title: "MP3", style: .default, handler: { action in
                 GlobalVar.download_type = ".mp3"
@@ -140,7 +140,7 @@ class AlbumViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let batchDownload = storyboard.instantiateViewController(withIdentifier: "batchDownload")
         print("PRE-COUNT: " + String(GlobalVar.trackURL.count))
-        self.downloadAll.setTitle("Gathering direct links...", for: .normal)
+        self.downloadAll.setTitle("gathering".localized + "...", for: .normal)
         gatherLinkBar.progress = 0.0
         self.gatherLinkPanel.isHidden = false
         let completed_url = URL(string: "https://downloads.khinsider.com" + toDownload[currentTr])!
@@ -157,12 +157,12 @@ class AlbumViewController: UIViewController {
                             print(url_prev)
                             self.currentTr += 1
                             GlobalVar.download_queue.append(URL(string: url_prev)!)
-                            self.gatherLinkProg.text = "Gathering direct links:" + String(self.currentTr) + " / " + String(GlobalVar.trackURL.count)
+                            self.gatherLinkProg.text = "gathering".localized + ":" + String(self.currentTr) + " / " + String(GlobalVar.trackURL.count)
                             self.gatherLinkBar.progress = Float(GlobalVar.trackURL.count / GlobalVar.download_queue.count)
                             if (GlobalVar.download_queue.count == GlobalVar.trackURL.count) {
                                 self.gatherLinkPanel.isHidden = true
                                 print(GlobalVar.download_queue)
-                                self.downloadAll.setTitle("Download all Tracks", for: .normal)
+                                self.downloadAll.setTitle("download_all".localized, for: .normal)
                                 self.gatherLinkPanel.alpha = 0.0
                                 self.navigationController?.pushViewController(batchDownload, animated: true)
                                 break
@@ -210,7 +210,7 @@ class AlbumViewController: UIViewController {
             
             switch tapped {
             case 1:
-                let items: [Any] = ["Check out this Album from Khinsider!\n" + GlobalVar.album_url!.absoluteString]
+                let items: [Any] = ["checkout".localized + GlobalVar.album_url!.absoluteString]
                 let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
                 present(ac, animated: true)
             case 2:
@@ -218,11 +218,11 @@ class AlbumViewController: UIViewController {
                     let remove = GlobalVar.fav_name.firstIndex(of: GlobalVar.AlbumName)!
                     GlobalVar.fav_name.remove(at: remove)
                     GlobalVar.fav_link.remove(at: remove)
-                    addFavText.text = "Add to Favorites"
+                    addFavText.text = "addfav".localized
                 } else {
                     GlobalVar.fav_name.append(GlobalVar.AlbumName)
                     GlobalVar.fav_link.append(GlobalVar.album_url?.absoluteString ?? "")
-                    addFavText.text = "Remove from Favorites"
+                    addFavText.text = "remove_fav".localized
                 }
                 print(GlobalVar.fav_name)
                 defaults.set(GlobalVar.fav_name, forKey: "fav_name")
@@ -269,7 +269,7 @@ class AlbumViewController: UIViewController {
     }
     
     @objc func sharePressed(_ sender: Any) {
-        let items: [Any] = ["Check out this Album from Khinsider!\n" + GlobalVar.album_url!.absoluteString]
+        let items: [Any] = ["checkout".localized + GlobalVar.album_url!.absoluteString]
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(ac, animated: true)
     }

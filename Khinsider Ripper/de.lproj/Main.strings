@@ -1,0 +1,132 @@
+
+/* Class = "UIBarButtonItem"; title = "Track List"; ObjectID = "0zq-59-wOa"; */
+"0zq-59-wOa.title" = "Titel-Liste";
+
+/* Class = "UILabel"; text = "Save Album Art to Gallery"; ObjectID = "1Mz-wE-N0o"; */
+"1Mz-wE-N0o.text" = "Speicher Album-Bild in Gallerie";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "2nH-zx-RNw"; */
+"2nH-zx-RNw.text" = "Title";
+
+/* Class = "UILabel"; text = "Contains XY Tracks"; ObjectID = "5C2-k6-u7b"; */
+"5C2-k6-u7b.text" = "Beinhaltet XY Titel";
+
+/* Class = "UITabBarItem"; title = "Favorites"; ObjectID = "5ty-u5-pRk"; */
+"5ty-u5-pRk.title" = "Favoriten";
+
+/* Class = "UITabBarItem"; title = "Player"; ObjectID = "6Wv-Mn-nAt"; */
+"6Wv-Mn-nAt.title" = "Spieler";
+
+/* Class = "UIButton"; normalTitle = "Download all Tracks"; ObjectID = "8wS-HJ-Tle"; */
+"8wS-HJ-Tle.normalTitle" = "Alle Titel herunterladen";
+
+/* Class = "UIButton"; normalTitle = "Track List"; ObjectID = "E1P-2L-HPk"; */
+"E1P-2L-HPk.normalTitle" = "Titel-Liste";
+
+/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "F8f-3l-hU8"; */
+"F8f-3l-hU8.title" = "Favoriten";
+
+/* Class = "UIButton"; normalTitle = "Downloads"; ObjectID = "Fl4-Cb-aZi"; */
+"Fl4-Cb-aZi.normalTitle" = "Downloads";
+
+/* Class = "UINavigationItem"; title = "Downloading..."; ObjectID = "GeK-uh-omo"; */
+"GeK-uh-omo.title" = "Lade herunter...";
+
+/* Class = "UINavigationItem"; title = "Player"; ObjectID = "J3a-mu-tRB"; */
+"J3a-mu-tRB.title" = "Spieler";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "JHo-Ex-aXk"; */
+"JHo-Ex-aXk.text" = "00:00";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "LZL-Jx-zq7"; */
+"LZL-Jx-zq7.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Wait..."; ObjectID = "N7Y-WU-ZCr"; */
+"N7Y-WU-ZCr.text" = "Warte...";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Nf5-NN-AIM"; */
+"Nf5-NN-AIM.text" = "Label";
+
+/* Class = "UILabel"; text = "Add to Favorites"; ObjectID = "Nr8-zB-Ifj"; */
+"Nr8-zB-Ifj.text" = "Zu Favoriten hinzufügen";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "ORD-N5-OX4"; */
+"ORD-N5-OX4.title" = "Startseite";
+
+/* Class = "UINavigationItem"; title = "ALBUM NAME"; ObjectID = "Owq-qg-jtu"; */
+"Owq-qg-jtu.title" = "ALBUM NAME";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "QtE-QU-EZ8"; */
+"QtE-QU-EZ8.text" = "Subtitle";
+
+/* Class = "UISearchBar"; placeholder = "Search for OSTs"; ObjectID = "Raw-Gz-Psx"; */
+"Raw-Gz-Psx.placeholder" = "Suche nach OSTs";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "SWv-5K-azq"; */
+"SWv-5K-azq.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "U5K-vG-TUZ"; */
+"U5K-vG-TUZ.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Open in Safari"; ObjectID = "W34-jG-Qv0"; */
+"W34-jG-Qv0.normalTitle" = "In Safari öffnen";
+
+/* Class = "UIBarButtonItem"; title = "Downloads"; ObjectID = "WC5-5b-QlX"; */
+"WC5-5b-QlX.title" = "Downloads";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Xmc-Jx-vmB"; */
+"Xmc-Jx-vmB.text" = "Label";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "aGy-Fq-TvF"; */
+"aGy-Fq-TvF.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Avaible Formats: "; ObjectID = "aXk-Kv-yut"; */
+"aXk-Kv-yut.text" = "Verfügbare Formate: ";
+
+/* Class = "UINavigationItem"; title = "Tracks"; ObjectID = "bMp-HF-cVx"; */
+"bMp-HF-cVx.title" = "Titel";
+
+/* Class = "UIViewController"; title = "playerPreview"; ObjectID = "crW-sN-eX0"; */
+"crW-sN-eX0.title" = "playerPreview";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "d3e-cl-d3I"; */
+"d3e-cl-d3I.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "eM7-xx-sj2"; */
+"eM7-xx-sj2.text" = "Tittel";
+
+/* Class = "UIButton"; normalTitle = "Options"; ObjectID = "eOj-rm-jei"; */
+"eOj-rm-jei.normalTitle" = "Optionen";
+
+/* Class = "UIBarButtonItem"; title = "Download with Browser"; ObjectID = "f28-ub-Hzt"; */
+"f28-ub-Hzt.title" = "Mit Browser herunterladen";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "llE-8d-pmX"; */
+"llE-8d-pmX.text" = "00:00";
+
+/* Class = "UINavigationItem"; title = "Khinsider Ripper"; ObjectID = "mt6-AV-kp7"; */
+"mt6-AV-kp7.title" = "Khinsider Ripper";
+
+/* Class = "UIViewController"; title = "Album Details"; ObjectID = "pP6-SY-wIG"; */
+"pP6-SY-wIG.title" = "Album-Details";
+
+/* Class = "UIButton"; normalTitle = "View Khinsider Page"; ObjectID = "q8j-ML-UgE"; */
+"q8j-ML-UgE.normalTitle" = "Zeige Khinsider Seite";
+
+/* Class = "UILabel"; text = "Add to Favorites"; ObjectID = "rBn-uF-KUn"; */
+"rBn-uF-KUn.text" = "Zu Favoriten hinzufügen";
+
+/* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "rjH-ll-2kh"; */
+"rjH-ll-2kh.normalTitle" = "Bearbeiten";
+
+/* Class = "UILabel"; text = "Share Album"; ObjectID = "svs-tr-Q9j"; */
+"svs-tr-Q9j.text" = "Album Teilen";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "t6a-rS-DYw"; */
+"t6a-rS-DYw.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Downloads"; ObjectID = "wkq-e9-MDQ"; */
+"wkq-e9-MDQ.title" = "Downloads";
+
+/* Class = "UILabel"; text = "PLACEHOLDER"; ObjectID = "x6d-QN-XfF"; */
+"x6d-QN-XfF.text" = "PLACEHOLDER";

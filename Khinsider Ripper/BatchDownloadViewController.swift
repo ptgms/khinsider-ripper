@@ -37,8 +37,8 @@ class BatchDownloadViewController: UIViewController, UITableViewDelegate {
         }
         
         // initialization of download progress labels
-        currentDownload.text = "Downloading " + GlobalVar.AlbumName
-        progressText.text = "Downloading 1 / " + String(total)
+        currentDownload.text = "downloading".localized + " " + GlobalVar.AlbumName
+        progressText.text = "downloading".localized + " 1 / " + String(total)
         
         
         // create queue for downloads since normally its async, and we dont want that
@@ -77,7 +77,7 @@ class BatchDownloadViewController: UIViewController, UITableViewDelegate {
                 self.downloading = true
                 print("Done!")
                 DispatchQueue.main.async {
-                    self.progressText.text = "Downloading " + String(self.inte + 2) + " / " + String(self.total)
+                    self.progressText.text = "downloading".localized + " " + String(self.inte + 2) + " / " + String(self.total)
                     self.downloading = false
                     self.inte += 1
                     if self.inte == GlobalVar.trackURL.count {
@@ -89,7 +89,7 @@ class BatchDownloadViewController: UIViewController, UITableViewDelegate {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.progressText.text = "Downloading " + String(self.inte + 2) + " / " + String(self.total)
+                    self.progressText.text = "downloading".localized + " " + String(self.inte + 2) + " / " + String(self.total)
                     self.downloading = false
                     self.inte += 1
                     if self.inte == GlobalVar.trackURL.count {

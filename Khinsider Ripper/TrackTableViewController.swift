@@ -39,7 +39,7 @@ class TrackTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let openInBrowser = UITableViewRowAction(style: .normal, title: "Open Track in Browser") { (action, indexPath) in
+        let openInBrowser = UITableViewRowAction(style: .normal, title: "open_browser".localized) { (action, indexPath) in
             let url = URL(string: GlobalVar.base_url + GlobalVar.trackURL[indexPath.row])
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url!)
@@ -47,8 +47,8 @@ class TrackTableViewController: UITableViewController {
                 UIApplication.shared.openURL(url!)
             }
         }
-        let downloadTrack = UITableViewRowAction(style: .normal, title: "Download Track") { (action, indexPath) in
-            let alert = UIAlertController(title: "Question", message: "As what format do you want to save the file?", preferredStyle: .alert)
+        let downloadTrack = UITableViewRowAction(style: .normal, title: "download_track".localized) { (action, indexPath) in
+            let alert = UIAlertController(title: "question".localized, message: "format_ask".localized, preferredStyle: .alert)
             if GlobalVar.mp3 {
                 alert.addAction(UIAlertAction(title: "MP3", style: .default, handler: { action in
                     self.download(type: ".mp3", toDownload: GlobalVar.trackURL[indexPath.row], name: GlobalVar.tracks[indexPath.row])
@@ -108,10 +108,10 @@ class TrackTableViewController: UITableViewController {
     @IBAction func optionsPressed(_ sender: Any) {
         if(self.tableView.isEditing == true) {
             self.tableView.isEditing = false
-            self.navigationItem.rightBarButtonItem?.title = "Done"
+            self.navigationItem.rightBarButtonItem?.title = "done".localized
         } else {
             self.tableView.isEditing = true
-            self.navigationItem.rightBarButtonItem?.title = "Options"
+            self.navigationItem.rightBarButtonItem?.title = "options".localized
         }
     }
     
@@ -160,8 +160,8 @@ class TrackTableViewController: UITableViewController {
                 let savedURL = documentsURL.appendingPathComponent(name)
                 try FileManager.default.moveItem(at: fileURL, to: savedURL)
                 DispatchQueue.main.async {
-                    let alertController = UIAlertController(title: "Done!", message: "Track has been saved into the Apps document Fodler! Open the File app to look at it!", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Okay!", style: .default))
+                    let alertController = UIAlertController(title: "done".localized + "!", message: "trackdone".localized, preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "ok".localized, style: .default))
                     
                     self.present(alertController, animated: true, completion: nil)
                 }

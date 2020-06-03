@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  Khinsider Ripper
+
+  Created by ptgms on 25.05.20.
+  Copyright © 2020 ptgms. All rights reserved.
+*/
+
+
+//-- Batch Downloader
+"downloading" = "Lade herunter ";
+
+//-- Download getting options
+"downloadingdot" = "Lade herunter...";
+"question" = "Frage";
+"formatconfirm" = "Als welches Format möchtest du die/den Titel speichern?";
+
+"gatheringlinks" = "Sammel Download-Links ";
+"khinsiderripper" = "Khinsider Ripper";
+"downloaddirect" = "Lade direct herunter";
+"downloadselected" = "Lade ausgewähltes herunter";
+
+"done" = "Fertig!";
+"filesaved" = "Datei wurde in deinen Dokumenten im Khinsider-Ordner gespeichert!";
+"ok" = "OK";
+
+"error" = "Fehler!";
+"savefail" = "Konnte Datei nicht speichern!";
+
+//--- Diverse Strings
+"availableformat" = "Verfügbare Formate: ";

@@ -66,10 +66,10 @@ class FavsTableViewController: UITableViewController {
     @IBAction func optionsButton(_ sender: Any) {
         if(self.tableView.isEditing == true) {
             self.tableView.isEditing = false
-            self.navigationItem.rightBarButtonItem?.title = "Done"
+            self.navigationItem.rightBarButtonItem?.title = "done".localized
         } else {
             self.tableView.isEditing = true
-            self.navigationItem.rightBarButtonItem?.title = "Edit"
+            self.navigationItem.rightBarButtonItem?.title = "edit".localized
         }
     }
     
@@ -172,7 +172,7 @@ class FavsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let remove = UITableViewRowAction(style: .destructive, title: "Remove") { (action, indexPath) in
+        let remove = UITableViewRowAction(style: .destructive, title: "rmv".localized) { (action, indexPath) in
             GlobalVar.fav_name.remove(at: indexPath.row)
             GlobalVar.fav_link.remove(at: indexPath.row)
             self.defaults.set(GlobalVar.fav_name, forKey: "fav_name")
