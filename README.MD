@@ -30,4 +30,11 @@ To compile this project you need an Xcode Version supporting Swift 5 (Xcode 10.3
 
 Instructions for CLI and Kotlin version coming soon.
 
+## Flowchart for porting purposes
+<details>
+<img src="https://raw.githubusercontent.com/ptgms/khinsider-ripper/master/githubassets/workings.svg">
+</details>
+
+---
+
 ### This is still considered early access and bugs will be there. You have been warned!
