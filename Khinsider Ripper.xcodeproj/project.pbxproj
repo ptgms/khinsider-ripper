@@ -20,6 +20,7 @@
 		5288AD0A2479573E00D0846D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288AD092479573E00D0846D /* ViewController.swift */; };
 		5288AD0C2479573F00D0846D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5288AD0B2479573F00D0846D /* Assets.xcassets */; };
 		5288AD0F2479573F00D0846D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5288AD0D2479573F00D0846D /* Main.storyboard */; };
+		5296E87E248A747300977C33 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296E87D248A747300977C33 /* AboutViewController.swift */; };
 		52DD60302477F6B1003CD214 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD602F2477F6B1003CD214 /* HomeTableViewController.swift */; };
 		52DD603224780520003CD214 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD603124780520003CD214 /* AlbumViewController.swift */; };
 		52DD603424780531003CD214 /* TrackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD603324780531003CD214 /* TrackTableViewController.swift */; };
@@ -59,6 +60,7 @@
 		5288AD102479573F00D0846D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5288AD112479573F00D0846D /* Khinsider_Ripper_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Khinsider_Ripper_macOS.entitlements; sourceTree = "<group>"; };
 		5288AD33247963D300D0846D /* SwiftSoup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSoup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5296E87D248A747300977C33 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		52DD602F2477F6B1003CD214 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		52DD603124780520003CD214 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		52DD603324780531003CD214 /* TrackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				52EFF5D2247BB5730092399A /* TrackViewController.swift */,
 				521CF4D42488162900F7F46E /* Localizable.strings */,
 				5221E905247BC1A40076E0A7 /* generalController.swift */,
+				5296E87D248A747300977C33 /* AboutViewController.swift */,
 			);
 			path = "Khinsider Ripper macOS";
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				52EFF5D1247BB5510092399A /* AlbumViewController.swift in Sources */,
 				5288AD0A2479573E00D0846D /* ViewController.swift in Sources */,
 				5286613324798A0F00B73BD2 /* batchDownloaderViewController.swift in Sources */,
+				5296E87E248A747300977C33 /* AboutViewController.swift in Sources */,
 				5288AD082479573E00D0846D /* AppDelegate.swift in Sources */,
 				5221E906247BC1A40076E0A7 /* generalController.swift in Sources */,
 				52EFF5D3247BB5730092399A /* TrackViewController.swift in Sources */,

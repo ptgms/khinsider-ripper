@@ -114,10 +114,10 @@
             </objects>
             <point key="canvasLocation" x="467" y="-325"/>
         </scene>
-        <!--View Controller-->
+        <!--About View Controller-->
         <scene sceneID="drJ-GK-NIw">
             <objects>
-                <viewController id="ufV-dh-Npv" sceneMemberID="viewController">
+                <viewController id="ufV-dh-Npv" customClass="AboutViewController" customModule="Khinsider_Ripper_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ttk-BF-INN">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -148,6 +148,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystemBold"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="githubPressed:" target="ufV-dh-Npv" id="TCX-9f-fto"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WZf-iQ-ptZ">
                                         <rect key="frame" x="294" y="9" width="116" height="17"/>
@@ -155,6 +158,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystemBold"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="emailPressed:" target="ufV-dh-Npv" id="zSO-Wy-oDi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
