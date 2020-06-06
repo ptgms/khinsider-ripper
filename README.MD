@@ -1,5 +1,6 @@
 # Khinsider-Ripper
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/0efcee82321b4820b02e23bbe0061c5a)](https://www.codacy.com/manual/ptgms/khinsider-ripper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ptgms/khinsider-ripper&amp;utm_campaign=Badge_Grade)
+
+This branch is Xcode 9 and 10 compatible, but doesn't have dark mode support. It has not been updated since 5th of June 2020, so its highly encouraged to move to master for forks/projects based on this.
 
 A simple Khinsider ripper made with SwiftSoup and Swift. Needs at least Xcode 10.3 to open.
 
