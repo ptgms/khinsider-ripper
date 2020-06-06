@@ -66,6 +66,9 @@ class TrackTableViewController: UITableViewController {
             }
             self.present(alert, animated: true, completion: nil)
         }
+        
+        openInBrowser.backgroundColor = UIColor.blue
+        downloadTrack.backgroundColor = UIColor.green
         return [openInBrowser, downloadTrack]
     }
     

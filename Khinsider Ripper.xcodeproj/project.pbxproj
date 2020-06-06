@@ -3,16 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C078046F91C88FE93A26A48 /* Pods_Khinsider_Ripper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2713A9F33BD1B12DFD063CA8 /* Pods_Khinsider_Ripper.framework */; };
 		521CF4C82488008500F7F46E /* DownloadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CF4C72488008500F7F46E /* DownloadsTableViewController.swift */; };
 		521CF4CE248814DB00F7F46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 521CF4D0248814DB00F7F46E /* Localizable.strings */; };
 		521CF4D22488162900F7F46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 521CF4D42488162900F7F46E /* Localizable.strings */; };
 		521F2F20248403840054CB7B /* FavsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F2F1F248403840054CB7B /* FavsTableViewController.swift */; };
 		5221E906247BC1A40076E0A7 /* generalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5221E905247BC1A40076E0A7 /* generalController.swift */; };
+		52241088248BD93600384371 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 52241087248BD93600384371 /* SwiftSoup */; };
+		5224108C248BE3EC00384371 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 5224108B248BE3EC00384371 /* SwiftSoup */; };
 		5260DFC024785996009BC1B8 /* BatchDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5260DFBF24785996009BC1B8 /* BatchDownloadViewController.swift */; };
 		5260DFC224786B38009BC1B8 /* TestUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5260DFC124786B38009BC1B8 /* TestUIViewController.swift */; };
 		5286613324798A0F00B73BD2 /* batchDownloaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286613224798A0F00B73BD2 /* batchDownloaderViewController.swift */; };
@@ -25,19 +26,15 @@
 		52DD603224780520003CD214 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD603124780520003CD214 /* AlbumViewController.swift */; };
 		52DD603424780531003CD214 /* TrackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD603324780531003CD214 /* TrackTableViewController.swift */; };
 		52DD6036247830C9003CD214 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD6035247830C9003CD214 /* PlayerViewController.swift */; };
-		52E97A02248518F8002B3E1F /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E97A01248518F8002B3E1F /* TabController.swift */; };
 		52EBF5F524770BFA00143906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBF5F424770BFA00143906 /* AppDelegate.swift */; };
 		52EBF5FA24770BFA00143906 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EBF5F824770BFA00143906 /* Main.storyboard */; };
 		52EBF5FC24770BFB00143906 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52EBF5FB24770BFB00143906 /* Assets.xcassets */; };
 		52EBF5FF24770BFB00143906 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EBF5FD24770BFB00143906 /* LaunchScreen.storyboard */; };
 		52EFF5D1247BB5510092399A /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EFF5D0247BB5510092399A /* AlbumViewController.swift */; };
 		52EFF5D3247BB5730092399A /* TrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EFF5D2247BB5730092399A /* TrackViewController.swift */; };
-		A2DC332AB7B96DD61577643B /* Pods_Khinsider_Ripper_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A5E13758D9D5AAF9B9C6EE /* Pods_Khinsider_Ripper_macOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2713A9F33BD1B12DFD063CA8 /* Pods_Khinsider_Ripper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Khinsider_Ripper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F0AD74EF1EDF73DA86BFE6E /* Pods-Khinsider Ripper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khinsider Ripper.release.xcconfig"; path = "Target Support Files/Pods-Khinsider Ripper/Pods-Khinsider Ripper.release.xcconfig"; sourceTree = "<group>"; };
 		521CF4C72488008500F7F46E /* DownloadsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsTableViewController.swift; sourceTree = "<group>"; };
 		521CF4CB248813B100F7F46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		521CF4CC248813B100F7F46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -48,6 +45,7 @@
 		521CF4D5248816EB00F7F46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		521F2F1F248403840054CB7B /* FavsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsTableViewController.swift; sourceTree = "<group>"; };
 		5221E905247BC1A40076E0A7 /* generalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generalController.swift; sourceTree = "<group>"; };
+		52241089248BDA9500384371 /* Khinsider Ripper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Khinsider Ripper.entitlements"; sourceTree = "<group>"; };
 		5260DFBF24785996009BC1B8 /* BatchDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchDownloadViewController.swift; sourceTree = "<group>"; };
 		5260DFC124786B38009BC1B8 /* TestUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUIViewController.swift; sourceTree = "<group>"; };
 		5286612F2479666800B73BD2 /* Khinsider Ripper macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Khinsider Ripper macOS.entitlements"; sourceTree = "<group>"; };
@@ -59,13 +57,11 @@
 		5288AD0E2479573F00D0846D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5288AD102479573F00D0846D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5288AD112479573F00D0846D /* Khinsider_Ripper_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Khinsider_Ripper_macOS.entitlements; sourceTree = "<group>"; };
-		5288AD33247963D300D0846D /* SwiftSoup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSoup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5296E87D248A747300977C33 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		52DD602F2477F6B1003CD214 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		52DD603124780520003CD214 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		52DD603324780531003CD214 /* TrackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewController.swift; sourceTree = "<group>"; };
 		52DD6035247830C9003CD214 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		52E97A01248518F8002B3E1F /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		52EBF5F124770BFA00143906 /* Khinsider Ripper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Khinsider Ripper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EBF5F424770BFA00143906 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52EBF5F924770BFA00143906 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,10 +70,6 @@
 		52EBF60024770BFC00143906 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52EFF5D0247BB5510092399A /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		52EFF5D2247BB5730092399A /* TrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewController.swift; sourceTree = "<group>"; };
-		82C2CA39CF07318D21743038 /* Pods-Khinsider Ripper macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khinsider Ripper macOS.debug.xcconfig"; path = "Target Support Files/Pods-Khinsider Ripper macOS/Pods-Khinsider Ripper macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		B3A5E13758D9D5AAF9B9C6EE /* Pods_Khinsider_Ripper_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Khinsider_Ripper_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFFB52FB206181A5AE8EAA7A /* Pods-Khinsider Ripper macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khinsider Ripper macOS.release.xcconfig"; path = "Target Support Files/Pods-Khinsider Ripper macOS/Pods-Khinsider Ripper macOS.release.xcconfig"; sourceTree = "<group>"; };
-		F684363DA51538E67A96FAF4 /* Pods-Khinsider Ripper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khinsider Ripper.debug.xcconfig"; path = "Target Support Files/Pods-Khinsider Ripper/Pods-Khinsider Ripper.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2DC332AB7B96DD61577643B /* Pods_Khinsider_Ripper_macOS.framework in Frameworks */,
+				5224108C248BE3EC00384371 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,19 +85,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C078046F91C88FE93A26A48 /* Pods_Khinsider_Ripper.framework in Frameworks */,
+				52241088248BD93600384371 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3D79550A61554749C15F6E21 /* Frameworks */ = {
+		5224108A248BE3EC00384371 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5288AD33247963D300D0846D /* SwiftSoup.framework */,
-				2713A9F33BD1B12DFD063CA8 /* Pods_Khinsider_Ripper.framework */,
-				B3A5E13758D9D5AAF9B9C6EE /* Pods_Khinsider_Ripper_macOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,8 +125,7 @@
 				52EBF5F324770BFA00143906 /* Khinsider Ripper */,
 				5288AD062479573E00D0846D /* Khinsider Ripper macOS */,
 				52EBF5F224770BFA00143906 /* Products */,
-				7564FFEBCD0C65F5C11E1065 /* Pods */,
-				3D79550A61554749C15F6E21 /* Frameworks */,
+				5224108A248BE3EC00384371 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,6 +141,7 @@
 		52EBF5F324770BFA00143906 /* Khinsider Ripper */ = {
 			isa = PBXGroup;
 			children = (
+				52241089248BDA9500384371 /* Khinsider Ripper.entitlements */,
 				52EBF5F424770BFA00143906 /* AppDelegate.swift */,
 				52EBF5F824770BFA00143906 /* Main.storyboard */,
 				52EBF5FB24770BFB00143906 /* Assets.xcassets */,
@@ -165,22 +154,10 @@
 				5260DFBF24785996009BC1B8 /* BatchDownloadViewController.swift */,
 				5260DFC124786B38009BC1B8 /* TestUIViewController.swift */,
 				521F2F1F248403840054CB7B /* FavsTableViewController.swift */,
-				52E97A01248518F8002B3E1F /* TabController.swift */,
 				521CF4C72488008500F7F46E /* DownloadsTableViewController.swift */,
 				521CF4D0248814DB00F7F46E /* Localizable.strings */,
 			);
 			path = "Khinsider Ripper";
-			sourceTree = "<group>";
-		};
-		7564FFEBCD0C65F5C11E1065 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F684363DA51538E67A96FAF4 /* Pods-Khinsider Ripper.debug.xcconfig */,
-				2F0AD74EF1EDF73DA86BFE6E /* Pods-Khinsider Ripper.release.xcconfig */,
-				82C2CA39CF07318D21743038 /* Pods-Khinsider Ripper macOS.debug.xcconfig */,
-				DFFB52FB206181A5AE8EAA7A /* Pods-Khinsider Ripper macOS.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,17 +167,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5288AD282479574000D0846D /* Build configuration list for PBXNativeTarget "Khinsider Ripper macOS" */;
 			buildPhases = (
-				28C679EF8C711CCC21F29094 /* [CP] Check Pods Manifest.lock */,
 				5288AD012479573E00D0846D /* Sources */,
 				5288AD022479573E00D0846D /* Frameworks */,
 				5288AD032479573E00D0846D /* Resources */,
-				34A06B1F3F39538E6C18C286 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Khinsider Ripper macOS";
+			packageProductDependencies = (
+				5224108B248BE3EC00384371 /* SwiftSoup */,
+			);
 			productName = "Khinsider Ripper macOS";
 			productReference = 5288AD052479573E00D0846D /* Khinsider Ripper macOS.app */;
 			productType = "com.apple.product-type.application";
@@ -209,17 +187,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52EBF61924770BFC00143906 /* Build configuration list for PBXNativeTarget "Khinsider Ripper" */;
 			buildPhases = (
-				634FBBDDFAE9E8F907E31603 /* [CP] Check Pods Manifest.lock */,
 				52EBF5ED24770BFA00143906 /* Sources */,
 				52EBF5EE24770BFA00143906 /* Frameworks */,
 				52EBF5EF24770BFA00143906 /* Resources */,
-				C32F2135A73635829075282D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Khinsider Ripper";
+			packageProductDependencies = (
+				52241087248BD93600384371 /* SwiftSoup */,
+			);
 			productName = "Khinsider Ripper";
 			productReference = 52EBF5F124770BFA00143906 /* Khinsider Ripper.app */;
 			productType = "com.apple.product-type.application";
@@ -231,7 +210,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = ptgms;
 				TargetAttributes = {
 					5288AD042479573E00D0846D = {
@@ -259,6 +238,9 @@
 				de,
 			);
 			mainGroup = 52EBF5E824770BFA00143906;
+			packageReferences = (
+				52241086248BD93600384371 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 52EBF5F224770BFA00143906 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -293,87 +275,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		28C679EF8C711CCC21F29094 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Khinsider Ripper macOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		34A06B1F3F39538E6C18C286 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Khinsider Ripper macOS/Pods-Khinsider Ripper macOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Khinsider Ripper macOS/Pods-Khinsider Ripper macOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Khinsider Ripper macOS/Pods-Khinsider Ripper macOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		634FBBDDFAE9E8F907E31603 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Khinsider Ripper-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C32F2135A73635829075282D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Khinsider Ripper/Pods-Khinsider Ripper-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Khinsider Ripper/Pods-Khinsider Ripper-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Khinsider Ripper/Pods-Khinsider Ripper-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		5288AD012479573E00D0846D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -401,7 +302,6 @@
 				521CF4C82488008500F7F46E /* DownloadsTableViewController.swift in Sources */,
 				52DD6036247830C9003CD214 /* PlayerViewController.swift in Sources */,
 				5260DFC024785996009BC1B8 /* BatchDownloadViewController.swift in Sources */,
-				52E97A02248518F8002B3E1F /* TabController.swift in Sources */,
 				521F2F20248403840054CB7B /* FavsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,19 +359,19 @@
 /* Begin XCBuildConfiguration section */
 		5288AD292479574000D0846D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82C2CA39CF07318D21743038 /* Pods-Khinsider Ripper macOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 89946UN8X8;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Khinsider Ripper macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Ripper-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -481,19 +381,19 @@
 		};
 		5288AD2A2479574000D0846D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFFB52FB206181A5AE8EAA7A /* Pods-Khinsider Ripper macOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 89946UN8X8;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Khinsider Ripper macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Ripper-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -621,19 +521,26 @@
 		};
 		52EBF61A24770BFC00143906 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F684363DA51538E67A96FAF4 /* Pods-Khinsider Ripper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 89946UN8X8;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_ENTITLEMENTS = "Khinsider Ripper/Khinsider Ripper.entitlements";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Khinsider Ripper/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Rip";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Ripper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -641,19 +548,26 @@
 		};
 		52EBF61B24770BFC00143906 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F0AD74EF1EDF73DA86BFE6E /* Pods-Khinsider Ripper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 89946UN8X8;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_ENTITLEMENTS = "Khinsider Ripper/Khinsider Ripper.entitlements";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Khinsider Ripper/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Rip";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Ripper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -690,6 +604,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		52241086248BD93600384371 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		52241087248BD93600384371 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52241086248BD93600384371 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		5224108B248BE3EC00384371 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52241086248BD93600384371 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52EBF5E924770BFA00143906 /* Project object */;
 }

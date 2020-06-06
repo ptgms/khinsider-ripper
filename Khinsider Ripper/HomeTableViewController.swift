@@ -53,7 +53,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             self.present(alertController, animated: true, completion: nil)
         }
         
-        //update()
     }
 
     // MARK: - Table view data source

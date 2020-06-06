@@ -14,6 +14,8 @@ class DownloadsTableViewController: UITableViewController {
     *  that helped me with programming up to this point.
     *  If you know me and you're reading this, I mean you.
     *  Yes. you!*/
+    @IBOutlet weak var closeDownloadsLegacy: UIButton!
+    
     
     var Tpath = ""
     
@@ -21,7 +23,21 @@ class DownloadsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 13.0, *) {
+            closeDownloadsLegacy.isHidden = true
+        } else {
+            closeDownloadsLegacy.isHidden = false
+        }
     }
+    
+    @IBAction func closePressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let preView = storyboard.instantiateViewController(withIdentifier: "albumDetails")
+        
+        self.navigationController?.pushViewController(preView, animated: true)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         update()
