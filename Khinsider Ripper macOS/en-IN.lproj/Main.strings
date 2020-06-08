@@ -3,34 +3,34 @@
 "0cw-Zd-vwS.title" = "00:00";
 
 /* Class = "NSMenuItem"; title = "Khinsider Ripper macOS"; ObjectID = "1Xt-HY-uBw"; */
-"1Xt-HY-uBw.title" = "Khinsider Ripper macOS";
+"1Xt-HY-uBw.title" = "Khinsider Rippur macOS";
 
 /* Class = "NSMenu"; title = "Options"; ObjectID = "2lr-lS-OX5"; */
-"2lr-lS-OX5.title" = "Optionen";
+"2lr-lS-OX5.title" = "Optionz";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "4Bb-gj-mQG"; */
 "4Bb-gj-mQG.title" = "Box";
 
 /* Class = "NSMenuItem"; title = "Quit Khinsider Ripper macOS"; ObjectID = "4sb-4s-VLi"; */
-"4sb-4s-VLi.title" = "Verlasse Khinsider Ripper macOS";
+"4sb-4s-VLi.title" = "Quet Khinsider Rippur macOS";
 
 /* Class = "NSMenuItem"; title = "About Khinsider Ripper macOS"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "Über Khinsider Ripper macOS";
+"5kV-Vb-QxS.title" = "Aboud Khinsider Rippur macOS";
 
 /* Class = "NSMenuItem"; title = "Open Download Folder"; ObjectID = "93C-DU-zx7"; */
-"93C-DU-zx7.title" = "Öffne Download-Verzeichnis";
+"93C-DU-zx7.title" = "Opeen Downlod Folder";
 
 /* Class = "NSSearchFieldCell"; placeholderString = "Search for Game OSTs"; ObjectID = "9MW-KN-1HR"; */
-"9MW-KN-1HR.placeholderString" = "Suche nach Spiel-OSTs";
+"9MW-KN-1HR.placeholderString" = "Serch for Game OSTs";
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
-"AYu-sK-qS6.title" = "Hauptmenü";
+"AYu-sK-qS6.title" = "Main Menu";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
-"BOF-NM-1cW.title" = "Einstellungen…";
+"BOF-NM-1cW.title" = "Preferences…";
 
 /* Class = "NSTableColumn"; headerCell.title = "Track Name"; ObjectID = "FQH-4W-tQj"; */
-"FQH-4W-tQj.headerCell.title" = "Titelname";
+"FQH-4W-tQj.headerCell.title" = "Track Name";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "FdL-PP-3cH"; */
 "FdL-PP-3cH.title" = "Table View Cell";
@@ -39,16 +39,16 @@
 "GKk-E5-D0W.title" = "Table View Cell";
 
 /* Class = "NSMenuItem"; title = "Get Download links"; ObjectID = "IES-iH-fac"; */
-"IES-iH-fac.title" = "Download-Links extrahieren";
+"IES-iH-fac.title" = "Get Download links";
 
 /* Class = "NSWindow"; title = "Khinsider Ripper"; ObjectID = "IQv-IB-iLA"; */
 "IQv-IB-iLA.title" = "Khinsider Ripper";
 
 /* Class = "NSMenuItem"; title = "Download directly"; ObjectID = "JDR-p1-rsG"; */
-"JDR-p1-rsG.title" = "Direkt herunterladen";
+"JDR-p1-rsG.title" = "Download directly";
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
-"Kd2-mp-pUS.title" = "Alle anzeigen";
+"Kd2-mp-pUS.title" = "Show All";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "MrX-g3-lOA"; */
 "MrX-g3-lOA.title" = "Text Cell";
@@ -57,79 +57,79 @@
 "NBd-Ez-KJy.title" = "00:00";
 
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
-"NMo-om-nkz.title" = "Dienste";
+"NMo-om-nkz.title" = "Services";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OZq-lF-MTo"; */
 "OZq-lF-MTo.title" = "Text Cell";
 
 /* Class = "NSMenuItem"; title = "Download..."; ObjectID = "OgB-6q-Jsj"; */
-"OgB-6q-Jsj.title" = "Herunterladen...";
+"OgB-6q-Jsj.title" = "Downlod...";
 
 /* Class = "NSMenuItem"; title = "Hide Khinsider Ripper macOS"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "Verstecke Khinsider Ripper macOS";
+"Olw-nP-bQN.title" = "Haid Khinsider Ripper macOS";
 
 /* Class = "NSMenu"; title = "Download..."; ObjectID = "QJB-IB-klQ"; */
-"QJB-IB-klQ.title" = "Herunterladen...";
+"QJB-IB-klQ.title" = "Downlod...";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "SYT-Hx-Xmt"; */
 "SYT-Hx-Xmt.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Downloading nothing!"; ObjectID = "UNN-OQ-7MI"; */
-"UNN-OQ-7MI.title" = "Nichts am herunterladen!";
+"UNN-OQ-7MI.title" = "Downloding noting!";
 
 /* Class = "NSButtonCell"; title = "GitHub"; ObjectID = "VOX-Ii-3ie"; */
-"VOX-Ii-3ie.title" = "GitHub";
+"VOX-Ii-3ie.title" = "GeetHub";
 
 /* Class = "NSButtonCell"; title = "Download Album"; ObjectID = "VOv-S4-JGG"; */
-"VOv-S4-JGG.title" = "Album herunterladen";
+"VOv-S4-JGG.title" = "Downlod Album";
 
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
-"Vdr-fp-XzO.title" = "Andere verstecken";
+"Vdr-fp-XzO.title" = "Hide Others";
 
 /* Class = "NSWindow"; title = "About"; ObjectID = "Vg7-nM-wbr"; */
-"Vg7-nM-wbr.title" = "Über";
+"Vg7-nM-wbr.title" = "Abut";
 
 /* Class = "NSTableColumn"; headerCell.title = "Path"; ObjectID = "YtO-t8-b4c"; */
-"YtO-t8-b4c.headerCell.title" = "Verzeichnis";
+"YtO-t8-b4c.headerCell.title" = "Path";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "ZSt-sN-XiN"; */
 "ZSt-sN-XiN.title" = "Box";
 
 /* Class = "NSTableColumn"; headerCell.title = "Album Name"; ObjectID = "f5c-2h-xdu"; */
-"f5c-2h-xdu.headerCell.title" = "Albums Name";
+"f5c-2h-xdu.headerCell.title" = "Album Name";
 
 /* Class = "NSButtonCell"; title = "Open Downloads"; ObjectID = "fRa-fF-hSq"; */
-"fRa-fF-hSq.title" = "Öffne Downloads";
+"fRa-fF-hSq.title" = "Open Downlods";
 
 /* Class = "NSButtonCell"; title = "Send me an E-Mail"; ObjectID = "gk2-be-2e4"; */
-"gk2-be-2e4.title" = "Sende mir eine E-Mail";
+"gk2-be-2e4.title" = "Send me an E-Mail";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "hKj-Wf-C25"; */
 "hKj-Wf-C25.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "A powerful Khinsider Ripper fully written in Swift. Uses Swiftsoup for gathering links. Source code of this project is available under GPLv3. Feel free to add translations!"; ObjectID = "hgx-fg-Osi"; */
-"hgx-fg-Osi.title" = "Ein mächtiger Khinsider Ripper komplett geschrieben in Swift. Nutzt Swiftsoup für das bearbeiten der Links. Quellcode dieses Projektes sind unter GPLv3 verfügbar. Viel spaß beim übersetzen und forken!";
+"hgx-fg-Osi.title" = "A powerful Khinsider Ripper fully written in Swift. Uses Swiftsoup for gathering links. Source code of this project is available under GPLv3. Feel free to add translations!";
 
 /* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
-"hz9-B4-Xy5.title" = "Dienste";
+"hz9-B4-Xy5.title" = "Services";
 
 /* Class = "NSTextFieldCell"; title = "Favorites"; ObjectID = "kL0-E0-M01"; */
-"kL0-E0-M01.title" = "Favoriten";
+"kL0-E0-M01.title" = "Favorites";
 
 /* Class = "NSTextFieldCell"; placeholderString = "Select a track"; ObjectID = "kow-9B-b8P"; */
-"kow-9B-b8P.placeholderString" = "Wähle einen Titel aus";
+"kow-9B-b8P.placeholderString" = "Select a track";
 
 /* Class = "NSButtonCell"; title = "Download Track"; ObjectID = "nJq-Ro-0HC"; */
-"nJq-Ro-0HC.title" = "Titel herunterladen";
+"nJq-Ro-0HC.title" = "Download Track";
 
 /* Class = "NSTextFieldCell"; title = "Khinsider Ripper macOS"; ObjectID = "o2x-32-e0j"; */
-"o2x-32-e0j.title" = "Khinsider Ripper macOS";
+"o2x-32-e0j.title" = "Khinsider Rippur macOS";
 
 /* Class = "NSTextFieldCell"; title = "Start downloading something!"; ObjectID = "oai-6V-0ah"; */
-"oai-6V-0ah.title" = "Fang an etwas herunterzuladen!";
+"oai-6V-0ah.title" = "Start downloding something!";
 
 /* Class = "NSMenuItem"; title = "Selected"; ObjectID = "ol3-AH-iHe"; */
-"ol3-AH-iHe.title" = "Ausgewählt";
+"ol3-AH-iHe.title" = "Selected";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "pha-RK-C4o"; */
 "pha-RK-C4o.title" = "Table View Cell";
@@ -138,13 +138,13 @@
 "pj9-un-7xh.title" = "Table View Cell";
 
 /* Class = "NSMenuItem"; title = "Options"; ObjectID = "u9w-nP-SMd"; */
-"u9w-nP-SMd.title" = "Optionen";
+"u9w-nP-SMd.title" = "Options";
 
 /* Class = "NSMenu"; title = "Khinsider Ripper macOS"; ObjectID = "uQy-DD-JDr"; */
-"uQy-DD-JDr.title" = "Khinsider Ripper macOS";
+"uQy-DD-JDr.title" = "Khinsider Rippur macOS";
 
 /* Class = "NSTableColumn"; headerCell.title = "Favorites"; ObjectID = "vkx-mm-oUh"; */
-"vkx-mm-oUh.headerCell.title" = "Favoriten";
+"vkx-mm-oUh.headerCell.title" = "Favorites";
 
 /* Class = "NSMenuItem"; title = "Album"; ObjectID = "vz9-V3-T10"; */
 "vz9-V3-T10.title" = "Album";

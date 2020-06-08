@@ -33,5 +33,5 @@
 //--- Context Menu Strings
 "openBrowser" = "Open in Browser";
 "downloadAlbum" = "Download Album";
-"AddRemFavs" = "Add/Remove from favorites";
+"AddRemFavs" = "Add/Remove from favourites";
 "downloadTrack" = "Download Track";

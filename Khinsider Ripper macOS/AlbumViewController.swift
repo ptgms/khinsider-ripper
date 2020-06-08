@@ -25,7 +25,11 @@ class AlbumViewController: NSTableView, NSTableViewDataSource, NSTableViewDelega
         
         
         // 1
-        let item = GlobalVar.textArray[row]
+        //let item = GlobalVar.textArray[safe: row]
+        
+        guard let item = GlobalVar.textArray[safe: row] else {
+            return nil
+        }
         
         // 2
         if tableColumn == tableView.tableColumns[0] {
@@ -38,5 +42,11 @@ class AlbumViewController: NSTableView, NSTableViewDataSource, NSTableViewDelega
             return cell
         }
         return nil
+    }
+}
+
+extension Collection where Indices.Iterator.Element == Index {
+    subscript (safe index: Index) -> Iterator.Element? {
+        return indices.contains(index) ? self[index] : nil
     }
 }

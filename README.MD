@@ -13,6 +13,11 @@ A simple Khinsider ripper made with SwiftSoup and Swift. Needs at least Xcode 10
 
 iOS has only introduced the Files App in iOS 11. If you run the App on iOS 10 and below you need a jailbroken phone with a files app or iTunes. Some of the Apps features may not work properly. The app is considered in Legacy-Mode for iOS 9 to support people who are stuck with old devices.
 
+
+#### Note on iOS Release IPAs and Cydia Release:
+
+Whilst the App release will work, it will be pretty big. Why? Blame Xcode. If you want smaller releases, please compile it yourself with a valid signature. Sorry.
+
 ## Working on CLI Mode for the following platforms:
 
 - macOS

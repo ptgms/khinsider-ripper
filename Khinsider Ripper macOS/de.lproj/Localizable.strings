@@ -29,3 +29,9 @@
 
 //--- Diverse Strings
 "availableformat" = "Verfügbare Formate: ";
+
+//--- Context Menu Strings
+"openBrowser" = "In Browser öffnen";
+"downloadAlbum" = "Album herunterladen";
+"AddRemFavs" = "Zu Favoriten hinzufügen/entfernen";
+"downloadTrack" = "Titel herunterladen";

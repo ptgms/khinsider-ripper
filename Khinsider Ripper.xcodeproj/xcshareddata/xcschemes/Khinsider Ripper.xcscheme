@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5288AD042479573E00D0846D"
-               BuildableName = "Khinsider Ripper macOS.app"
-               BlueprintName = "Khinsider Ripper macOS"
+               BlueprintIdentifier = "52EBF5F024770BFA00143906"
+               BuildableName = "Khinsider Ripper.app"
+               BlueprintName = "Khinsider Ripper"
                ReferencedContainer = "container:Khinsider Ripper.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5288AD042479573E00D0846D"
-            BuildableName = "Khinsider Ripper macOS.app"
-            BlueprintName = "Khinsider Ripper macOS"
+            BlueprintIdentifier = "52EBF5F024770BFA00143906"
+            BuildableName = "Khinsider Ripper.app"
+            BlueprintName = "Khinsider Ripper"
             ReferencedContainer = "container:Khinsider Ripper.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5288AD042479573E00D0846D"
-            BuildableName = "Khinsider Ripper macOS.app"
-            BlueprintName = "Khinsider Ripper macOS"
+            BlueprintIdentifier = "52EBF5F024770BFA00143906"
+            BuildableName = "Khinsider Ripper.app"
+            BlueprintName = "Khinsider Ripper"
             ReferencedContainer = "container:Khinsider Ripper.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5288AD042479573E00D0846D"
-            BuildableName = "Khinsider Ripper macOS.app"
-            BlueprintName = "Khinsider Ripper macOS"
+            BlueprintIdentifier = "52EBF5F024770BFA00143906"
+            BuildableName = "Khinsider Ripper.app"
+            BlueprintName = "Khinsider Ripper"
             ReferencedContainer = "container:Khinsider Ripper.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -9,10 +9,9 @@
 import Cocoa
 import Foundation
 
-class batchDownloaderViewController: NSViewController {
+class batchDownloaderViewController: NSViewController, NSUserNotificationCenterDelegate {
     @IBOutlet weak var progressLabel: NSTextField!
     @IBOutlet weak var progressText: NSTextField!
-    @IBOutlet weak var closeButton: NSButton!
     @IBOutlet weak var progressBar: NSProgressIndicator!
     
     var recdata = ""
@@ -23,6 +22,33 @@ class batchDownloaderViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRec), name: Notification.Name("progUp"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(downloadAllRec), name: Notification.Name("downloadAll"), object: nil)
+        
+    }
+    
+    func showNotification(title: String, body: String) -> Void {
+        let notification = NSUserNotification()
+        notification.title = title
+        notification.subtitle = body
+        notification.soundName = NSUserNotificationDefaultSoundName
+        NSUserNotificationCenter.default.delegate = self
+        NSUserNotificationCenter.default.deliver(notification)
+    }
+    
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
+    }
+    
+    @objc func updateRec() {
+        self.progressBar.maxValue = GlobalVar.progressVal
+        self.progressBar.doubleValue = GlobalVar.progressValNow
+        self.progressLabel.stringValue = GlobalVar.nowDownload
+        self.progressText.stringValue = GlobalVar.nowDownloadDet
+    }
+    
+    /*@objc func downloadAllRec() {
+        inte = 0
         progressBar.maxValue = Double(total)
         
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -43,19 +69,9 @@ class batchDownloaderViewController: NSViewController {
         self.load(url: GlobalVar.download_queue, name: GlobalVar.tracks, type: GlobalVar.download_type)
     }
     
-    func transitionToMain() {
-        print("RETURN TO MAIN!")
-        DispatchQueue.main.async {
-            self.view.window?.close()
-        }
-    }
-    
-    @IBAction func closePressed(_ sender: NSButton) {
-        self.view.window?.close()
-    }
-    
     
     func load(url: [URL], name: [String], type: String) {
+        print(inte)
         print("Got here with request " + url[inte].absoluteString)
         // create your document folder url
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! as URL
@@ -71,7 +87,6 @@ class batchDownloaderViewController: NSViewController {
             self.downloading = false
             self.inte += 1
             if self.inte == GlobalVar.trackURL.count {
-                self.closeButton.isEnabled = true
                 return
             }
             self.load(url: url, name: name, type: type)
@@ -81,12 +96,14 @@ class batchDownloaderViewController: NSViewController {
                     // after downloading your data you need to save it to your destination url
                     if (try? myAudioDataFromUrl.write(to: destinationUrl, options: [.atomic])) != nil {
                         print("file saved")
-                        self.progressText.stringValue = "downloading".localized + String(self.inte + 2) + " / " + String(self.total + 1)
-                        self.progressBar.increment(by: Double(2))
+                        DispatchQueue.main.async() {
+                            self.progressText.stringValue = "downloading".localized + String(self.inte + 2) + " / " + String(self.total + 1)
+                            self.progressBar.increment(by: Double(2))
+                        }
                         self.downloading = false
                         self.inte += 1
                         if self.inte == GlobalVar.trackURL.count {
-                            self.closeButton.isEnabled = true
+                            self.showNotification(title: "done".localized, body: "filesaved".localized)
                             return
                         }
                         self.load(url: url, name: name, type: type)
@@ -94,19 +111,21 @@ class batchDownloaderViewController: NSViewController {
                     }
                 } else {
                     print("error saving file")
-                    self.progressText.stringValue = "downloading".localized + String(self.inte + 2) + " / " + String(self.total + 1)
-                    self.progressBar.increment(by: Double(1))
+                    DispatchQueue.main.async() {
+                        self.progressText.stringValue = "downloading".localized + String(self.inte + 1) + " / " + String(self.total + 1)
+                        self.progressBar.increment(by: Double(2))
+                    }
                     self.downloading = false
                     self.inte += 1
                     if self.inte == GlobalVar.trackURL.count {
-                        self.closeButton.isEnabled = true
+                        self.showNotification(title: "done".localized, body: "filesaved".localized)
                         return
                     }
                     self.load(url: url, name: name, type: type)
                     }
                 })
             }
-    }
+    }*/
 }
 
 

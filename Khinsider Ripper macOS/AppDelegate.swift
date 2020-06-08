@@ -25,6 +25,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
 
-
+    @IBAction func downloadSelected(_ sender: Any) {
+        NotificationCenter.default.post(name: Notification.Name("downloadSelected"), object: nil)
+    }
+    
+    @IBAction func downloadAll(_ sender: Any) {
+        NotificationCenter.default.post(name: Notification.Name("downloadAllTitle"), object: nil)
+    }
+    
+    @IBAction func openDownloadFolder(_ sender: Any) {
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let dataPath = documentsDirectory.appendingPathComponent("/Khinsider/")
+        NSWorkspace.shared.open(dataPath)
+    }
+    
 }
 

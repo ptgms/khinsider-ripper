@@ -11,25 +11,22 @@ import SwiftSoup
 import AVKit
 import AVFoundation
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, NSUserNotificationCenterDelegate {
 
     @IBOutlet weak var tableViewer: NSTableView!
     @IBOutlet weak var searchBar: NSSearchField!
     @IBOutlet weak var trackTableView: TrackViewController!
     @IBOutlet weak var albumArt: NSImageView!
-    @IBOutlet weak var albumBlurred: NSImageView!
     @IBOutlet weak var playPause: NSButton!
     @IBOutlet weak var duration: NSTextField!
     @IBOutlet weak var currentProg: NSTextField!
     @IBOutlet weak var currentTrack: NSTextField!
-    @IBOutlet weak var progress: NSSlider!
-    @IBOutlet weak var downloadSelect: NSButton!
-    @IBOutlet weak var downloadAll: NSButton!
-    @IBOutlet weak var availableFormats: NSTextField!
+    @IBOutlet weak var progress: NSProgressIndicator!
     @IBOutlet weak var downloadWith: NSPopUpButton!
-    @IBOutlet weak var progressIndic: NSProgressIndicator!
-    @IBOutlet weak var blurArt: NSVisualEffectView!
+    @IBOutlet weak var vfxButton: NSVisualEffectView!
     
+    private var trackingArea: NSTrackingArea?
+    let defaults = UserDefaults.standard
     // --- Initialization of project specific variables
     
     let base_url = "https://downloads.khinsider.com/"
@@ -37,6 +34,7 @@ class ViewController: NSViewController {
     let base_soundtrack_album_url = "game-soundtracks/album/"
     var currentTr = 0
     var debug = 0
+    var inte = 0
     var downloading = false
     var recdata = ""
     var playing = false
@@ -50,10 +48,27 @@ class ViewController: NSViewController {
     var dataSource1: TrackViewController!
     var dataSource2: AlbumViewController!
     
+    var downloadAllOn = false
+    var downloadSelOn = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        blurArt.blendingMode = .behindWindow
+        vfxButton.alphaValue = 0.0
+        
+        GlobalVar.favs_name = defaults.stringArray(forKey: "favs_name") ?? [String]()
+        GlobalVar.favs_link = defaults.stringArray(forKey: "favs_link") ?? [String]()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(downloadSelected), name: Notification.Name("downloadSelected"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(downloadAll), name: Notification.Name("downloadAllTitle"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(playPausePressed), name: Notification.Name("playPause"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(doubleClickOnResultRow), name: Notification.Name("reload"), object: nil)
+        
+        let area = NSTrackingArea.init(rect: vfxButton.bounds,
+                                       options: [.mouseEnteredAndExited, .activeAlways],
+                                       owner: self,
+                                       userInfo: nil)
+        vfxButton.addTrackingArea(area)
         
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let dataPath = documentsDirectory.appendingPathComponent("Khinsider")
@@ -77,19 +92,77 @@ class ViewController: NSViewController {
         trackTableView.action = #selector(ViewController.saveCurrentClick)
         
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "Open in Browser", action: #selector(ViewController.contextOnAlbum), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "openBrowser".localized, action: #selector(ViewController.contextOnAlbum), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "downloadAlbum".localized, action: #selector(ViewController.downloadAlbumContext), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "AddRemFavs".localized, action: #selector(ViewController.addAlbumToFavs), keyEquivalent: ""))
         tableViewer.menu = menu
+        
+        let menutwo = NSMenu()
+        menutwo.addItem(NSMenuItem(title: "openBrowser".localized, action: #selector(ViewController.contextOnTrack), keyEquivalent: ""))
+        menutwo.addItem(NSMenuItem(title: "downloadTrack".localized, action: #selector(ViewController.downloadTrackContext), keyEquivalent: ""))
+        trackTableView.menu = menutwo
     }
+    
+    override func mouseEntered(with event: NSEvent) {
+        vfxButton.alphaValue = 1.0
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        vfxButton.alphaValue = 0.0
+    }
+    
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
     }
     
+    @objc func downloadAlbumContext() {
+        guard tableViewer.clickedRow >= 0 else { return }
+        GlobalVar.downloadAfter = true
+        doubleClickOnResultRow()
+    }
+    
     @objc func contextOnAlbum() {
-        let clickedOn = trackTableView.clickedRow
-        print(clickedOn)
-        let url = URL(string: "https://www.downloads.khinsider.com")!
+        let item = tableViewer.clickedRow
+        if (item >= 0) {
+            let url = URL(string: GlobalVar.linkArray[item])!
+            if NSWorkspace.shared.open(url) {
+                return
+            }
+        } else {
+            let url = URL(string: base_url)!
+            if NSWorkspace.shared.open(url) {
+                return
+            }
+        }
+    }
+    
+    @objc func addAlbumToFavs() {
+        guard tableViewer.clickedRow >= 0 else { return }
+        let item = tableViewer.clickedRow
+        if (GlobalVar.favs_link.contains(GlobalVar.linkArray[item])) {
+            GlobalVar.favs_link.remove(at: GlobalVar.favs_link.firstIndex(of: GlobalVar.linkArray[item])!)
+            GlobalVar.favs_name.remove(at: GlobalVar.favs_name.firstIndex(of: GlobalVar.textArray[item])!)
+        } else {
+            GlobalVar.favs_name.insert(GlobalVar.textArray[item], at: 0)
+            GlobalVar.favs_link.insert(GlobalVar.linkArray[item], at: 0)
+        }
+        defaults.set(GlobalVar.favs_name, forKey: "favs_name")
+        defaults.set(GlobalVar.favs_link, forKey: "favs_link")
+    }
+    
+    @objc func downloadTrackContext() {
+        guard trackTableView.clickedRow >= 0 else { return }
+        GlobalVar.downloadAfter = true
+        saveCurrentClick()
+    }
+    
+    @objc func contextOnTrack() {
+        let base = "https://downloads.khinsider.com"
+        guard trackTableView.clickedRow >= 0 else { return }
+        let item = trackTableView.clickedRow
+        let url = URL(string: base + GlobalVar.trackURL[item])!
         if NSWorkspace.shared.open(url) {
             return
         }
@@ -180,14 +253,12 @@ class ViewController: NSViewController {
     }
     
     func setAlbumArt() {
-        blurArt.blendingMode = .withinWindow
         getData(from: URL(string: GlobalVar.coverURL[0].addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!) { data, response, error in
             guard let data = data, error == nil else { return }
             print(response?.suggestedFilename ?? URL(string: GlobalVar.coverURL[0].addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!.lastPathComponent)
             print("Download Finished")
             DispatchQueue.main.async {
                 self.albumArt.image = NSImage(data: data)
-                self.albumBlurred.image = NSImage(data: data)
             }
         }
     }
@@ -209,37 +280,52 @@ class ViewController: NSViewController {
             player = AVPlayer(url: URL.init(string: url)!)
             player?.play()
             playing = true
+            GlobalVar.touch_playing = true
+            NotificationCenter.default.post(name: Notification.Name("updateBar"), object: nil)
             playPause.image = NSImage(named: "pause")
             
             self.duration.stringValue = (self.player?.currentItem?.asset.duration.positionalTime)!
             player?.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1/30.0, preferredTimescale: Int32(NSEC_PER_SEC)), queue: nil) { time in
                 let duration = CMTimeGetSeconds((self.player?.currentItem?.asset.duration)!)
-                self.progress.floatValue = Float((CMTimeGetSeconds(time) / duration))
+                self.progress.doubleValue = (CMTimeGetSeconds(time) / duration)
+                //self.progress.floatValue = Float((CMTimeGetSeconds(time) / duration))
                 self.currentProg.stringValue = time.positionalTime
-                self.progress.isEnabled = true
             }
         }
     }
-
-    @IBAction func playPausePressed(_ sender: Any) {
+    
+    @objc func playPauseEvent() {
+        playpause()
+    }
+    
+    func playpause() {
         if (playing == true) {
             playing = false
             playPause.image = NSImage(named: "play")
             player?.pause()
-            self.progress.isEnabled = false
+            GlobalVar.touch_playing = false
+            NotificationCenter.default.post(name: Notification.Name("updateBar"), object: nil)
         } else {
             playing = true
             playPause.image = NSImage(named: "pause")
             player?.play()
-            self.progress.isEnabled = true
+            GlobalVar.touch_playing = true
+            NotificationCenter.default.post(name: Notification.Name("updateBar"), object: nil)
         }
     }
+
+    @IBAction func playPausePressed(_ sender: Any) {
+        playpause()
+    }
     
-    @IBAction func downloadSelected(_ sender: Any) {
+    @objc func downloadSelected(_ sender: Any) {
+        if (downloadSelOn != true) {
+            return
+        }
         if (GlobalVar.currentLink == "") {
             return
         } else {
-            downloadSelect.stringValue = "downloadingdot".localized
+            //downloadSelect.stringValue = "downloadingdot".localized
             let a = NSAlert()
             a.messageText = "question".localized
             a.informativeText = "formatconfirm".localized
@@ -270,10 +356,16 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func downloadAll(_ sender: Any) {
+    @objc func downloadAll(_ sender: Any) {
+        if (downloadAllOn != true) {
+            return
+        }
         GlobalVar.download_queue = []
-        progressIndic.doubleValue = Double(0)
-        progressIndic.maxValue = Double(GlobalVar.trackURL.count)
+        GlobalVar.progressValNow = Double(0)
+        GlobalVar.progressVal = Double(GlobalVar.trackURL.count)
+        GlobalVar.nowDownload = "Downloading " + GlobalVar.AlbumName
+        GlobalVar.nowDownloadDet = "Please wait..."
+        NotificationCenter.default.post(name: Notification.Name("progUp"), object: nil)
         currentTr = 0
         let a = NSAlert()
         a.messageText = "question".localized
@@ -319,13 +411,15 @@ class ViewController: NSViewController {
                             self.currentTr += 1
                             self.view.window?.title = "gatheringlinks".localized + String(GlobalVar.download_queue.count) + " / " +
                                 String(GlobalVar.trackURL.count)
-                            self.progressIndic!.increment(by: 1)
+                            GlobalVar.progressValNow += 1
+                            GlobalVar.nowDownloadDet = url_prev
+                            NotificationCenter.default.post(name: Notification.Name("progUp"), object: nil)
                             GlobalVar.download_queue.append(URL(string: url_prev)!)
                             if (GlobalVar.download_queue.count == GlobalVar.trackURL.count) {
                                 self.view.window?.title = "khinsiderripper".localized
                                 if (self.downloadWith.titleOfSelectedItem == "downloaddirect".localized) {
-                                    let batch = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "downloaderWindow") as! NSWindowController
-                                    batch.showWindow(self)
+                                    self.downloadAllRec()
+                                    
                                 } else {
                                     var toExport = ""
                                     let exportFile = self.getDocumentsDirectory().appendingPathComponent("Khinsider").appendingPathComponent("").appendingPathComponent(GlobalVar.AlbumName + ".txt")
@@ -338,20 +432,10 @@ class ViewController: NSViewController {
                                     }
                                     do {
                                         try toExport.data(using: .utf8)!.write(to: exportFile)
-                                        let a = NSAlert()
-                                        a.messageText = "done".localized
-                                        a.informativeText = "filesaved".localized
-                                        a.addButton(withTitle: "ok".localized)
-                                        a.alertStyle = NSAlert.Style.informational
-                                        a.beginSheetModal(for: self.view.window!, completionHandler: nil)
+                                        self.showNotification(title: "done".localized, body: "filesaved".localized)
                                     } catch {
                                         print("Failed to save the file!")
-                                        let a = NSAlert()
-                                        a.messageText = "error".localized
-                                        a.informativeText = "savefail".localized
-                                        a.addButton(withTitle: "ok".localized)
-                                        a.alertStyle = NSAlert.Style.critical
-                                        a.beginSheetModal(for: self.view.window!, completionHandler: nil)
+                                        self.showNotification(title: "error".localized, body: "savefail".localized)
                                     }
                                 }
                                 break
@@ -372,6 +456,19 @@ class ViewController: NSViewController {
             }
         }
         task.resume()
+    }
+    
+    func showNotification(title: String, body: String) -> Void {
+        let notification = NSUserNotification()
+        notification.title = title
+        notification.subtitle = body
+        notification.soundName = NSUserNotificationDefaultSoundName
+        NSUserNotificationCenter.default.delegate = self
+        NSUserNotificationCenter.default.deliver(notification)
+    }
+    
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
     }
     
     func getDocumentsDirectory() -> URL {
@@ -410,7 +507,6 @@ class ViewController: NSViewController {
     
     func loadOne(url: URL, name: String) {
         print("Got here with request " + url.absoluteString)
-        self.downloadSelect.stringValue = "Downloading"
         let downloadTask = URLSession.shared.downloadTask(with: url) {
             urlOrNil, responseOrNil, errorOrNil in
             
@@ -424,7 +520,7 @@ class ViewController: NSViewController {
                 let savedURL = documentsURL.appendingPathComponent("Khinsider/" + name)
                 try FileManager.default.moveItem(at: fileURL, to: savedURL)
                 DispatchQueue.main.sync {
-                    self.downloadSelect.stringValue = "downloadselected".localized
+                    self.showNotification(title: "done".localized, body: "filesaved".localized)
                 }
             } catch {
                 print ("file error: \(error)")
@@ -442,23 +538,39 @@ class ViewController: NSViewController {
         }
         GlobalVar.currentLink = GlobalVar.trackURL[clickedOn]
         GlobalVar.currentName = GlobalVar.tracks[clickedOn]
-        downloadSelect.isHidden = false
+        downloadSelOn = true
+        GlobalVar.touch_track = true
+        NotificationCenter.default.post(name: Notification.Name("updateBar"), object: nil)
+        
+        if (GlobalVar.downloadAfter == true) {
+            GlobalVar.downloadAfter = false
+            downloadSelected(self)
+        }
+        
         print("Selected: " + GlobalVar.currentLink + " from " + GlobalVar.currentName)
     }
     
     @objc func doubleClickOnResultRow() {
-        let clickedOn = tableViewer.clickedRow
-        if (clickedOn == -1) {
-            return
+        var clickedOn = -1
+        if (GlobalVar.favPressedNow != -1) {
+            
+        } else {
+            clickedOn = tableViewer.clickedRow
+            if (clickedOn == -1) {
+                return
+            }
         }
-        print("doubleClickOnResultRow \(tableViewer.clickedRow)")
+        //print("doubleClickOnResultRow \(tableViewer.clickedRow)")
         GlobalVar.currentLink = ""
         //TODO
-        downloadAll.isHidden = false
-        downloadSelect.isHidden = true
+        downloadAllOn = true
+        downloadSelOn = false
+        GlobalVar.touch_track = false
         GlobalVar.mp3 = false
         GlobalVar.flac = false
         GlobalVar.ogg = false
+        
+        NotificationCenter.default.post(name: Notification.Name("updateBar"), object: nil)
         
         GlobalVar.coverURL = [String]()
         tags = [String]()
@@ -470,7 +582,13 @@ class ViewController: NSViewController {
         GlobalVar.tracks = [String]()
         GlobalVar.trackURL = [String]()
         
-        let completed_url = URL(string: base_url + GlobalVar.linkArray[tableViewer.clickedRow].replacingOccurrences(of: base_url, with: "")) // build the URL to process
+        var completed_url = URL(string: "") // build the URL to process
+        
+        if (GlobalVar.favPressedNow != -1 && GlobalVar.favs_link[GlobalVar.favPressedNow] != "") {
+            completed_url = URL(string: base_url + GlobalVar.favs_link[GlobalVar.favPressedNow].replacingOccurrences(of: base_url, with: "")) // build the URL to process
+        } else {
+            completed_url = URL(string: base_url + GlobalVar.linkArray[tableViewer.clickedRow].replacingOccurrences(of: base_url, with: "")) // build the URL to process
+        }
         GlobalVar.album_url = completed_url
         let task = URLSession.shared.dataTask(with: completed_url!) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)! // store the received data as a string to be processed
@@ -532,13 +650,21 @@ class ViewController: NSViewController {
                     
                     GlobalVar.tracks = self.tracklist
                     GlobalVar.trackURL = self.tracklisturl
-                    print(clickedOn)
                     print(GlobalVar.textArray.count)
-                    GlobalVar.AlbumName = GlobalVar.textArray[clickedOn]
+                    if (GlobalVar.favPressedNow != -1) {
+                        GlobalVar.AlbumName = GlobalVar.favs_name[GlobalVar.favPressedNow]
+                    } else {
+                        GlobalVar.AlbumName = GlobalVar.textArray[clickedOn]
+                    }
                     self.trackTableView.reloadData()
                     self.setAlbumArt()
                     print(self.tracklist.count)
                     print(self.tracklisturl.count)
+                    
+                    if (GlobalVar.downloadAfter == true) {
+                        GlobalVar.downloadAfter = false
+                        self.downloadAll(self)
+                    }
                     
                     var available = "availableformat".localized
                     if (GlobalVar.mp3) {
@@ -550,13 +676,15 @@ class ViewController: NSViewController {
                     if (GlobalVar.ogg) {
                         available += "OGG "
                     }
-                    self.availableFormats.stringValue = available
                     
+                    GlobalVar.favPressedNow = -1
                     
                 } catch Exception.Error( _, let message) {
                     print(message)
+                    GlobalVar.favPressedNow = -1
                 } catch {
                     print("error")
+                    GlobalVar.favPressedNow = -1
                 }
             }
         }
@@ -564,7 +692,91 @@ class ViewController: NSViewController {
         
     }
     
-    func update() {
+    @objc func downloadAllRec() {
+        inte = 0
+        GlobalVar.progressVal = Double(GlobalVar.tracks.count)
+        
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let dataPath = documentsDirectory.appendingPathComponent("/Khinsider/" + GlobalVar.AlbumName)
+        
+        do {
+            try FileManager.default.createDirectory(atPath: dataPath.path, withIntermediateDirectories: true, attributes: nil)
+        } catch let error as NSError {
+            print("Error creating directory: \(error.localizedDescription)")
+        }
+        
+        GlobalVar.nowDownload = "downloading".localized + GlobalVar.AlbumName
+        GlobalVar.nowDownloadDet = "downloading".localized + "1 / " + String(GlobalVar.tracks.count + 1)
+        
+        NotificationCenter.default.post(name: Notification.Name("progUp"), object: nil)
+        
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1;
+        print(GlobalVar.download_queue)
+        self.load(url: GlobalVar.download_queue, name: GlobalVar.tracks, type: GlobalVar.download_type)
+    }
+    
+    
+    func load(url: [URL], name: [String], type: String) {
+        print(inte)
+        print("Got here with request " + url[inte].absoluteString)
+        // create your document folder url
+        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! as URL
+        let documentsFolderUrl = documentsUrl.appendingPathComponent("Khinsider/").appendingPathComponent(GlobalVar.AlbumName)
+        // your destination file url
+        let destinationUrl = documentsFolderUrl.appendingPathComponent(url[inte].lastPathComponent)
+        
+        print(destinationUrl)
+        if FileManager().fileExists(atPath: destinationUrl.path) {
+            print("file saved")
+            GlobalVar.nowDownloadDet = "downloading".localized + String(self.inte + 2) + " / " + String(GlobalVar.tracks.count + 1)
+            self.downloading = false
+            self.inte += 1
+            GlobalVar.progressValNow = Double(inte)
+            NotificationCenter.default.post(name: Notification.Name("progUp"), object: nil)
+            if self.inte == GlobalVar.trackURL.count {
+                return
+            }
+            self.load(url: url, name: name, type: type)
+        } else {
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: {
+                if let myAudioDataFromUrl = try? Data(contentsOf: url[self.inte]){
+                    // after downloading your data you need to save it to your destination url
+                    if (try? myAudioDataFromUrl.write(to: destinationUrl, options: [.atomic])) != nil {
+                        print("file saved")
+                        DispatchQueue.main.async() {
+                            GlobalVar.nowDownloadDet = "downloading".localized + String(self.inte + 2) + " / " + String(GlobalVar.tracks.count + 1)
+                            GlobalVar.progressValNow = Double(self.inte)
+                            NotificationCenter.default.post(name: Notification.Name("progUp"), object: nil)
+                        }
+                        self.downloading = false
+                        self.inte += 1
+                        if self.inte == GlobalVar.trackURL.count {
+                            self.showNotification(title: "done".localized, body: "filesaved".localized)
+                            return
+                        }
+                        self.load(url: url, name: name, type: type)
+                        
+                    }
+                } else {
+                    print("error saving file")
+                    DispatchQueue.main.async() {
+                        GlobalVar.nowDownloadDet = "downloading".localized + String(self.inte + 1) + " / " + String(GlobalVar.tracks.count + 1)
+                        GlobalVar.progressValNow = Double(self.inte)
+                    }
+                    self.downloading = false
+                    self.inte += 1
+                    if self.inte == GlobalVar.trackURL.count {
+                        self.showNotification(title: "done".localized, body: "filesaved".localized)
+                        return
+                    }
+                    self.load(url: url, name: name, type: type)
+                }
+            })
+        }
+    }
+    
+    @objc func update() {
         if (GlobalVar.linkArray.count == GlobalVar.textArray.count) {
             tableViewer.reloadData()
         } else {
@@ -618,6 +830,22 @@ struct GlobalVar {
     
     static var currentLink = ""
     static var currentName = ""
+    
+    static var progressVal = Double(1)
+    static var progressValNow = Double(0)
+    static var nowDownload = ""
+    static var nowDownloadDet = ""
+
+    static var touch_album = true
+    static var touch_track = true
+    static var touch_playing = false
+    
+    static var downloadAfter = false
+    
+    static var favs_name = [String]()
+    static var favs_link = [String]()
+    
+    static var favPressedNow = -1
 }
 
 extension String {
@@ -625,4 +853,3 @@ extension String {
         return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
     }
 }
-
