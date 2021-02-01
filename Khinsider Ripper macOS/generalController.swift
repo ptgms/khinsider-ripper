@@ -14,3 +14,10 @@ class generalController: NSView {
     //So you wasted your time opening this file
     //Ha!
 }
+
+class WindowDragView: NSVisualEffectView {
+    override public func mouseDown(with event: NSEvent) {
+        window?.performDrag(with: event)
+    }
+
+}

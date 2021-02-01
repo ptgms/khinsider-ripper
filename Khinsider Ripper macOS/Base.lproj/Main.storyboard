@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14490.12"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="17008"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
@@ -59,6 +60,39 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Edit" id="1pA-pz-hSc">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Edit" id="tdH-Qf-FAu">
+                                    <items>
+                                        <menuItem title="Cut" keyEquivalent="x" id="PhL-0e-SNN">
+                                            <connections>
+                                                <action selector="cut:" target="Ady-hI-5gd" id="X1R-jd-cRQ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Copy" keyEquivalent="c" id="ypx-qW-d4o">
+                                            <connections>
+                                                <action selector="copy:" target="Ady-hI-5gd" id="Vf8-6A-0Il"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste" keyEquivalent="v" id="9Hw-sg-eNg">
+                                            <connections>
+                                                <action selector="paste:" target="Ady-hI-5gd" id="6Ks-59-sks"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Delete" id="icz-wY-GdD">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="delete:" target="Ady-hI-5gd" id="jIo-L9-MGa"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Select All" keyEquivalent="a" id="DmX-dt-NMS">
+                                            <connections>
+                                                <action selector="selectAll:" target="Ady-hI-5gd" id="edb-OW-DXP"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Options" id="u9w-nP-SMd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Options" id="2lr-lS-OX5">
@@ -105,11 +139,15 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="Khinsider_Ripper_macOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="MainWindow" title="Khinsider Ripper" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                    <window key="window" identifier="MainWindow" title="Khinsider Ripper" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" toolbarStyle="unified" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="196" y="240" width="600" height="500"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
                         <value key="minSize" type="size" width="480" height="500"/>
+                        <toolbar key="toolbar" implicitIdentifier="F84563C1-6207-4179-8517-3CBCB9EBF7ED" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="OZU-ji-yjy">
+                            <allowedToolbarItems/>
+                            <defaultToolbarItems/>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -120,7 +158,6 @@
                                 <viewController key="viewController" id="813-eK-Zjc">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WBI-Tl-ESS">
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" bezelStyle="rounded" image="SF_touchbar_play" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vbF-gE-1ee">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -132,44 +169,11 @@
                                 </viewController>
                                 <size key="designTimeSize" width="72" height="30"/>
                             </touchBarItem>
-                            <touchBarItem id="xaq-u0-aUh">
-                                <viewController key="viewController" id="kxj-d8-aqJ">
-                                    <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WO1-bB-AQe">
-                                        <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Download Album" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VOv-S4-JGG">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="downloadAlbumPressed:" target="B8D-0N-5wS" id="q89-VO-t8H"/>
-                                        </connections>
-                                    </button>
-                                </viewController>
-                                <size key="designTimeSize" width="126" height="30"/>
-                            </touchBarItem>
-                            <touchBarItem id="4AV-oF-Gd1">
-                                <viewController key="viewController" id="be5-G3-W1t">
-                                    <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dSZ-MC-wW2">
-                                        <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Download Track" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nJq-Ro-0HC">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="downloadTrackPressed:" target="B8D-0N-5wS" id="SRF-8X-lJY"/>
-                                        </connections>
-                                    </button>
-                                </viewController>
-                                <size key="designTimeSize" width="126" height="30"/>
-                            </touchBarItem>
                             <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="Qj1-Xc-YCZ"/>
                             <touchBarItem id="YOz-Y8-GIr">
                                 <viewController key="viewController" id="dCL-29-9bL">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gaK-TZ-0sX">
                                         <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="Open Downloads" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fRa-fF-hSq">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -184,8 +188,6 @@
                         </touchBarItems>
                     </touchBar>
                     <connections>
-                        <outlet property="DownloadAlbumButton" destination="WO1-bB-AQe" id="BHS-pd-E3w"/>
-                        <outlet property="downloadTrackButton" destination="dSZ-MC-wW2" id="tdI-1V-cW3"/>
                         <outlet property="playpauseButton" destination="WBI-Tl-ESS" id="714-06-k7E"/>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
@@ -230,7 +232,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ipX-Co-Bn9">
-                                        <rect key="frame" x="8" y="205" width="464" height="35"/>
+                                        <rect key="frame" x="164" y="206" width="308" height="34"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Khinsider Ripper macOS" id="o2x-32-e0j">
                                             <font key="font" metaFont="system" size="29"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -238,7 +240,10 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NJm-KI-neq">
-                                        <rect key="frame" x="8" y="146" width="464" height="51"/>
+                                        <rect key="frame" x="164" y="134" width="308" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="304" id="cWt-r7-jiN"/>
+                                        </constraints>
                                         <textFieldCell key="cell" alignment="justified" id="hgx-fg-Osi">
                                             <font key="font" metaFont="system"/>
                                             <string key="title">A powerful Khinsider Ripper fully written in Swift. Uses Swiftsoup for gathering links. Source code of this project is available under GPLv3. Feel free to add translations!</string>
@@ -246,8 +251,8 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Imb-ae-aDF">
-                                        <rect key="frame" x="418" y="9" width="52" height="17"/>
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Imb-ae-aDF">
+                                        <rect key="frame" x="420" y="10" width="50" height="18"/>
                                         <buttonCell key="cell" type="inline" title="GitHub" bezelStyle="inline" image="buttonCell:VOX-Ii-3ie:image" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VOX-Ii-3ie">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystemBold"/>
@@ -256,8 +261,8 @@
                                             <action selector="githubPressed:" target="ufV-dh-Npv" id="TCX-9f-fto"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WZf-iQ-ptZ">
-                                        <rect key="frame" x="294" y="9" width="116" height="17"/>
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WZf-iQ-ptZ">
+                                        <rect key="frame" x="300" y="10" width="112" height="18"/>
                                         <buttonCell key="cell" type="inline" title="Send me an E-Mail" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gk2-be-2e4">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystemBold"/>
@@ -266,6 +271,14 @@
                                             <action selector="emailPressed:" target="ufV-dh-Npv" id="zSO-Wy-oDi"/>
                                         </connections>
                                     </button>
+                                    <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XMS-pO-MjO">
+                                        <rect key="frame" x="13" y="65" width="139" height="139"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="139" id="77a-N6-LHv"/>
+                                            <constraint firstAttribute="width" constant="139" id="Hmc-UU-eon"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="ico_512" id="Elk-cm-7AI"/>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="480" id="1uL-iC-NLl"/>
@@ -273,11 +286,15 @@
                                     <constraint firstAttribute="trailing" secondItem="ipX-Co-Bn9" secondAttribute="trailing" constant="10" id="AOS-Kp-yGg"/>
                                     <constraint firstAttribute="trailing" secondItem="Imb-ae-aDF" secondAttribute="trailing" constant="10" id="IG1-sH-ttc"/>
                                     <constraint firstItem="NJm-KI-neq" firstAttribute="top" secondItem="ipX-Co-Bn9" secondAttribute="bottom" constant="8" id="P2K-PC-MKg"/>
+                                    <constraint firstAttribute="bottom" secondItem="XMS-pO-MjO" secondAttribute="bottom" constant="65" id="SHX-Fp-MFc"/>
+                                    <constraint firstItem="XMS-pO-MjO" firstAttribute="leading" secondItem="RFG-yr-cmi" secondAttribute="leading" constant="13" id="SYt-tA-rLb"/>
+                                    <constraint firstItem="NJm-KI-neq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XMS-pO-MjO" secondAttribute="trailing" constant="8" symbolic="YES" id="Vgb-JO-dYp"/>
                                     <constraint firstItem="Imb-ae-aDF" firstAttribute="leading" secondItem="WZf-iQ-ptZ" secondAttribute="trailing" constant="8" id="Zi8-NO-bTh"/>
                                     <constraint firstItem="ipX-Co-Bn9" firstAttribute="top" secondItem="RFG-yr-cmi" secondAttribute="top" constant="30" id="c2e-qP-Vrl"/>
-                                    <constraint firstItem="NJm-KI-neq" firstAttribute="leading" secondItem="RFG-yr-cmi" secondAttribute="leading" constant="10" id="gam-3p-WV2"/>
                                     <constraint firstAttribute="bottom" secondItem="Imb-ae-aDF" secondAttribute="bottom" constant="10" id="iCK-EU-GaY"/>
-                                    <constraint firstItem="ipX-Co-Bn9" firstAttribute="leading" secondItem="RFG-yr-cmi" secondAttribute="leading" constant="10" id="l0Z-7U-IVe"/>
+                                    <constraint firstItem="ipX-Co-Bn9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RFG-yr-cmi" secondAttribute="leading" constant="20" symbolic="YES" id="iV0-mM-15A"/>
+                                    <constraint firstItem="NJm-KI-neq" firstAttribute="width" secondItem="ipX-Co-Bn9" secondAttribute="width" id="jtq-3T-vkn"/>
+                                    <constraint firstItem="XMS-pO-MjO" firstAttribute="top" secondItem="RFG-yr-cmi" secondAttribute="top" constant="66" id="lMO-K6-Hwm"/>
                                     <constraint firstAttribute="trailing" secondItem="NJm-KI-neq" secondAttribute="trailing" constant="10" id="nMi-OY-EHE"/>
                                     <constraint firstAttribute="bottom" secondItem="WZf-iQ-ptZ" secondAttribute="bottom" constant="10" id="tDH-gx-QcC"/>
                                 </constraints>
@@ -300,11 +317,11 @@
             <objects>
                 <viewController id="lXX-VW-m9F" customClass="FavoritesViewController" customModule="Khinsider_Ripper_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="iPe-Ki-4S4">
-                        <rect key="frame" x="0.0" y="0.0" width="259" height="557"/>
+                        <rect key="frame" x="0.0" y="0.0" width="259" height="534"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M66-dd-e3m">
-                                <rect key="frame" x="18" y="503" width="223" height="34"/>
+                                <rect key="frame" x="18" y="481" width="223" height="33"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Favorites" id="kL0-E0-M01">
                                     <font key="font" metaFont="systemBold" size="28"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -312,27 +329,26 @@
                                 </textFieldCell>
                             </textField>
                             <box boxType="custom" borderType="none" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="ZSt-sN-XiN">
-                                <rect key="frame" x="0.0" y="0.0" width="259" height="495"/>
+                                <rect key="frame" x="0.0" y="0.0" width="259" height="473"/>
                                 <view key="contentView" id="KBD-UW-cJm">
-                                    <rect key="frame" x="0.0" y="0.0" width="259" height="495"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="259" height="473"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7H-zh-q8g">
-                                            <rect key="frame" x="0.0" y="0.0" width="259" height="495"/>
-                                            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="9YK-Ck-dXU">
-                                                <rect key="frame" x="0.0" y="0.0" width="259" height="495"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="259" height="473"/>
+                                            <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="9YK-Ck-dXU">
+                                                <rect key="frame" x="0.0" y="0.0" width="259" height="473"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="Btz-Rr-azi" viewBased="YES" id="YXL-UY-Yh9" customClass="FavoritesTableView" customModule="Khinsider_Ripper_macOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="259" height="472"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="Btz-Rr-azi" viewBased="YES" id="YXL-UY-Yh9" customClass="FavoritesTableView" customModule="Khinsider_Ripper_macOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="259" height="450"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="256" minWidth="40" maxWidth="1000" id="vkx-mm-oUh">
+                                                            <tableColumn editable="NO" width="225" minWidth="40" maxWidth="1000" id="vkx-mm-oUh">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Favorites">
-                                                                    <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                 </tableHeaderCell>
@@ -344,11 +360,11 @@
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView identifier="favCell" id="RsH-yg-w99">
-                                                                        <rect key="frame" x="1" y="1" width="256" height="16"/>
+                                                                        <rect key="frame" x="11" y="1" width="234" height="16"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zxC-nq-8Ap">
-                                                                                <rect key="frame" x="0.0" y="-1" width="256" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="236" height="16"/>
                                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="FdL-PP-3cH">
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -357,9 +373,9 @@
                                                                             </textField>
                                                                         </subviews>
                                                                         <constraints>
-                                                                            <constraint firstItem="zxC-nq-8Ap" firstAttribute="centerX" secondItem="RsH-yg-w99" secondAttribute="centerX" id="9Iy-Md-Ipe"/>
-                                                                            <constraint firstItem="zxC-nq-8Ap" firstAttribute="centerY" secondItem="RsH-yg-w99" secondAttribute="centerY" id="Ihc-if-eku"/>
-                                                                            <constraint firstItem="zxC-nq-8Ap" firstAttribute="leading" secondItem="RsH-yg-w99" secondAttribute="leading" constant="2" id="NZI-3w-OES"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="zxC-nq-8Ap" secondAttribute="trailing" id="O6u-jn-L2h"/>
+                                                                            <constraint firstItem="zxC-nq-8Ap" firstAttribute="leading" secondItem="RsH-yg-w99" secondAttribute="leading" constant="2" id="PPV-Wl-klf"/>
+                                                                            <constraint firstItem="zxC-nq-8Ap" firstAttribute="centerY" secondItem="RsH-yg-w99" secondAttribute="centerY" id="UCs-Wu-rIw"/>
                                                                         </constraints>
                                                                         <connections>
                                                                             <outlet property="textField" destination="zxC-nq-8Ap" id="8va-UK-baw"/>
@@ -370,39 +386,50 @@
                                                         </tableColumns>
                                                     </tableView>
                                                 </subviews>
+                                                <nil key="backgroundColor"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="KRP-Eq-zTT">
-                                                <rect key="frame" x="0.0" y="480" width="259" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="473" id="oba-gi-Tr6"/>
+                                            </constraints>
+                                            <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="KRP-Eq-zTT">
+                                                <rect key="frame" x="0.0" y="458" width="259" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Cav-3H-CrK">
                                                 <rect key="frame" x="244" y="23" width="15" height="18"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <tableHeaderView key="headerView" id="Btz-Rr-azi">
+                                            <tableHeaderView key="headerView" wantsLayer="YES" id="Btz-Rr-azi">
                                                 <rect key="frame" x="0.0" y="0.0" width="259" height="23"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="F7H-zh-q8g" secondAttribute="bottom" id="67I-Ga-rz5"/>
+                                        <constraint firstAttribute="trailing" secondItem="F7H-zh-q8g" secondAttribute="trailing" id="I19-VR-Zo1"/>
                                         <constraint firstAttribute="trailing" secondItem="F7H-zh-q8g" secondAttribute="trailing" id="JzB-kB-EzV"/>
-                                        <constraint firstItem="F7H-zh-q8g" firstAttribute="top" secondItem="KBD-UW-cJm" secondAttribute="top" id="Sge-7j-3Gb"/>
+                                        <constraint firstItem="F7H-zh-q8g" firstAttribute="top" secondItem="KBD-UW-cJm" secondAttribute="top" id="PtD-s8-ktI"/>
+                                        <constraint firstItem="F7H-zh-q8g" firstAttribute="leading" secondItem="KBD-UW-cJm" secondAttribute="leading" id="Ueg-Ie-fWD"/>
+                                        <constraint firstAttribute="bottom" secondItem="F7H-zh-q8g" secondAttribute="bottom" id="ivk-OX-Tsd"/>
                                         <constraint firstItem="F7H-zh-q8g" firstAttribute="leading" secondItem="KBD-UW-cJm" secondAttribute="leading" id="v2V-TF-Nyn"/>
                                     </constraints>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="473" id="sbK-vd-aeq"/>
+                                </constraints>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                         </subviews>
                         <constraints>
                             <constraint firstItem="M66-dd-e3m" firstAttribute="leading" secondItem="iPe-Ki-4S4" secondAttribute="leading" constant="20" id="4iN-Jk-a4I"/>
+                            <constraint firstAttribute="bottom" secondItem="ZSt-sN-XiN" secondAttribute="bottom" id="53p-yJ-5gB"/>
                             <constraint firstItem="M66-dd-e3m" firstAttribute="top" secondItem="iPe-Ki-4S4" secondAttribute="top" constant="20" id="I7l-FJ-wBy"/>
+                            <constraint firstAttribute="trailing" secondItem="ZSt-sN-XiN" secondAttribute="trailing" id="eAJ-lX-thh"/>
                             <constraint firstAttribute="trailing" secondItem="ZSt-sN-XiN" secondAttribute="trailing" id="ej7-IZ-Q4l"/>
                             <constraint firstItem="ZSt-sN-XiN" firstAttribute="leading" secondItem="iPe-Ki-4S4" secondAttribute="leading" id="qPd-ae-fRO"/>
-                            <constraint firstItem="ZSt-sN-XiN" firstAttribute="top" secondItem="M66-dd-e3m" secondAttribute="bottom" constant="8" id="uOH-YL-xON"/>
+                            <constraint firstItem="ZSt-sN-XiN" firstAttribute="leading" secondItem="iPe-Ki-4S4" secondAttribute="leading" id="scE-in-LHR"/>
+                            <constraint firstItem="ZSt-sN-XiN" firstAttribute="top" secondItem="M66-dd-e3m" secondAttribute="bottom" constant="8" symbolic="YES" id="tXl-Wb-UJl"/>
                             <constraint firstAttribute="trailing" secondItem="M66-dd-e3m" secondAttribute="trailing" constant="20" id="vya-K6-jJ6"/>
-                            <constraint firstAttribute="bottom" secondItem="ZSt-sN-XiN" secondAttribute="bottom" id="zcy-lv-ekk"/>
                         </constraints>
                     </view>
                     <connections>
@@ -411,39 +438,38 @@
                 </viewController>
                 <customObject id="H09-vh-3EU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-853.5" y="956.5"/>
+            <point key="canvasLocation" x="-853.5" y="956"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Khinsider_Ripper_macOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1325" height="501"/>
+                    <view key="view" wantsLayer="YES" misplaced="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="1432" height="358"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hry-4U-A7e">
-                                <rect key="frame" x="0.0" y="0.0" width="1325" height="451"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1432" height="212"/>
                                 <subviews>
-                                    <customView id="GtV-cq-nww">
-                                        <rect key="frame" x="0.0" y="0.0" width="668" height="451"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <customView misplaced="YES" id="GtV-cq-nww">
+                                        <rect key="frame" x="0.0" y="0.0" width="725" height="212"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddP-t6-aUx">
-                                                <rect key="frame" x="0.0" y="0.0" width="668" height="451"/>
+                                                <rect key="frame" x="0.0" y="-24" width="109" height="212"/>
                                                 <clipView key="contentView" drawsBackground="NO" id="VqN-La-ebG">
-                                                    <rect key="frame" x="1" y="0.0" width="666" height="450"/>
+                                                    <rect key="frame" x="1" y="1" width="107" height="195"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Mgb-xx-pPh" viewBased="YES" id="Fzg-pJ-p2m">
-                                                            <rect key="frame" x="0.0" y="0.0" width="666" height="427"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="675" height="172"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                             <tableColumns>
                                                                 <tableColumn width="663" minWidth="40" maxWidth="1000" id="f5c-2h-xdu">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Album Name">
-                                                                        <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
@@ -455,11 +481,11 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView identifier="albumCell" id="pzJ-nm-u6g">
-                                                                            <rect key="frame" x="1" y="1" width="663" height="17"/>
+                                                                            <rect key="frame" x="1" y="1" width="672" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lx7-m2-aE5">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="663" height="17"/>
+                                                                                    <rect key="frame" x="0.0" y="1" width="672" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="pj9-un-7xh">
                                                                                         <font key="font" metaFont="system"/>
                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -483,41 +509,41 @@
                                                     </subviews>
                                                     <nil key="backgroundColor"/>
                                                 </clipView>
-                                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="0yz-NE-Odh">
-                                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="0yz-NE-Odh">
+                                                    <rect key="frame" x="1" y="196" width="107" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="V0z-qb-aIg">
                                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
-                                                <tableHeaderView key="headerView" id="Mgb-xx-pPh">
-                                                    <rect key="frame" x="0.0" y="0.0" width="666" height="23"/>
+                                                <tableHeaderView key="headerView" wantsLayer="YES" id="Mgb-xx-pPh">
+                                                    <rect key="frame" x="0.0" y="0.0" width="675" height="23"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableHeaderView>
                                             </scrollView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="ddP-t6-aUx" firstAttribute="leading" secondItem="GtV-cq-nww" secondAttribute="leading" id="9JF-aE-bOJ"/>
-                                            <constraint firstItem="ddP-t6-aUx" firstAttribute="top" secondItem="GtV-cq-nww" secondAttribute="top" id="FKJ-RN-nFR"/>
-                                            <constraint firstAttribute="trailing" secondItem="ddP-t6-aUx" secondAttribute="trailing" id="IKo-z9-goi"/>
-                                            <constraint firstAttribute="bottom" secondItem="ddP-t6-aUx" secondAttribute="bottom" id="PJ5-im-5sE"/>
+                                            <constraint firstItem="ddP-t6-aUx" firstAttribute="leading" secondItem="GtV-cq-nww" secondAttribute="leading" id="5NQ-iS-HKj"/>
+                                            <constraint firstAttribute="bottom" secondItem="ddP-t6-aUx" secondAttribute="bottom" id="KEG-Se-0Qj"/>
+                                            <constraint firstItem="ddP-t6-aUx" firstAttribute="top" secondItem="GtV-cq-nww" secondAttribute="top" id="YzW-AL-MLv"/>
+                                            <constraint firstAttribute="trailing" secondItem="ddP-t6-aUx" secondAttribute="trailing" id="x78-LD-uMc"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="zfo-rI-gPC"/>
                                         </constraints>
                                     </customView>
-                                    <customView id="sKo-Ss-IIb">
-                                        <rect key="frame" x="669" y="0.0" width="656" height="451"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <customView misplaced="YES" id="sKo-Ss-IIb">
+                                        <rect key="frame" x="726" y="0.0" width="706" height="212"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jt-PR-NW4">
-                                                <rect key="frame" x="0.0" y="0.0" width="656" height="451"/>
+                                                <rect key="frame" x="0.0" y="-24" width="1322" height="212"/>
                                                 <clipView key="contentView" id="GW9-Pz-Fp8">
-                                                    <rect key="frame" x="1" y="0.0" width="654" height="450"/>
+                                                    <rect key="frame" x="1" y="1" width="1320" height="210"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="j67-kk-xQL" viewBased="YES" id="k8E-4J-VVz" customClass="TrackViewController" customModule="Khinsider_Ripper_macOS" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="654" height="427"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="1320" height="187"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             <tableViewGridLines key="gridStyleMask" vertical="YES"/>
@@ -525,7 +551,6 @@
                                                             <tableColumns>
                                                                 <tableColumn width="297" minWidth="40" maxWidth="1000" id="FQH-4W-tQj">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Track Name">
-                                                                        <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
@@ -537,11 +562,11 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView identifier="trackCell" id="IJE-jD-1QK">
-                                                                            <rect key="frame" x="1" y="1" width="297" height="17"/>
+                                                                            <rect key="frame" x="1" y="1" width="302" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="puS-lj-l3y">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="297" height="17"/>
+                                                                                    <rect key="frame" x="0.0" y="1" width="302" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="pha-RK-C4o">
                                                                                         <font key="font" metaFont="system"/>
                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -560,9 +585,8 @@
                                                                         </tableCellView>
                                                                     </prototypeCellViews>
                                                                 </tableColumn>
-                                                                <tableColumn width="351" minWidth="40" maxWidth="1000" id="YtO-t8-b4c">
+                                                                <tableColumn width="971" minWidth="40" maxWidth="1000" id="YtO-t8-b4c">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Path">
-                                                                        <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
@@ -574,11 +598,11 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView identifier="pathCell" id="eGB-Z0-sMJ">
-                                                                            <rect key="frame" x="301" y="1" width="351" height="17"/>
+                                                                            <rect key="frame" x="306" y="1" width="975" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="fne-ZD-fij">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="17"/>
+                                                                                    <rect key="frame" x="0.0" y="1" width="975" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="GKk-E5-D0W">
                                                                                         <font key="font" metaFont="system"/>
                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -602,25 +626,25 @@
                                                     </subviews>
                                                 </clipView>
                                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ofA-hn-Phw">
-                                                    <rect key="frame" x="1" y="8" width="161" height="15"/>
+                                                    <rect key="frame" x="1" y="124" width="113" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="elx-Sc-axF">
                                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
-                                                <tableHeaderView key="headerView" id="j67-kk-xQL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="654" height="23"/>
+                                                <tableHeaderView key="headerView" wantsLayer="YES" id="j67-kk-xQL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1320" height="23"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableHeaderView>
                                             </scrollView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="1Jt-PR-NW4" secondAttribute="trailing" id="Jmq-cV-JUp"/>
-                                            <constraint firstItem="1Jt-PR-NW4" firstAttribute="top" secondItem="sKo-Ss-IIb" secondAttribute="top" id="Kee-bG-Yis"/>
+                                            <constraint firstItem="1Jt-PR-NW4" firstAttribute="top" secondItem="sKo-Ss-IIb" secondAttribute="top" id="5Vm-vK-q3Y"/>
+                                            <constraint firstItem="1Jt-PR-NW4" firstAttribute="leading" secondItem="sKo-Ss-IIb" secondAttribute="leading" id="DHG-tQ-uTQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Jt-PR-NW4" secondAttribute="trailing" id="H0m-W4-Jt5"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="P8p-cm-ygL"/>
-                                            <constraint firstItem="1Jt-PR-NW4" firstAttribute="leading" secondItem="sKo-Ss-IIb" secondAttribute="leading" id="PsD-FQ-x5S"/>
-                                            <constraint firstAttribute="bottom" secondItem="1Jt-PR-NW4" secondAttribute="bottom" id="jxj-ES-OCE"/>
+                                            <constraint firstAttribute="bottom" secondItem="1Jt-PR-NW4" secondAttribute="bottom" id="Swa-Ou-9rf"/>
                                         </constraints>
                                     </customView>
                                 </subviews>
@@ -629,16 +653,16 @@
                                     <real value="250"/>
                                 </holdingPriorities>
                             </splitView>
-                            <visualEffectView wantsLayer="YES" blendingMode="withinWindow" material="titlebar" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="Zee-XX-0tj">
-                                <rect key="frame" x="0.0" y="451" width="1325" height="50"/>
+                            <visualEffectView wantsLayer="YES" blendingMode="behindWindow" material="titlebar" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="Zee-XX-0tj" customClass="WindowDragView" customModule="Khinsider_Ripper_macOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="212" width="1432" height="50"/>
                                 <subviews>
-                                    <box boxType="custom" borderType="none" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="4Bb-gj-mQG">
-                                        <rect key="frame" x="383" y="0.0" width="559" height="50"/>
+                                    <box appearanceType="aqua" boxType="custom" borderType="none" title="Music Player" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="4Bb-gj-mQG">
+                                        <rect key="frame" x="437" y="0.0" width="559" height="50"/>
                                         <view key="contentView" id="7Kg-85-rat">
                                             <rect key="frame" x="0.0" y="0.0" width="559" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="914-cL-me1">
+                                                <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="914-cL-me1">
                                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="XaU-Y9-BpF"/>
@@ -646,8 +670,12 @@
                                                     </constraints>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="G09-Oc-2mr"/>
                                                 </imageView>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gXD-vZ-Jlb">
+                                                    <rect key="frame" x="46" y="-6" width="515" height="28"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="jj3-fk-uec"/>
+                                                </slider>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wV2-RP-bgQ">
-                                                    <rect key="frame" x="54" y="30" width="499" height="18"/>
+                                                    <rect key="frame" x="54" y="31" width="499" height="17"/>
                                                     <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" alignment="center" placeholderString="Select a track" id="kow-9B-b8P">
                                                         <font key="font" metaFont="system" size="14"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -655,16 +683,8 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BOC-59-kkv">
-                                                    <rect key="frame" x="46" y="11" width="41" height="17"/>
+                                                    <rect key="frame" x="49" y="18" width="41" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="00:00" id="0cw-Zd-vwS">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9nX-ju-2uB">
-                                                    <rect key="frame" x="520" y="11" width="41" height="17"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="00:00" id="NBd-Ez-KJy">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -686,31 +706,36 @@
                                                         </button>
                                                     </subviews>
                                                 </visualEffectView>
-                                                <progressIndicator wantsLayer="YES" maxValue="1" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="bzy-be-QZK">
-                                                    <rect key="frame" x="48" y="0.0" width="511" height="12"/>
-                                                </progressIndicator>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9nX-ju-2uB">
+                                                    <rect key="frame" x="517" y="18" width="41" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="00:00" id="NBd-Ez-KJy">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="wV2-RP-bgQ" firstAttribute="top" secondItem="7Kg-85-rat" secondAttribute="top" id="3X1-EA-Z67"/>
                                                 <constraint firstAttribute="bottom" secondItem="914-cL-me1" secondAttribute="bottom" id="4Bi-iz-Wk7"/>
                                                 <constraint firstItem="9nX-ju-2uB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BOC-59-kkv" secondAttribute="trailing" constant="8" symbolic="YES" id="4ju-vf-thh"/>
-                                                <constraint firstItem="BOC-59-kkv" firstAttribute="leading" secondItem="914-cL-me1" secondAttribute="trailing" id="62k-CA-fHe"/>
+                                                <constraint firstItem="BOC-59-kkv" firstAttribute="leading" secondItem="914-cL-me1" secondAttribute="trailing" constant="3" id="62k-CA-fHe"/>
+                                                <constraint firstAttribute="bottom" secondItem="gXD-vZ-Jlb" secondAttribute="bottom" id="7kw-2B-Dmu"/>
                                                 <constraint firstAttribute="bottom" secondItem="edz-hj-yjg" secondAttribute="bottom" id="8oY-f0-jJv"/>
-                                                <constraint firstItem="bzy-be-QZK" firstAttribute="leading" secondItem="914-cL-me1" secondAttribute="trailing" id="BPH-Ts-IgK"/>
-                                                <constraint firstAttribute="bottom" secondItem="BOC-59-kkv" secondAttribute="bottom" constant="11" id="K54-Pu-fNo"/>
+                                                <constraint firstAttribute="bottom" secondItem="BOC-59-kkv" secondAttribute="bottom" constant="18" id="K54-Pu-fNo"/>
                                                 <constraint firstItem="edz-hj-yjg" firstAttribute="leading" secondItem="7Kg-85-rat" secondAttribute="leading" id="P6F-y7-dzD"/>
-                                                <constraint firstAttribute="bottom" secondItem="9nX-ju-2uB" secondAttribute="bottom" constant="11" id="V8h-U2-fWx"/>
+                                                <constraint firstAttribute="trailing" secondItem="gXD-vZ-Jlb" secondAttribute="trailing" id="PAu-xY-UfI"/>
+                                                <constraint firstAttribute="bottom" secondItem="9nX-ju-2uB" secondAttribute="bottom" constant="18" id="V8h-U2-fWx"/>
                                                 <constraint firstItem="wV2-RP-bgQ" firstAttribute="leading" secondItem="edz-hj-yjg" secondAttribute="trailing" constant="8" symbolic="YES" id="XC1-Hg-fcn"/>
                                                 <constraint firstItem="914-cL-me1" firstAttribute="top" secondItem="7Kg-85-rat" secondAttribute="top" id="Xtz-sx-t2g"/>
                                                 <constraint firstItem="edz-hj-yjg" firstAttribute="top" secondItem="7Kg-85-rat" secondAttribute="top" id="cw1-rP-xFX"/>
                                                 <constraint firstAttribute="trailing" secondItem="wV2-RP-bgQ" secondAttribute="trailing" constant="8" id="eh0-FA-5us"/>
-                                                <constraint firstAttribute="trailing" secondItem="9nX-ju-2uB" secondAttribute="trailing" id="fcO-ke-4Hh"/>
+                                                <constraint firstAttribute="trailing" secondItem="9nX-ju-2uB" secondAttribute="trailing" constant="3" id="fcO-ke-4Hh"/>
                                                 <constraint firstItem="914-cL-me1" firstAttribute="leading" secondItem="7Kg-85-rat" secondAttribute="leading" id="hLl-E8-O95"/>
                                                 <constraint firstItem="914-cL-me1" firstAttribute="top" secondItem="7Kg-85-rat" secondAttribute="top" id="jH5-Iv-Xx9"/>
-                                                <constraint firstAttribute="trailing" secondItem="bzy-be-QZK" secondAttribute="trailing" id="jNL-0t-rjz"/>
                                                 <constraint firstItem="wV2-RP-bgQ" firstAttribute="leading" secondItem="914-cL-me1" secondAttribute="trailing" constant="8" id="t2F-cb-zs9"/>
-                                                <constraint firstAttribute="bottom" secondItem="bzy-be-QZK" secondAttribute="bottom" id="uzJ-FL-nYH"/>
                                                 <constraint firstAttribute="bottom" secondItem="914-cL-me1" secondAttribute="bottom" id="wx1-wN-XI7"/>
+                                                <constraint firstItem="gXD-vZ-Jlb" firstAttribute="leading" secondItem="914-cL-me1" secondAttribute="trailing" id="x6l-7i-odD"/>
                                             </constraints>
                                         </view>
                                         <constraints>
@@ -718,50 +743,10 @@
                                             <constraint firstAttribute="height" constant="50" id="T3c-63-P8b"/>
                                             <constraint firstAttribute="width" constant="559" id="XvM-wZ-fBY"/>
                                         </constraints>
-                                        <color key="fillColor" white="1" alpha="0.38927706866197181" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="fillColor" name="separatorColor" catalog="System" colorSpace="catalog"/>
                                     </box>
-                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pg9-3I-hST">
-                                        <rect key="frame" x="1115" y="10" width="200" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="PaH-Uz-cJg"/>
-                                        </constraints>
-                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search for Game OSTs" usesSingleLineMode="YES" bezelStyle="round" id="9MW-KN-1HR">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <connections>
-                                                <action selector="searchPressed:" target="XfG-lQ-9wD" id="6N5-fC-V7n"/>
-                                            </connections>
-                                        </searchFieldCell>
-                                    </searchField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b1T-Zr-lpp">
-                                        <rect key="frame" x="1073" y="8" width="34" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="34" id="le0-a4-ac2"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Material_File_Download" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="xt1-rr-L4U">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <segue destination="hlm-gi-sEY" kind="popover" popoverAnchorView="b1T-Zr-lpp" popoverBehavior="t" preferredEdge="maxY" id="DLm-1s-Uxx"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IsL-Fj-gwD">
-                                        <rect key="frame" x="10" y="4" width="34" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="34" id="V2t-VP-Bl5"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SF_star_circle_fill" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="iar-Hr-auX">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <segue destination="lXX-VW-m9F" kind="popover" popoverAnchorView="IsL-Fj-gwD" popoverBehavior="t" preferredEdge="maxY" id="tU6-9N-0KQ"/>
-                                        </connections>
-                                    </button>
-                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xFT-jT-Emj">
-                                        <rect key="frame" x="50" y="6" width="154" height="21"/>
+                                    <popUpButton wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xFT-jT-Emj">
+                                        <rect key="frame" x="119" y="11" width="156" height="21"/>
                                         <popUpButtonCell key="cell" type="push" title="Download directly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="JDR-p1-rsG" id="62P-UC-LRk">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -773,34 +758,77 @@
                                             </menu>
                                         </popUpButtonCell>
                                     </popUpButton>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IsL-Fj-gwD">
+                                        <rect key="frame" x="79" y="11" width="36" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="34" id="V2t-VP-Bl5"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SF_star_circle_fill" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="iar-Hr-auX">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="lXX-VW-m9F" kind="popover" popoverAnchorView="IsL-Fj-gwD" popoverBehavior="t" preferredEdge="maxY" id="tU6-9N-0KQ"/>
+                                        </connections>
+                                    </button>
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pg9-3I-hST">
+                                        <rect key="frame" x="1212" y="14" width="200" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="0fE-zc-nYf"/>
+                                        </constraints>
+                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search for Game OSTs" usesSingleLineMode="YES" bezelStyle="round" id="9MW-KN-1HR">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <action selector="searchPressed:" target="XfG-lQ-9wD" id="6N5-fC-V7n"/>
+                                            </connections>
+                                        </searchFieldCell>
+                                    </searchField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b1T-Zr-lpp">
+                                        <rect key="frame" x="1169" y="13" width="36" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="34" id="le0-a4-ac2"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Material_File_Download" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="xt1-rr-L4U">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="hlm-gi-sEY" kind="popover" popoverAnchorView="b1T-Zr-lpp" popoverBehavior="t" preferredEdge="maxY" id="DLm-1s-Uxx"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="IsL-Fj-gwD" firstAttribute="leading" secondItem="Zee-XX-0tj" secondAttribute="leading" constant="10" id="5fl-fZ-jNl"/>
-                                    <constraint firstAttribute="bottom" secondItem="Pg9-3I-hST" secondAttribute="bottom" constant="10" id="EgS-u3-2r9"/>
+                                    <constraint firstItem="IsL-Fj-gwD" firstAttribute="leading" secondItem="Zee-XX-0tj" secondAttribute="leading" constant="80" id="5fl-fZ-jNl"/>
+                                    <constraint firstItem="b1T-Zr-lpp" firstAttribute="top" secondItem="Zee-XX-0tj" secondAttribute="top" constant="15" id="DQS-u0-VjV"/>
+                                    <constraint firstItem="b1T-Zr-lpp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4Bb-gj-mQG" secondAttribute="trailing" constant="10" id="ItP-az-Ubh"/>
+                                    <constraint firstAttribute="bottom" secondItem="b1T-Zr-lpp" secondAttribute="bottom" constant="15" id="L8Z-KW-qMb"/>
                                     <constraint firstItem="4Bb-gj-mQG" firstAttribute="centerX" secondItem="Zee-XX-0tj" secondAttribute="centerX" id="Lm9-0i-brA"/>
-                                    <constraint firstItem="Pg9-3I-hST" firstAttribute="leading" secondItem="b1T-Zr-lpp" secondAttribute="trailing" constant="8" id="Mc1-5w-KQn"/>
-                                    <constraint firstAttribute="bottom" secondItem="b1T-Zr-lpp" secondAttribute="bottom" constant="10" id="Mcn-dW-at8"/>
                                     <constraint firstItem="xFT-jT-Emj" firstAttribute="leading" secondItem="IsL-Fj-gwD" secondAttribute="trailing" constant="8" id="TOI-y5-IKB"/>
-                                    <constraint firstItem="xFT-jT-Emj" firstAttribute="top" secondItem="Zee-XX-0tj" secondAttribute="top" constant="25" id="ckX-Kt-bqJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="Pg9-3I-hST" secondAttribute="trailing" constant="10" id="flh-az-oQg"/>
-                                    <constraint firstAttribute="bottom" secondItem="IsL-Fj-gwD" secondAttribute="bottom" constant="6" id="h0k-bT-q9y"/>
-                                    <constraint firstItem="b1T-Zr-lpp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4Bb-gj-mQG" secondAttribute="trailing" constant="10" id="hEF-Rh-qoZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="xFT-jT-Emj" secondAttribute="bottom" constant="9" id="rYi-wo-PYs"/>
+                                    <constraint firstItem="Pg9-3I-hST" firstAttribute="top" secondItem="Zee-XX-0tj" secondAttribute="top" constant="14" id="ZuL-sR-Je7"/>
+                                    <constraint firstItem="xFT-jT-Emj" firstAttribute="top" secondItem="Zee-XX-0tj" secondAttribute="top" constant="19" id="ckX-Kt-bqJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pg9-3I-hST" secondAttribute="trailing" constant="20" symbolic="YES" id="eMd-Tp-wuz"/>
+                                    <constraint firstAttribute="bottom" secondItem="IsL-Fj-gwD" secondAttribute="bottom" constant="13" id="h0k-bT-q9y"/>
+                                    <constraint firstItem="Pg9-3I-hST" firstAttribute="leading" secondItem="b1T-Zr-lpp" secondAttribute="trailing" constant="8" symbolic="YES" id="ho6-ar-ATi"/>
+                                    <constraint firstAttribute="bottom" secondItem="xFT-jT-Emj" secondAttribute="bottom" constant="15" id="rYi-wo-PYs"/>
                                     <constraint firstAttribute="height" constant="50" id="rcv-UG-14S"/>
-                                    <constraint firstItem="4Bb-gj-mQG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xFT-jT-Emj" secondAttribute="trailing" constant="20" symbolic="YES" id="uQt-Cs-KHP"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="tEq-vi-fHF"/>
+                                    <constraint firstAttribute="bottom" secondItem="Pg9-3I-hST" secondAttribute="bottom" constant="14" id="teC-Bn-XB4"/>
+                                    <constraint firstItem="4Bb-gj-mQG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xFT-jT-Emj" secondAttribute="trailing" constant="10" id="uQt-Cs-KHP"/>
                                     <constraint firstItem="4Bb-gj-mQG" firstAttribute="top" secondItem="Zee-XX-0tj" secondAttribute="top" id="xeg-27-gaz"/>
                                     <constraint firstAttribute="bottom" secondItem="4Bb-gj-mQG" secondAttribute="bottom" id="zZq-7j-uz0"/>
                                 </constraints>
                             </visualEffectView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="hry-4U-A7e" secondAttribute="bottom" id="Frf-1r-g0t"/>
-                            <constraint firstItem="hry-4U-A7e" firstAttribute="top" secondItem="Zee-XX-0tj" secondAttribute="bottom" id="JBp-Pc-Jui"/>
-                            <constraint firstAttribute="trailing" secondItem="hry-4U-A7e" secondAttribute="trailing" id="Qnt-Bk-oMZ"/>
-                            <constraint firstAttribute="trailing" secondItem="Zee-XX-0tj" secondAttribute="trailing" id="TI6-nJ-Kuz"/>
-                            <constraint firstItem="Zee-XX-0tj" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="gk8-9Z-CHf"/>
-                            <constraint firstItem="hry-4U-A7e" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="ruK-Rg-p9i"/>
-                            <constraint firstItem="Zee-XX-0tj" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="uHn-CR-r0c"/>
+                            <constraint firstAttribute="trailing" secondItem="hry-4U-A7e" secondAttribute="trailing" id="9uq-Il-VYY"/>
+                            <constraint firstAttribute="bottom" secondItem="hry-4U-A7e" secondAttribute="bottom" id="Geo-7t-Uwc"/>
+                            <constraint firstItem="Zee-XX-0tj" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Thc-rZ-iX1"/>
+                            <constraint firstItem="hry-4U-A7e" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="WAG-21-wfD"/>
+                            <constraint firstItem="hry-4U-A7e" firstAttribute="top" secondItem="Zee-XX-0tj" secondAttribute="bottom" id="jHD-8l-e0n"/>
+                            <constraint firstAttribute="trailing" secondItem="Zee-XX-0tj" secondAttribute="trailing" id="mt0-6j-Cg4"/>
+                            <constraint firstItem="Zee-XX-0tj" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="z7q-x3-clj"/>
                         </constraints>
                     </view>
                     <connections>
@@ -810,7 +838,7 @@
                         <outlet property="downloadWith" destination="xFT-jT-Emj" id="HR0-hv-7RI"/>
                         <outlet property="duration" destination="9nX-ju-2uB" id="Kcw-T1-Qgq"/>
                         <outlet property="playPause" destination="wF4-wz-CrT" id="BsF-Eb-ane"/>
-                        <outlet property="progress" destination="bzy-be-QZK" id="QaB-V1-EAR"/>
+                        <outlet property="progress" destination="gXD-vZ-Jlb" id="mu3-V7-MAV"/>
                         <outlet property="searchBar" destination="Pg9-3I-hST" id="goW-9K-1GO"/>
                         <outlet property="tableViewer" destination="Fzg-pJ-p2m" id="yFP-tx-lEW"/>
                         <outlet property="trackTableView" destination="k8E-4J-VVz" id="Cm0-s2-obF"/>
@@ -819,7 +847,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75.5" y="803.5"/>
+            <point key="canvasLocation" x="129" y="856"/>
         </scene>
         <!--Batch Downloader View Controller-->
         <scene sceneID="1MS-oF-00o">
@@ -830,7 +858,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DQP-N5-nrh">
-                                <rect key="frame" x="-2" y="8" width="359" height="16"/>
+                                <rect key="frame" x="-2" y="8" width="359" height="15"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" alignment="center" title="Start downloading something!" usesSingleLineMode="YES" id="oai-6V-0ah">
                                     <font key="font" metaFont="systemLight" size="12"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -838,7 +866,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tlC-rD-eX1">
-                                <rect key="frame" x="2" y="38" width="351" height="23"/>
+                                <rect key="frame" x="2" y="43" width="351" height="18"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" alignment="center" title="Downloading nothing!" id="UNN-OQ-7MI">
                                     <font key="font" size="16" name="HelveticaNeue"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -879,134 +907,135 @@
         <image name="SF_touchbar_play" width="24" height="24"/>
         <image name="buttonCell:VOX-Ii-3ie:image" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGVVZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEgcI
-ExQZHh8jJCsuMTtDR0tPUlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdz
-Vk5TUmVwc1dOU0NvbG9ygAKAERIgwwAAgAOAC1Z7MSwgMX3SFQoWGFpOUy5vYmplY3RzoReABIAK0hUK
-Gh2iGxyABYAGgAkQANIgCiEiXxAUTlNUSUZGUmVwcmVzZW50YXRpb26AB4AITxEIxE1NACoAAAAKAAAA
-EAEAAAMAAAABAAEAAAEBAAMAAAABAAEAAAECAAMAAAACAAgACAEDAAMAAAABAAEAAAEGAAMAAAABAAEA
-AAEKAAMAAAABAAEAAAERAAQAAAABAAAACAESAAMAAAABAAEAAAEVAAMAAAABAAIAAAEWAAMAAAABAAEA
-AAEXAAQAAAABAAAAAgEcAAMAAAABAAEAAAEoAAMAAAABAAIAAAFSAAMAAAABAAEAAAFTAAMAAAACAAEA
-AYdzAAcAAAf0AAAA0AAAAAAAAAf0YXBwbAIgAABtbnRyR1JBWVhZWiAH0AACAA4ADAAAAABhY3NwQVBQ
-TAAAAABub25lAAAAAAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLWFwcGwAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVkZXNjAAAAwAAAAG9kc2NtAAABMAAABmZjcHJ0AAAH
-mAAAADh3dHB0AAAH0AAAABRrVFJDAAAH5AAAAA5kZXNjAAAAAAAAABVHZW5lcmljIEdyYXkgUHJvZmls
-ZQAAAAAAAAAAAAAAFUdlbmVyaWMgR3JheSBQcm9maWxlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAbWx1YwAAAAAAAAAfAAAADHNrU0sAAAAqAAABhGVuVVMAAAAoAAAB
-rmNhRVMAAAAsAAAB1nZpVk4AAAAsAAACAnB0QlIAAAAqAAACLnVrVUEAAAAsAAACWGZyRlUAAAAqAAAC
-hGh1SFUAAAAuAAACrnpoVFcAAAAQAAAC3G5iTk8AAAAsAAAC7GtvS1IAAAAYAAADGGNzQ1oAAAAkAAAD
-MGhlSUwAAAAgAAADVHJvUk8AAAAkAAADdGRlREUAAAA6AAADmGl0SVQAAAAuAAAD0nN2U0UAAAAuAAAE
-AHpoQ04AAAAQAAAELmphSlAAAAAWAAAEPmVsR1IAAAAkAAAEVHB0UE8AAAA4AAAEeG5sTkwAAAAqAAAE
-sGVzRVMAAAAoAAAE2nRoVEgAAAAkAAAFAnRyVFIAAAAiAAAFJmZpRkkAAAAsAAAFSGhySFIAAAA6AAAF
-dHBsUEwAAAA2AAAFrnJ1UlUAAAAmAAAF5GFyRUcAAAAoAAAGCmRhREsAAAA0AAAGMgBWAWEAZQBvAGIA
-ZQBjAG4A/QAgAHMAaQB2AP0AIABwAHIAbwBmAGkAbABHAGUAbgBlAHIAaQBjACAARwByAGEAeQAgAFAA
-cgBvAGYAaQBsAGUAUABlAHIAZgBpAGwAIABkAGUAIABnAHIAaQBzACAAZwBlAG4A6AByAGkAYwBDHqUA
-dQAgAGgA7ABuAGgAIABNAOAAdQAgAHgA4QBtACAAQwBoAHUAbgBnAFAAZQByAGYAaQBsACAAQwBpAG4A
-egBhACAARwBlAG4A6QByAGkAYwBvBBcEMAQzBDAEOwRMBD0EOAQ5ACAEPwRABD4ERAQwBDkEOwAgAEcA
-cgBhAHkAUAByAG8AZgBpAGwAIABnAOkAbgDpAHIAaQBxAHUAZQAgAGcAcgBpAHMAwQBsAHQAYQBsAOEA
-bgBvAHMAIABzAHoA/AByAGsAZQAgAHAAcgBvAGYAaQBskBp1KHBwlo6Ccl9pY8+P8ABHAGUAbgBlAHIA
-aQBzAGsAIABnAHIA5QB0AG8AbgBlAHAAcgBvAGYAaQBsx3y8GAAgAEcAcgBhAHkAINUEuFzTDMd8AE8A
-YgBlAGMAbgD9ACABYQBlAGQA/QAgAHAAcgBvAGYAaQBsBeQF6AXVBeQF2QXcACAARwByAGEAeQAgBdsF
-3AXcBdkAUAByAG8AZgBpAGwAIABnAHIAaQAgAGcAZQBuAGUAcgBpAGMAQQBsAGwAZwBlAG0AZQBpAG4A
-ZQBzACAARwByAGEAdQBzAHQAdQBmAGUAbgAtAFAAcgBvAGYAaQBsAFAAcgBvAGYAaQBsAG8AIABnAHIA
-aQBnAGkAbwAgAGcAZQBuAGUAcgBpAGMAbwBHAGUAbgBlAHIAaQBzAGsAIABnAHIA5QBzAGsAYQBsAGUA
-cAByAG8AZgBpAGxmbpAacHBepmPPj/Blh072TgCCLDCwMOwwpDDXMO0w1TChMKQw6wOTA7UDvQO5A7oD
-zAAgA8ADwQO/A8YDrwO7ACADswO6A8EDuQBQAGUAcgBmAGkAbAAgAGcAZQBuAOkAcgBpAGMAbwAgAGQA
-ZQAgAGMAaQBuAHoAZQBuAHQAbwBzAEEAbABnAGUAbQBlAGUAbgAgAGcAcgBpAGoAcwBwAHIAbwBmAGkA
-ZQBsAFAAZQByAGYAaQBsACAAZwByAGkAcwAgAGcAZQBuAOkAcgBpAGMAbw5CDhsOIw5EDh8OJQ5MDioO
-NQ5ADhcOMg4XDjEOSA4nDkQOGwBHAGUAbgBlAGwAIABHAHIAaQAgAFAAcgBvAGYAaQBsAGkAWQBsAGUA
-aQBuAGUAbgAgAGgAYQByAG0AYQBhAHAAcgBvAGYAaQBpAGwAaQBHAGUAbgBlAHIAaQENAGsAaQAgAHAA
-cgBvAGYAaQBsACAAcwBpAHYAaQBoACAAdABvAG4AbwB2AGEAVQBuAGkAdwBlAHIAcwBhAGwAbgB5ACAA
-cAByAG8AZgBpAGwAIABzAHoAYQByAG8BWwBjAGkEHgQxBEkEOAQ5ACAEQQQ1BEAESwQ5ACAEPwRABD4E
-RAQ4BDsETAZFBkQGQQAgBioGOQYxBkoGQQAgAEcAcgBhAHkAIAYnBkQGOQYnBkUARwBlAG4AZQByAGUA
-bAAgAGcAcgDlAHQAbwBuAGUAYgBlAHMAawByAGkAdgBlAGwAcwBlAAB0ZXh0AAAAAENvcHlyaWdodCAy
-MDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQuAFhZWiAAAAAAAADzUQABAAAAARbMY3Vy
-dgAAAAAAAAABAc0AANIlJicoWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBOU0JpdG1hcEltYWdlUmVwoycp
-KlpOU0ltYWdlUmVwWE5TT2JqZWN00iUmLC1XTlNBcnJheaIsKtIlJi8wXk5TTXV0YWJsZUFycmF5oy8s
-KtUyMzQ1CjY3ODk6V05TV2hpdGVcTlNDb21wb25lbnRzXE5TQ29sb3JTcGFjZV8QEk5TQ3VzdG9tQ29s
-b3JTcGFjZUQwIDAAQzAgMBADgAyAENQ8PT4KP0BBQlROU0lEVU5TSUNDV05TTW9kZWwQCYANEACAD9JE
-CkVGV05TLmRhdGFPERFoAAARaGFwcGwCAAAAbW50ckdSQVlYWVogB9wACAAXAA8ALgAPYWNzcEFQUEwA
-AAAAbm9uZQAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1hcHBsAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFZGVzYwAAAMAAAAB5ZHNjbQAAATwAAAfoY3BydAAACSQA
-AAAjd3RwdAAACUgAAAAUa1RSQwAACVwAAAgMZGVzYwAAAAAAAAAfR2VuZXJpYyBHcmF5IEdhbW1hIDIu
-MiBQcm9maWxlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1sdWMAAAAAAAAAHwAAAAxza1NLAAAALgAAAYRk
-YURLAAAAOAAAAbJjYUVTAAAAOAAAAep2aVZOAAAAQAAAAiJwdEJSAAAASgAAAmJ1a1VBAAAALAAAAqxm
-ckZVAAAAPgAAAthodUhVAAAANAAAAxZ6aFRXAAAAHgAAA0puYk5PAAAAOgAAA2hjc0NaAAAAKAAAA6Jo
-ZUlMAAAAJAAAA8ppdElUAAAATgAAA+5yb1JPAAAAKgAABDxkZURFAAAATgAABGZrb0tSAAAAIgAABLRz
-dlNFAAAAOAAAAbJ6aENOAAAAHgAABNZqYUpQAAAAJgAABPRlbEdSAAAAKgAABRpwdFBPAAAAUgAABURu
-bE5MAAAAQAAABZZlc0VTAAAATAAABdZ0aFRIAAAAMgAABiJ0clRSAAAAJAAABlRmaUZJAAAARgAABnho
-ckhSAAAAPgAABr5wbFBMAAAASgAABvxydVJVAAAAOgAAB0ZlblVTAAAAPAAAB4BhckVHAAAALAAAB7wA
-VgFhAGUAbwBiAGUAYwBuAOEAIABzAGkAdgDhACAAZwBhAG0AYQAgADIALAAyAEcAZQBuAGUAcgBpAHMA
-awAgAGcAcgDlACAAMgAsADIAIABnAGEAbQBtAGEAcAByAG8AZgBpAGwARwBhAG0AbQBhACAAZABlACAA
-ZwByAGkAcwBvAHMAIABnAGUAbgDoAHIAaQBjAGEAIAAyAC4AMgBDHqUAdQAgAGgA7ABuAGgAIABNAOAA
-dQAgAHgA4QBtACAAQwBoAHUAbgBnACAARwBhAG0AbQBhACAAMgAuADIAUABlAHIAZgBpAGwAIABHAGUA
-bgDpAHIAaQBjAG8AIABkAGEAIABHAGEAbQBhACAAZABlACAAQwBpAG4AegBhAHMAIAAyACwAMgQXBDAE
-MwQwBDsETAQ9BDAAIABHAHIAYQB5AC0EMwQwBDwEMAAgADIALgAyAFAAcgBvAGYAaQBsACAAZwDpAG4A
-6QByAGkAcQB1AGUAIABnAHIAaQBzACAAZwBhAG0AbQBhACAAMgAsADIAwQBsAHQAYQBsAOEAbgBvAHMA
-IABzAHoA/AByAGsAZQAgAGcAYQBtAG0AYQAgADIALgAykBp1KHBwlo5RSV6mACAAMgAuADIAIIJyX2lj
-z4/wAEcAZQBuAGUAcgBpAHMAawAgAGcAcgDlACAAZwBhAG0AbQBhACAAMgAsADIALQBwAHIAbwBmAGkA
-bABPAGIAZQBjAG4A4QAgAWEAZQBkAOEAIABnAGEAbQBhACAAMgAuADIF0gXQBd4F1AAgBdAF5AXVBegA
-IAXbBdwF3AXZACAAMgAuADIAUAByAG8AZgBpAGwAbwAgAGcAcgBpAGcAaQBvACAAZwBlAG4AZQByAGkA
-YwBvACAAZABlAGwAbABhACAAZwBhAG0AbQBhACAAMgAsADIARwBhAG0AYQAgAGcAcgBpACAAZwBlAG4A
-ZQByAGkAYwEDACAAMgAsADIAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAARwByAGEAdQBzAHQAdQBmAGUA
-bgAtAFAAcgBvAGYAaQBsACAARwBhAG0AbQBhACAAMgAsADLHfLwYACDWjMDJACCsELnIACAAMgAuADIA
-INUEuFzTDMd8Zm6QGnBwXqZ8+2VwACAAMgAuADIAIGPPj/Blh072TgCCLDCwMOwwpDCsMPMw3gAgADIA
-LgAyACAw1zDtMNUwoTCkMOsDkwO1A70DuQO6A8wAIAOTA7oDwQO5ACADkwOsA7wDvAOxACAAMgAuADIA
-UABlAHIAZgBpAGwAIABnAGUAbgDpAHIAaQBjAG8AIABkAGUAIABjAGkAbgB6AGUAbgB0AG8AcwAgAGQA
-YQAgAEcAYQBtAG0AYQAgADIALAAyAEEAbABnAGUAbQBlAGUAbgAgAGcAcgBpAGoAcwAgAGcAYQBtAG0A
-YQAgADIALAAyAC0AcAByAG8AZgBpAGUAbABQAGUAcgBmAGkAbAAgAGcAZQBuAOkAcgBpAGMAbwAgAGQA
-ZQAgAGcAYQBtAG0AYQAgAGQAZQAgAGcAcgBpAHMAZQBzACAAMgAsADIOIw4xDgcOKg41DkEOAQ4hDiEO
-Mg5ADgEOIw4iDkwOFw4xDkgOJw5EDhsAIAAyAC4AMgBHAGUAbgBlAGwAIABHAHIAaQAgAEcAYQBtAGEA
-IAAyACwAMgBZAGwAZQBpAG4AZQBuACAAaABhAHIAbQBhAGEAbgAgAGcAYQBtAG0AYQAgADIALAAyACAA
-LQBwAHIAbwBmAGkAaQBsAGkARwBlAG4AZQByAGkBDQBrAGkAIABHAHIAYQB5ACAARwBhAG0AbQBhACAA
-MgAuADIAIABwAHIAbwBmAGkAbABVAG4AaQB3AGUAcgBzAGEAbABuAHkAIABwAHIAbwBmAGkAbAAgAHMA
-egBhAHIAbwFbAGMAaQAgAGcAYQBtAG0AYQAgADIALAAyBB4EMQRJBDAETwAgBEEENQRABDAETwAgBDME
-MAQ8BDwEMAAgADIALAAyAC0EPwRABD4ERAQ4BDsETABHAGUAbgBlAHIAaQBjACAARwByAGEAeQAgAEcA
-YQBtAG0AYQAgADIALgAyACAAUAByAG8AZgBpAGwAZQY6BicGRQYnACAAMgAuADIAIAZEBkgGRgAgBjEG
-RQYnBi8GSgAgBjkGJwZFdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUgSW5jLiwgMjAxMgAAWFlaIAAAAAAA
-APNRAAEAAAABFsxjdXJ2AAAAAAAABAAAAAAFAAoADwAUABkAHgAjACgALQAyADcAOwBAAEUASgBPAFQA
-WQBeAGMAaABtAHIAdwB8AIEAhgCLAJAAlQCaAJ8ApACpAK4AsgC3ALwAwQDGAMsA0ADVANsA4ADlAOsA
-8AD2APsBAQEHAQ0BEwEZAR8BJQErATIBOAE+AUUBTAFSAVkBYAFnAW4BdQF8AYMBiwGSAZoBoQGpAbEB
-uQHBAckB0QHZAeEB6QHyAfoCAwIMAhQCHQImAi8COAJBAksCVAJdAmcCcQJ6AoQCjgKYAqICrAK2AsEC
-ywLVAuAC6wL1AwADCwMWAyEDLQM4A0MDTwNaA2YDcgN+A4oDlgOiA64DugPHA9MD4APsA/kEBgQTBCAE
-LQQ7BEgEVQRjBHEEfgSMBJoEqAS2BMQE0wThBPAE/gUNBRwFKwU6BUkFWAVnBXcFhgWWBaYFtQXFBdUF
-5QX2BgYGFgYnBjcGSAZZBmoGewaMBp0GrwbABtEG4wb1BwcHGQcrBz0HTwdhB3QHhgeZB6wHvwfSB+UH
-+AgLCB8IMghGCFoIbgiCCJYIqgi+CNII5wj7CRAJJQk6CU8JZAl5CY8JpAm6Cc8J5Qn7ChEKJwo9ClQK
-agqBCpgKrgrFCtwK8wsLCyILOQtRC2kLgAuYC7ALyAvhC/kMEgwqDEMMXAx1DI4MpwzADNkM8w0NDSYN
-QA1aDXQNjg2pDcMN3g34DhMOLg5JDmQOfw6bDrYO0g7uDwkPJQ9BD14Peg+WD7MPzw/sEAkQJhBDEGEQ
-fhCbELkQ1xD1ERMRMRFPEW0RjBGqEckR6BIHEiYSRRJkEoQSoxLDEuMTAxMjE0MTYxODE6QTxRPlFAYU
-JxRJFGoUixStFM4U8BUSFTQVVhV4FZsVvRXgFgMWJhZJFmwWjxayFtYW+hcdF0EXZReJF64X0hf3GBsY
-QBhlGIoYrxjVGPoZIBlFGWsZkRm3Gd0aBBoqGlEadxqeGsUa7BsUGzsbYxuKG7Ib2hwCHCocUhx7HKMc
-zBz1HR4dRx1wHZkdwx3sHhYeQB5qHpQevh7pHxMfPh9pH5Qfvx/qIBUgQSBsIJggxCDwIRwhSCF1IaEh
-ziH7IiciVSKCIq8i3SMKIzgjZiOUI8Ij8CQfJE0kfCSrJNolCSU4JWgllyXHJfcmJyZXJocmtyboJxgn
-SSd6J6sn3CgNKD8ocSiiKNQpBik4KWspnSnQKgIqNSpoKpsqzysCKzYraSudK9EsBSw5LG4soizXLQwt
-QS12Last4S4WLkwugi63Lu4vJC9aL5Evxy/+MDUwbDCkMNsxEjFKMYIxujHyMioyYzKbMtQzDTNGM38z
-uDPxNCs0ZTSeNNg1EzVNNYc1wjX9Njc2cjauNuk3JDdgN5w31zgUOFA4jDjIOQU5Qjl/Obw5+To2OnQ6
-sjrvOy07azuqO+g8JzxlPKQ84z0iPWE9oT3gPiA+YD6gPuA/IT9hP6I/4kAjQGRApkDnQSlBakGsQe5C
-MEJyQrVC90M6Q31DwEQDREdEikTORRJFVUWaRd5GIkZnRqtG8Ec1R3tHwEgFSEtIkUjXSR1JY0mpSfBK
-N0p9SsRLDEtTS5pL4kwqTHJMuk0CTUpNk03cTiVObk63TwBPSU+TT91QJ1BxULtRBlFQUZtR5lIxUnxS
-x1MTU19TqlP2VEJUj1TbVShVdVXCVg9WXFapVvdXRFeSV+BYL1h9WMtZGllpWbhaB1pWWqZa9VtFW5Vb
-5Vw1XIZc1l0nXXhdyV4aXmxevV8PX2Ffs2AFYFdgqmD8YU9homH1YklinGLwY0Njl2PrZEBklGTpZT1l
-kmXnZj1mkmboZz1nk2fpaD9olmjsaUNpmmnxakhqn2r3a09rp2v/bFdsr20IbWBtuW4SbmtuxG8eb3hv
-0XArcIZw4HE6cZVx8HJLcqZzAXNdc7h0FHRwdMx1KHWFdeF2Pnabdvh3VnezeBF4bnjMeSp5iXnnekZ6
-pXsEe2N7wnwhfIF84X1BfaF+AX5ifsJ/I3+Ef+WAR4CogQqBa4HNgjCCkoL0g1eDuoQdhICE44VHhauG
-DoZyhteHO4efiASIaYjOiTOJmYn+imSKyoswi5aL/IxjjMqNMY2Yjf+OZo7OjzaPnpAGkG6Q1pE/kaiS
-EZJ6kuOTTZO2lCCUipT0lV+VyZY0lp+XCpd1l+CYTJi4mSSZkJn8mmia1ZtCm6+cHJyJnPedZJ3SnkCe
-rp8dn4uf+qBpoNihR6G2oiailqMGo3aj5qRWpMelOKWpphqmi6b9p26n4KhSqMSpN6mpqhyqj6sCq3Wr
-6axcrNCtRK24ri2uoa8Wr4uwALB1sOqxYLHWskuywrM4s660JbSctRO1irYBtnm28Ldot+C4WbjRuUq5
-wro7urW7LrunvCG8m70VvY++Cr6Evv+/er/1wHDA7MFnwePCX8Lbw1jD1MRRxM7FS8XIxkbGw8dBx7/I
-Pci8yTrJuco4yrfLNsu2zDXMtc01zbXONs62zzfPuNA50LrRPNG+0j/SwdNE08bUSdTL1U7V0dZV1tjX
-XNfg2GTY6Nls2fHadtr724DcBdyK3RDdlt4c3qLfKd+v4DbgveFE4cziU+Lb42Pj6+Rz5PzlhOYN5pbn
-H+ep6DLovOlG6dDqW+rl63Dr++yG7RHtnO4o7rTvQO/M8Fjw5fFy8f/yjPMZ86f0NPTC9VD13vZt9vv3
-ivgZ+Kj5OPnH+lf65/t3/Af8mP0p/br+S/7c/23//4AO0iUmSEldTlNNdXRhYmxlRGF0YaNISipWTlNE
-YXRh0iUmTE1cTlNDb2xvclNwYWNlok4qXE5TQ29sb3JTcGFjZdIlJlBRV05TQ29sb3KiUCrSJSZTVFdO
-U0ltYWdlolMqXxAPTlNLZXllZEFyY2hpdmVy0VdYVHJvb3SAAQAIABEAGgAjAC0AMgA3AEwAUgBdAGQA
-awB4AH8AhwCJAIsAkACSAJQAmwCgAKsArQCvALEAtgC5ALsAvQC/AMEAxgDdAN8A4QmpCa4JuQnCCdUJ
-2QnkCe0J8gn6Cf0KAgoRChUKIAooCjUKQgpXClwKYApiCmQKZgpvCnQKegqCCoQKhgqICooKjwqXHAMc
-BRwKHBgcHBwjHCgcNRw4HEUcShxSHFUcWhxiHGUcdxx6HH8AAAAAAAACAQAAAAAAAABZAAAAAAAAAAAA
-AAAAAAAcgQ
+YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05T
+S2V5ZWRBcmNoaXZlctEICVRyb290gAGvEBELDBkaHxQkKSoxNDdBSUpOUVUkbnVsbNYNDg8QERITFBUW
+FxhWTlNTaXplXk5TUmVzaXppbmdNb2RlViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
+AhAAgBASIMMAAIADgAtWezEsIDF90hsPHB5aTlMub2JqZWN0c6EdgASACtIbDyAjoiEigAWABoAJ0w8l
+JicoFF8QFE5TVElGRlJlcHJlc2VudGF0aW9uXxAZTlNJbnRlcm5hbExheW91dERpcmVjdGlvboAIgAdP
+EQjETU0AKgAAAAoAAAAQAQAAAwAAAAEAAQAAAQEAAwAAAAEAAQAAAQIAAwAAAAIACAAIAQMAAwAAAAEA
+AQAAAQYAAwAAAAEAAQAAAQoAAwAAAAEAAQAAAREABAAAAAEAAAAIARIAAwAAAAEAAQAAARUAAwAAAAEA
+AgAAARYAAwAAAAEAAQAAARcABAAAAAEAAAACARwAAwAAAAEAAQAAASgAAwAAAAEAAgAAAVIAAwAAAAEA
+AQAAAVMAAwAAAAIAAQABh3MABwAAB/QAAADQAAAAAAAAB/RhcHBsAiAAAG1udHJHUkFZWFlaIAfQAAIA
+DgAMAAAAAGFjc3BBUFBMAAAAAG5vbmUAAAAAAAAAAAAAAAAAAAAAAAD21gABAAAAANMtYXBwbAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABWRlc2MAAADAAAAAb2RzY20A
+AAEwAAAGZmNwcnQAAAeYAAAAOHd0cHQAAAfQAAAAFGtUUkMAAAfkAAAADmRlc2MAAAAAAAAAFUdlbmVy
+aWMgR3JheSBQcm9maWxlAAAAAAAAAAAAAAAVR2VuZXJpYyBHcmF5IFByb2ZpbGUAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtbHVjAAAAAAAAAB8AAAAMc2tTSwAAACoA
+AAGEZW5VUwAAACgAAAGuY2FFUwAAACwAAAHWdmlWTgAAACwAAAICcHRCUgAAACoAAAIudWtVQQAAACwA
+AAJYZnJGVQAAACoAAAKEaHVIVQAAAC4AAAKuemhUVwAAABAAAALcbmJOTwAAACwAAALsa29LUgAAABgA
+AAMYY3NDWgAAACQAAAMwaGVJTAAAACAAAANUcm9STwAAACQAAAN0ZGVERQAAADoAAAOYaXRJVAAAAC4A
+AAPSc3ZTRQAAAC4AAAQAemhDTgAAABAAAAQuamFKUAAAABYAAAQ+ZWxHUgAAACQAAARUcHRQTwAAADgA
+AAR4bmxOTAAAACoAAASwZXNFUwAAACgAAATadGhUSAAAACQAAAUCdHJUUgAAACIAAAUmZmlGSQAAACwA
+AAVIaHJIUgAAADoAAAV0cGxQTAAAADYAAAWucnVSVQAAACYAAAXkYXJFRwAAACgAAAYKZGFESwAAADQA
+AAYyAFYBYQBlAG8AYgBlAGMAbgD9ACAAcwBpAHYA/QAgAHAAcgBvAGYAaQBsAEcAZQBuAGUAcgBpAGMA
+IABHAHIAYQB5ACAAUAByAG8AZgBpAGwAZQBQAGUAcgBmAGkAbAAgAGQAZQAgAGcAcgBpAHMAIABnAGUA
+bgDoAHIAaQBjAEMepQB1ACAAaADsAG4AaAAgAE0A4AB1ACAAeADhAG0AIABDAGgAdQBuAGcAUABlAHIA
+ZgBpAGwAIABDAGkAbgB6AGEAIABHAGUAbgDpAHIAaQBjAG8EFwQwBDMEMAQ7BEwEPQQ4BDkAIAQ/BEAE
+PgREBDAEOQQ7ACAARwByAGEAeQBQAHIAbwBmAGkAbAAgAGcA6QBuAOkAcgBpAHEAdQBlACAAZwByAGkA
+cwDBAGwAdABhAGwA4QBuAG8AcwAgAHMAegD8AHIAawBlACAAcAByAG8AZgBpAGyQGnUocHCWjoJyX2lj
+z4/wAEcAZQBuAGUAcgBpAHMAawAgAGcAcgDlAHQAbwBuAGUAcAByAG8AZgBpAGzHfLwYACAARwByAGEA
+eQAg1QS4XNMMx3wATwBiAGUAYwBuAP0AIAFhAGUAZAD9ACAAcAByAG8AZgBpAGwF5AXoBdUF5AXZBdwA
+IABHAHIAYQB5ACAF2wXcBdwF2QBQAHIAbwBmAGkAbAAgAGcAcgBpACAAZwBlAG4AZQByAGkAYwBBAGwA
+bABnAGUAbQBlAGkAbgBlAHMAIABHAHIAYQB1AHMAdAB1AGYAZQBuAC0AUAByAG8AZgBpAGwAUAByAG8A
+ZgBpAGwAbwAgAGcAcgBpAGcAaQBvACAAZwBlAG4AZQByAGkAYwBvAEcAZQBuAGUAcgBpAHMAawAgAGcA
+cgDlAHMAawBhAGwAZQBwAHIAbwBmAGkAbGZukBpwcF6mY8+P8GWHTvZOAIIsMLAw7DCkMNcw7TDVMKEw
+pDDrA5MDtQO9A7kDugPMACADwAPBA78DxgOvA7sAIAOzA7oDwQO5AFAAZQByAGYAaQBsACAAZwBlAG4A
+6QByAGkAYwBvACAAZABlACAAYwBpAG4AegBlAG4AdABvAHMAQQBsAGcAZQBtAGUAZQBuACAAZwByAGkA
+agBzAHAAcgBvAGYAaQBlAGwAUABlAHIAZgBpAGwAIABnAHIAaQBzACAAZwBlAG4A6QByAGkAYwBvDkIO
+Gw4jDkQOHw4lDkwOKg41DkAOFw4yDhcOMQ5IDicORA4bAEcAZQBuAGUAbAAgAEcAcgBpACAAUAByAG8A
+ZgBpAGwAaQBZAGwAZQBpAG4AZQBuACAAaABhAHIAbQBhAGEAcAByAG8AZgBpAGkAbABpAEcAZQBuAGUA
+cgBpAQ0AawBpACAAcAByAG8AZgBpAGwAIABzAGkAdgBpAGgAIAB0AG8AbgBvAHYAYQBVAG4AaQB3AGUA
+cgBzAGEAbABuAHkAIABwAHIAbwBmAGkAbAAgAHMAegBhAHIAbwFbAGMAaQQeBDEESQQ4BDkAIARBBDUE
+QARLBDkAIAQ/BEAEPgREBDgEOwRMBkUGRAZBACAGKgY5BjEGSgZBACAARwByAGEAeQAgBicGRAY5BicG
+RQBHAGUAbgBlAHIAZQBsACAAZwByAOUAdABvAG4AZQBiAGUAcwBrAHIAaQB2AGUAbABzAGUAAHRleHQA
+AAAAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC4AWFlaIAAAAAAA
+APNRAAEAAAABFsxjdXJ2AAAAAAAAAAEBzQAA0issLS5aJGNsYXNzbmFtZVgkY2xhc3Nlc18QEE5TQml0
+bWFwSW1hZ2VSZXCjLS8wWk5TSW1hZ2VSZXBYTlNPYmplY3TSKywyM1dOU0FycmF5ojIw0issNTZeTlNN
+dXRhYmxlQXJyYXmjNTIw1Tg5OjsPPD0+P0BXTlNXaGl0ZVxOU0NvbXBvbmVudHNcTlNDb2xvclNwYWNl
+XxASTlNDdXN0b21Db2xvclNwYWNlRDAgMABDMCAwEAOADIAP1EJDRA9FRkdIVE5TSURVTlNJQ0NXTlNN
+b2RlbBAJgA0QAIAOTxERnAAAEZxhcHBsAgAAAG1udHJHUkFZWFlaIAfcAAgAFwAPAC4AD2Fjc3BBUFBM
+AAAAAG5vbmUAAAAAAAAAAAAAAAAAAAAAAAD21gABAAAAANMtYXBwbAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABWRlc2MAAADAAAAAeWRzY20AAAE8AAAIGmNwcnQAAAlY
+AAAAI3d0cHQAAAl8AAAAFGtUUkMAAAmQAAAIDGRlc2MAAAAAAAAAH0dlbmVyaWMgR3JheSBHYW1tYSAy
+LjIgUHJvZmlsZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtbHVjAAAAAAAAAB8AAAAMc2tTSwAAAC4AAAGE
+ZGFESwAAADoAAAGyY2FFUwAAADgAAAHsdmlWTgAAAEAAAAIkcHRCUgAAAEoAAAJkdWtVQQAAACwAAAKu
+ZnJGVQAAAD4AAALaaHVIVQAAADQAAAMYemhUVwAAABoAAANMa29LUgAAACIAAANmbmJOTwAAADoAAAOI
+Y3NDWgAAACgAAAPCaGVJTAAAACQAAAPqcm9STwAAACoAAAQOZGVERQAAAE4AAAQ4aXRJVAAAAE4AAASG
+c3ZTRQAAADgAAATUemhDTgAAABoAAAUMamFKUAAAACYAAAUmZWxHUgAAACoAAAVMcHRQTwAAAFIAAAV2
+bmxOTAAAAEAAAAXIZXNFUwAAAEwAAAYIdGhUSAAAADIAAAZUdHJUUgAAACQAAAaGZmlGSQAAAEYAAAaq
+aHJIUgAAAD4AAAbwcGxQTAAAAEoAAAcuYXJFRwAAACwAAAd4cnVSVQAAADoAAAekZW5VUwAAADwAAAfe
+AFYBYQBlAG8AYgBlAGMAbgDhACAAcwBpAHYA4QAgAGcAYQBtAGEAIAAyACwAMgBHAGUAbgBlAHIAaQBz
+AGsAIABnAHIA5QAgADIALAAyACAAZwBhAG0AbQBhAC0AcAByAG8AZgBpAGwARwBhAG0AbQBhACAAZABl
+ACAAZwByAGkAcwBvAHMAIABnAGUAbgDoAHIAaQBjAGEAIAAyAC4AMgBDHqUAdQAgAGgA7ABuAGgAIABN
+AOAAdQAgAHgA4QBtACAAQwBoAHUAbgBnACAARwBhAG0AbQBhACAAMgAuADIAUABlAHIAZgBpAGwAIABH
+AGUAbgDpAHIAaQBjAG8AIABkAGEAIABHAGEAbQBhACAAZABlACAAQwBpAG4AegBhAHMAIAAyACwAMgQX
+BDAEMwQwBDsETAQ9BDAAIABHAHIAYQB5AC0EMwQwBDwEMAAgADIALgAyAFAAcgBvAGYAaQBsACAAZwDp
+AG4A6QByAGkAcQB1AGUAIABnAHIAaQBzACAAZwBhAG0AbQBhACAAMgAsADIAwQBsAHQAYQBsAOEAbgBv
+AHMAIABzAHoA/AByAGsAZQAgAGcAYQBtAG0AYQAgADIALgAykBp1KHBwlo5RSV6mADIALgAygnJfaWPP
+j/DHfLwYACDWjMDJACCsELnIACAAMgAuADIAINUEuFzTDMd8AEcAZQBuAGUAcgBpAHMAawAgAGcAcgDl
+ACAAZwBhAG0AbQBhACAAMgAsADIALQBwAHIAbwBmAGkAbABPAGIAZQBjAG4A4QAgAWEAZQBkAOEAIABn
+AGEAbQBhACAAMgAuADIF0gXQBd4F1AAgBdAF5AXVBegAIAXbBdwF3AXZACAAMgAuADIARwBhAG0AYQAg
+AGcAcgBpACAAZwBlAG4AZQByAGkAYwEDACAAMgAsADIAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAARwBy
+AGEAdQBzAHQAdQBmAGUAbgAtAFAAcgBvAGYAaQBsACAARwBhAG0AbQBhACAAMgAsADIAUAByAG8AZgBp
+AGwAbwAgAGcAcgBpAGcAaQBvACAAZwBlAG4AZQByAGkAYwBvACAAZABlAGwAbABhACAAZwBhAG0AbQBh
+ACAAMgAsADIARwBlAG4AZQByAGkAcwBrACAAZwByAOUAIAAyACwAMgAgAGcAYQBtAG0AYQBwAHIAbwBm
+AGkAbGZukBpwcF6mfPtlcAAyAC4AMmPPj/Blh072TgCCLDCwMOwwpDCsMPMw3gAgADIALgAyACAw1zDt
+MNUwoTCkMOsDkwO1A70DuQO6A8wAIAOTA7oDwQO5ACADkwOsA7wDvAOxACAAMgAuADIAUABlAHIAZgBp
+AGwAIABnAGUAbgDpAHIAaQBjAG8AIABkAGUAIABjAGkAbgB6AGUAbgB0AG8AcwAgAGQAYQAgAEcAYQBt
+AG0AYQAgADIALAAyAEEAbABnAGUAbQBlAGUAbgAgAGcAcgBpAGoAcwAgAGcAYQBtAG0AYQAgADIALAAy
+AC0AcAByAG8AZgBpAGUAbABQAGUAcgBmAGkAbAAgAGcAZQBuAOkAcgBpAGMAbwAgAGQAZQAgAGcAYQBt
+AG0AYQAgAGQAZQAgAGcAcgBpAHMAZQBzACAAMgAsADIOIw4xDgcOKg41DkEOAQ4hDiEOMg5ADgEOIw4i
+DkwOFw4xDkgOJw5EDhsAIAAyAC4AMgBHAGUAbgBlAGwAIABHAHIAaQAgAEcAYQBtAGEAIAAyACwAMgBZ
+AGwAZQBpAG4AZQBuACAAaABhAHIAbQBhAGEAbgAgAGcAYQBtAG0AYQAgADIALAAyACAALQBwAHIAbwBm
+AGkAaQBsAGkARwBlAG4AZQByAGkBDQBrAGkAIABHAHIAYQB5ACAARwBhAG0AbQBhACAAMgAuADIAIABw
+AHIAbwBmAGkAbABVAG4AaQB3AGUAcgBzAGEAbABuAHkAIABwAHIAbwBmAGkAbAAgAHMAegBhAHIAbwFb
+AGMAaQAgAGcAYQBtAG0AYQAgADIALAAyBjoGJwZFBicAIAAyAC4AMgAgBkQGSAZGACAGMQZFBicGLwZK
+ACAGOQYnBkUEHgQxBEkEMARPACAEQQQ1BEAEMARPACAEMwQwBDwEPAQwACAAMgAsADIALQQ/BEAEPgRE
+BDgEOwRMAEcAZQBuAGUAcgBpAGMAIABHAHIAYQB5ACAARwBhAG0AbQBhACAAMgAuADIAIABQAHIAbwBm
+AGkAbABlAAB0ZXh0AAAAAENvcHlyaWdodCBBcHBsZSBJbmMuLCAyMDEyAABYWVogAAAAAAAA81EAAQAA
+AAEWzGN1cnYAAAAAAAAEAAAAAAUACgAPABQAGQAeACMAKAAtADIANwA7AEAARQBKAE8AVABZAF4AYwBo
+AG0AcgB3AHwAgQCGAIsAkACVAJoAnwCkAKkArgCyALcAvADBAMYAywDQANUA2wDgAOUA6wDwAPYA+wEB
+AQcBDQETARkBHwElASsBMgE4AT4BRQFMAVIBWQFgAWcBbgF1AXwBgwGLAZIBmgGhAakBsQG5AcEByQHR
+AdkB4QHpAfIB+gIDAgwCFAIdAiYCLwI4AkECSwJUAl0CZwJxAnoChAKOApgCogKsArYCwQLLAtUC4ALr
+AvUDAAMLAxYDIQMtAzgDQwNPA1oDZgNyA34DigOWA6IDrgO6A8cD0wPgA+wD+QQGBBMEIAQtBDsESARV
+BGMEcQR+BIwEmgSoBLYExATTBOEE8AT+BQ0FHAUrBToFSQVYBWcFdwWGBZYFpgW1BcUF1QXlBfYGBgYW
+BicGNwZIBlkGagZ7BowGnQavBsAG0QbjBvUHBwcZBysHPQdPB2EHdAeGB5kHrAe/B9IH5Qf4CAsIHwgy
+CEYIWghuCIIIlgiqCL4I0gjnCPsJEAklCToJTwlkCXkJjwmkCboJzwnlCfsKEQonCj0KVApqCoEKmAqu
+CsUK3ArzCwsLIgs5C1ELaQuAC5gLsAvIC+EL+QwSDCoMQwxcDHUMjgynDMAM2QzzDQ0NJg1ADVoNdA2O
+DakNww3eDfgOEw4uDkkOZA5/DpsOtg7SDu4PCQ8lD0EPXg96D5YPsw/PD+wQCRAmEEMQYRB+EJsQuRDX
+EPURExExEU8RbRGMEaoRyRHoEgcSJhJFEmQShBKjEsMS4xMDEyMTQxNjE4MTpBPFE+UUBhQnFEkUahSL
+FK0UzhTwFRIVNBVWFXgVmxW9FeAWAxYmFkkWbBaPFrIW1hb6Fx0XQRdlF4kXrhfSF/cYGxhAGGUYihiv
+GNUY+hkgGUUZaxmRGbcZ3RoEGioaURp3Gp4axRrsGxQbOxtjG4obshvaHAIcKhxSHHscoxzMHPUdHh1H
+HXAdmR3DHeweFh5AHmoelB6+HukfEx8+H2kflB+/H+ogFSBBIGwgmCDEIPAhHCFIIXUhoSHOIfsiJyJV
+IoIiryLdIwojOCNmI5QjwiPwJB8kTSR8JKsk2iUJJTglaCWXJccl9yYnJlcmhya3JugnGCdJJ3onqyfc
+KA0oPyhxKKIo1CkGKTgpaymdKdAqAio1KmgqmyrPKwIrNitpK50r0SwFLDksbiyiLNctDC1BLXYtqy3h
+LhYuTC6CLrcu7i8kL1ovkS/HL/4wNTBsMKQw2zESMUoxgjG6MfIyKjJjMpsy1DMNM0YzfzO4M/E0KzRl
+NJ402DUTNU01hzXCNf02NzZyNq426TckN2A3nDfXOBQ4UDiMOMg5BTlCOX85vDn5OjY6dDqyOu87LTtr
+O6o76DwnPGU8pDzjPSI9YT2hPeA+ID5gPqA+4D8hP2E/oj/iQCNAZECmQOdBKUFqQaxB7kIwQnJCtUL3
+QzpDfUPARANER0SKRM5FEkVVRZpF3kYiRmdGq0bwRzVHe0fASAVIS0iRSNdJHUljSalJ8Eo3Sn1KxEsM
+S1NLmkviTCpMcky6TQJNSk2TTdxOJU5uTrdPAE9JT5NP3VAnUHFQu1EGUVBRm1HmUjFSfFLHUxNTX1Oq
+U/ZUQlSPVNtVKFV1VcJWD1ZcVqlW91dEV5JX4FgvWH1Yy1kaWWlZuFoHWlZaplr1W0VblVvlXDVchlzW
+XSddeF3JXhpebF69Xw9fYV+zYAVgV2CqYPxhT2GiYfViSWKcYvBjQ2OXY+tkQGSUZOllPWWSZedmPWaS
+ZuhnPWeTZ+loP2iWaOxpQ2maafFqSGqfavdrT2una/9sV2yvbQhtYG25bhJua27Ebx5veG/RcCtwhnDg
+cTpxlXHwcktypnMBc11zuHQUdHB0zHUodYV14XY+dpt2+HdWd7N4EXhueMx5KnmJeed6RnqlewR7Y3vC
+fCF8gXzhfUF9oX4BfmJ+wn8jf4R/5YBHgKiBCoFrgc2CMIKSgvSDV4O6hB2EgITjhUeFq4YOhnKG14c7
+h5+IBIhpiM6JM4mZif6KZIrKizCLlov8jGOMyo0xjZiN/45mjs6PNo+ekAaQbpDWkT+RqJIRknqS45NN
+k7aUIJSKlPSVX5XJljSWn5cKl3WX4JhMmLiZJJmQmfyaaJrVm0Kbr5wcnImc951kndKeQJ6unx2fi5/6
+oGmg2KFHobaiJqKWowajdqPmpFakx6U4pammGqaLpv2nbqfgqFKoxKk3qamqHKqPqwKrdavprFys0K1E
+rbiuLa6hrxavi7AAsHWw6rFgsdayS7LCszizrrQltJy1E7WKtgG2ebbwt2i34LhZuNG5SrnCuju6tbsu
+u6e8IbybvRW9j74KvoS+/796v/XAcMDswWfB48JfwtvDWMPUxFHEzsVLxcjGRsbDx0HHv8g9yLzJOsm5
+yjjKt8s2y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo
+2WzZ8dp22vvbgNwF3IrdEN2W3hzeot8p36/gNuC94UThzOJT4tvjY+Pr5HPk/OWE5g3mlucf56noMui8
+6Ubp0Opb6uXrcOv77IbtEe2c7ijutO9A78zwWPDl8XLx//KM8xnzp/Q09ML1UPXe9m32+/eK+Bn4qPk4
++cf6V/rn+3f8B/yY/Sn9uv5L/tz/bf//0issS0xcTlNDb2xvclNwYWNlok0wXE5TQ29sb3JTcGFjZdIr
+LE9QV05TQ29sb3KiTzDSKyxSU1dOU0ltYWdlolIwAAgAEQAaACQAKQAyADcASQBMAFEAUwBnAG0AegCB
+AJAAlwCkAKsAswC1ALcAuQC+AMAAwgDJAM4A2QDbAN0A3wDkAOcA6QDrAO0A9AELAScBKQErCfMJ+AoD
+CgwKHwojCi4KNwo8CkQKRwpMClsKXwpqCnIKfwqMCqEKpgqqCqwKrgqwCrkKvgrECswKzgrQCtIK1Bx0
+HHkchhyJHJYcmxyjHKYcqxyzAAAAAAAAAgEAAAAAAAAAVAAAAAAAAAAAAAAAAAAAHLY
 </mutableData>
         </image>
+        <image name="ico_512" width="512" height="512"/>
         <image name="play" width="44" height="44"/>
     </resources>
 </document>

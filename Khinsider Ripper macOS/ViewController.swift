@@ -21,13 +21,13 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
     @IBOutlet weak var duration: NSTextField!
     @IBOutlet weak var currentProg: NSTextField!
     @IBOutlet weak var currentTrack: NSTextField!
-    @IBOutlet weak var progress: NSProgressIndicator!
+    @IBOutlet weak var progress: NSSlider!
     @IBOutlet weak var downloadWith: NSPopUpButton!
     @IBOutlet weak var vfxButton: NSVisualEffectView!
     
     private var trackingArea: NSTrackingArea?
     let defaults = UserDefaults.standard
-    // --- Initialization of project specific variables
+    // MARK: Initialization of project specific variables
     
     let base_url = "https://downloads.khinsider.com/"
     let base_search_url = "search?search="
@@ -51,14 +51,18 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
     var downloadAllOn = false
     var downloadSelOn = false
     
+    // MARK: Begin main script
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         vfxButton.alphaValue = 0.0
         
+        // Loading in favorites from the defaults-storag
         GlobalVar.favs_name = defaults.stringArray(forKey: "favs_name") ?? [String]()
         GlobalVar.favs_link = defaults.stringArray(forKey: "favs_link") ?? [String]()
         
+        // add various notificationcenter observers for the delgate/touchbar
         NotificationCenter.default.addObserver(self, selector: #selector(downloadSelected), name: Notification.Name("downloadSelected"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(downloadAll), name: Notification.Name("downloadAllTitle"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(playPausePressed), name: Notification.Name("playPause"), object: nil)
@@ -69,6 +73,10 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
                                        owner: self,
                                        userInfo: nil)
         vfxButton.addTrackingArea(area)
+        
+        progress.target = self
+        progress.isContinuous = true
+        progress.action = #selector(onSliderValChanged(sender:))
         
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let dataPath = documentsDirectory.appendingPathComponent("Khinsider")
@@ -101,6 +109,15 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
         menutwo.addItem(NSMenuItem(title: "openBrowser".localized, action: #selector(ViewController.contextOnTrack), keyEquivalent: ""))
         menutwo.addItem(NSMenuItem(title: "downloadTrack".localized, action: #selector(ViewController.downloadTrackContext), keyEquivalent: ""))
         trackTableView.menu = menutwo
+        
+        // Add keyboard press monitor
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
+            if self.keyDown(with: $0) {
+                return nil
+            } else {
+                return $0
+            }
+        }
     }
     
     override func mouseEntered(with event: NSEvent) {
@@ -115,6 +132,51 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
         didSet {
         // Update the view, if already loaded.
         }
+    }
+    
+    @objc func onSliderValChanged(sender: Any) {
+        guard let _ = sender as? NSSlider,
+                  let event = NSApplication.shared.currentEvent else { return }
+        
+        switch event.type {
+        case .leftMouseDown, .rightMouseDown:
+            print("begin seek")
+            playing = false
+            player?.pause()
+            break;
+        case .leftMouseUp, .rightMouseUp:
+            if (player?.currentItem == nil) {
+                return
+            }
+            //print("end seek at " + String(progress.value))
+            let duration : CMTime = (player?.currentItem!.asset.duration)!
+            let newCurrentTime: TimeInterval = Double(progress.doubleValue) * CMTimeGetSeconds(duration)
+            let seekToTime: CMTime = CMTimeMakeWithSeconds(newCurrentTime, preferredTimescale: 600)
+            player?.seek(to: seekToTime)
+            playing = true
+            //playPause.setImage(UIImage(named: "pause"), for: .normal)
+            player?.play()
+            break;
+        case .leftMouseDragged, .rightMouseDragged:
+            if (player?.currentItem == nil) {
+                return
+            }
+            let duration : CMTime = (player?.currentItem!.asset.duration)!
+            let seconds : Float64 = CMTimeGetSeconds(duration) * Double(progress.doubleValue)
+            currentProg.stringValue = self.stringFromTimeInterval(interval: seconds)
+            break;
+        default:
+            break
+        }
+    }
+    
+    func stringFromTimeInterval(interval: TimeInterval) -> String {
+
+        let interval = Int(interval)
+        let seconds = interval % 60
+        let minutes = (interval / 60) % 60
+        // let hours = (interval / 3600)
+        return String(format: "%02d:%02d", minutes, seconds)
     }
     
     @objc func downloadAlbumContext() {
@@ -168,6 +230,54 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
         }
     }
     
+    fileprivate let seekDuration: Float64 = 5
+    
+    func keyDown(with event: NSEvent) -> Bool {
+        guard let locWindow = self.view.window,
+           NSApplication.shared.keyWindow === locWindow else { return false }
+        if searchBar.currentEditor() != nil {
+            return false
+        }
+        switch Int( event.keyCode) {
+        case 49:
+            playpause()
+            return true
+        case 123:
+            if (player?.currentItem == nil) {
+                return false
+            }
+            let playerCurrentTime = CMTimeGetSeconds(player!.currentTime())
+            var newTime = playerCurrentTime - seekDuration
+
+            if newTime < 0 {
+                newTime = 0
+            }
+            let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
+            player!.seek(to: time2, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+            return true
+        case 124:
+            if (player?.currentItem == nil) {
+                return false
+            }
+            
+            guard let duration = player?.currentItem?.duration else {
+                return false
+            }
+            let playerCurrentTime = CMTimeGetSeconds(player!.currentTime())
+            let newTime = playerCurrentTime + seekDuration
+
+            if newTime < (CMTimeGetSeconds(duration) - seekDuration) {
+                let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
+                player!.seek(to: time2, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+            } else {
+                player!.seek(to: duration)
+            }
+            return true
+        default:
+           return false
+        }
+     }
+    
     @IBAction func searchPressed(_ sender: Any) {
         GlobalVar.linkArray.removeAll()
         GlobalVar.textArray.removeAll()
@@ -176,6 +286,17 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
         let task = URLSession.shared.dataTask(with: completed_url!) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
             DispatchQueue.main.async {
+                if ((response!.url!.absoluteString.contains("game-soundtracks/album"))) {
+                    print("Not an search, but a redirect.")
+                    let resultName = response!.url!.absoluteString.replacingOccurrences(of: self.base_url + self.base_soundtrack_album_url, with: "")
+                    if (GlobalVar.textArray.contains(resultName)) {
+                        return
+                    }
+                    GlobalVar.textArray.append(resultName)
+                    GlobalVar.linkArray.append(response!.url!.absoluteString)
+                    self.update()
+                    return
+                }
                 //print(self.recdata)
                 do {
                     let doc: Document = try SwiftSoup.parse(self.recdata)
@@ -186,6 +307,7 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
                             if (try col.attr("href").contains("game-soundtracks/browse/") || col.attr("href").contains("/forums/") || col.attr("href").contains("/game-soundtracks/windows")) {
                                 continue
                             }
+                            print(try col.attr("href"))
                             let colContent = try! col.text()
                             let colHref = try! col.attr("href")
                             if (GlobalVar.textArray.contains(colContent)) {
@@ -288,6 +410,7 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
             player?.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1/30.0, preferredTimescale: Int32(NSEC_PER_SEC)), queue: nil) { time in
                 let duration = CMTimeGetSeconds((self.player?.currentItem?.asset.duration)!)
                 self.progress.doubleValue = (CMTimeGetSeconds(time) / duration)
+                //print(self.progress.doubleValue)
                 //self.progress.floatValue = Float((CMTimeGetSeconds(time) / duration))
                 self.currentProg.stringValue = time.positionalTime
             }

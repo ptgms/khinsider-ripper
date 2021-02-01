@@ -10,8 +10,6 @@ import Cocoa
 
 class WindowController: NSWindowController {
 
-    @IBOutlet weak var downloadTrackButton: NSButton!
-    @IBOutlet weak var DownloadAlbumButton: NSButton!
     @IBOutlet weak var playpauseButton: NSButton!
     
     
@@ -34,14 +32,6 @@ class WindowController: NSWindowController {
     
     @IBAction func touchbarPlayPause(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name("playPause"), object: nil)
-    }
-    
-    @IBAction func downloadAlbumPressed(_ sender: Any) {
-        NotificationCenter.default.post(name: Notification.Name("downloadAll"), object: nil)
-    }
-    
-    @IBAction func downloadTrackPressed(_ sender: Any) {
-        NotificationCenter.default.post(name: Notification.Name("downloadSelected"), object: nil)
     }
     
     @IBAction func openDownloadsPressed(_ sender: Any) {
