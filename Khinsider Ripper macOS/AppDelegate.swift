@@ -11,7 +11,9 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
+    @IBOutlet weak var downloadDirectlyToggle: NSMenuItem!
+    @IBOutlet weak var getDownloadLinkToggle: NSMenuItem!
+    
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -37,6 +39,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let dataPath = documentsDirectory.appendingPathComponent("/Khinsider/")
         NSWorkspace.shared.open(dataPath)
+    }
+    
+    @IBAction func downloadDirectlyPressed(_ sender: Any) {
+        downloadDirectlyToggle.state = .on
+        getDownloadLinkToggle.state = .off
+        
+        GlobalVar.downloadDirect = true
+        
+    }
+    
+    @IBAction func getDownloadPressed(_ sender: Any) {
+        downloadDirectlyToggle.state = .off
+        getDownloadLinkToggle.state = .on
+        
+        GlobalVar.downloadDirect = false
+        
     }
     
 }

@@ -18,6 +18,7 @@
 		5288AD0C2479573F00D0846D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5288AD0B2479573F00D0846D /* Assets.xcassets */; };
 		5288AD0F2479573F00D0846D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5288AD0D2479573F00D0846D /* Main.storyboard */; };
 		5296E87E248A747300977C33 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296E87D248A747300977C33 /* AboutViewController.swift */; };
+		52B4593425DEECBF006B8615 /* DownloadModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4593325DEECBF006B8615 /* DownloadModalViewController.swift */; };
 		52EFF5D1247BB5510092399A /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EFF5D0247BB5510092399A /* AlbumViewController.swift */; };
 		52EFF5D3247BB5730092399A /* TrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EFF5D2247BB5730092399A /* TrackViewController.swift */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,7 @@
 		5288AD102479573F00D0846D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5288AD112479573F00D0846D /* Khinsider_Ripper_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Khinsider_Ripper_macOS.entitlements; sourceTree = "<group>"; };
 		5296E87D248A747300977C33 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		52B4593325DEECBF006B8615 /* DownloadModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadModalViewController.swift; sourceTree = "<group>"; };
 		52EFF5D0247BB5510092399A /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		52EFF5D2247BB5730092399A /* TrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 				5296E87D248A747300977C33 /* AboutViewController.swift */,
 				525321E9248D61C700CA1D24 /* WindowController.swift */,
 				5250E878248E34CF002CF46C /* FavoritesViewController.swift */,
+				52B4593325DEECBF006B8615 /* DownloadModalViewController.swift */,
 			);
 			path = "Khinsider Ripper macOS";
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				5286613324798A0F00B73BD2 /* batchDownloaderViewController.swift in Sources */,
 				5296E87E248A747300977C33 /* AboutViewController.swift in Sources */,
 				5288AD082479573E00D0846D /* AppDelegate.swift in Sources */,
+				52B4593425DEECBF006B8615 /* DownloadModalViewController.swift in Sources */,
 				525321EA248D61C700CA1D24 /* WindowController.swift in Sources */,
 				5221E906247BC1A40076E0A7 /* generalController.swift in Sources */,
 				52EFF5D3247BB5730092399A /* TrackViewController.swift in Sources */,
@@ -241,7 +245,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 89946UN8X8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Khinsider Ripper macOS/Info.plist";
@@ -250,7 +254,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Ripper-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -265,7 +269,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 89946UN8X8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Khinsider Ripper macOS/Info.plist";
@@ -274,7 +278,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ptgms.Khinsider-Ripper-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

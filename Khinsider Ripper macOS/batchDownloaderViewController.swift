@@ -38,6 +38,10 @@ class batchDownloaderViewController: NSViewController, NSUserNotificationCenterD
         return true
     }
     
+    @IBAction func cancelledPressed(_ sender: Any) {
+        GlobalVar.cancelled = true
+    }
+    
     @objc func updateRec() {
         self.progressBar.maxValue = GlobalVar.progressVal
         self.progressBar.doubleValue = GlobalVar.progressValNow

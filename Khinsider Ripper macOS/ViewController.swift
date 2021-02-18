@@ -22,8 +22,8 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
     @IBOutlet weak var currentProg: NSTextField!
     @IBOutlet weak var currentTrack: NSTextField!
     @IBOutlet weak var progress: NSSlider!
-    @IBOutlet weak var downloadWith: NSPopUpButton!
     @IBOutlet weak var vfxButton: NSVisualEffectView!
+    @IBOutlet var formatDialogAccesory: NSView!
     
     private var trackingArea: NSTrackingArea?
     let defaults = UserDefaults.standard
@@ -324,7 +324,9 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
                     self.update()
                     
                 } catch Exception.Error( _, let message) {
+                    print("ERROR ON TRYING TO CONNECT TO KHINSIDER - POSSIBLY DOWN OR NET NOT AVAILABLE?")
                     print(message)
+                    // exit(0)
                 } catch {
                     print("error")
                 }
@@ -445,34 +447,64 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
         if (downloadSelOn != true) {
             return
         }
+        
         if (GlobalVar.currentLink == "") {
             return
         } else {
+            GlobalVar.cancelled = true
             //downloadSelect.stringValue = "downloadingdot".localized
             let a = NSAlert()
             a.messageText = "question".localized
             a.informativeText = "formatconfirm".localized
+            
+            var options = [String]()
+            
+            a.addButton(withTitle: "Cancel")
+            options.append("cancel")
+            
             if (GlobalVar.mp3) {
                 a.addButton(withTitle: "MP3")
+                options.append("mp3")
             }
             if (GlobalVar.flac) {
                 a.addButton(withTitle: "FLAC")
+                options.append("flac")
             }
             if (GlobalVar.ogg) {
                 a.addButton(withTitle: "OGG")
+                options.append("ogg")
             }
-            a.alertStyle = NSAlert.Style.informational
             
+            a.alertStyle = NSAlert.Style.informational
+
             a.beginSheetModal(for: self.view.window!, completionHandler: { (modalResponse) -> Void in
-                if modalResponse == NSApplication.ModalResponse.alertFirstButtonReturn {
-                    GlobalVar.download_type = ".mp3"
-                    self.downloadOne(type: ".mp3", toDownload: GlobalVar.currentLink, name: GlobalVar.currentName)
-                } else if modalResponse == NSApplication.ModalResponse.alertSecondButtonReturn {
-                    GlobalVar.download_type = ".flac"
-                    self.downloadOne(type: ".flac", toDownload: GlobalVar.currentLink, name: GlobalVar.currentName)
-                } else if modalResponse == NSApplication.ModalResponse.alertThirdButtonReturn {
-                    GlobalVar.download_type = ".ogg"
-                    self.downloadOne(type: ".ogg", toDownload: GlobalVar.currentLink, name: GlobalVar.currentName)
+                print(modalResponse.rawValue)
+                GlobalVar.cancelled = false
+                // I do not know why, I do not know how, but somehow, I thought this is a good "solution".
+                // I am living in shame!
+                switch(modalResponse.rawValue) {
+                case 1000: do {
+                    print("cancelled")
+                    return
+                }
+                case 1001: do {
+                    GlobalVar.download_type = "." + options[1]
+                    self.downloadOne(type: GlobalVar.download_type, toDownload: GlobalVar.currentLink, name: GlobalVar.currentName)
+                    break
+                }
+                case 1002: do {
+                    GlobalVar.download_type = "." + options[2]
+                    self.downloadOne(type: GlobalVar.download_type, toDownload: GlobalVar.currentLink, name: GlobalVar.currentName)
+                    break
+                }
+                case 1003: do {
+                    GlobalVar.download_type = "." + options[3]
+                    self.downloadOne(type: GlobalVar.download_type, toDownload: GlobalVar.currentLink, name: GlobalVar.currentName)
+                    break
+                }
+                default:
+                    print("Unknown button pressed! Value received: " + String(modalResponse.rawValue))
+                    return
                 }
             })
             
@@ -483,6 +515,7 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
         if (downloadAllOn != true) {
             return
         }
+        GlobalVar.cancelled = true
         GlobalVar.download_queue = []
         GlobalVar.progressValNow = Double(0)
         GlobalVar.progressVal = Double(GlobalVar.trackURL.count)
@@ -493,32 +526,72 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
         let a = NSAlert()
         a.messageText = "question".localized
         a.informativeText = "formatconfirm".localized
+        
+        var options = [String]()
+        
+        //a.addButton(withTitle: "Download")
+        a.addButton(withTitle: "Cancel")
+        options.append("cancel")
+        
         if (GlobalVar.mp3) {
             a.addButton(withTitle: "MP3")
+            options.append("mp3")
         }
         if (GlobalVar.flac) {
             a.addButton(withTitle: "FLAC")
+            options.append("flac")
         }
         if (GlobalVar.ogg) {
             a.addButton(withTitle: "OGG")
+            options.append("ogg")
         }
+        
+        a.accessoryView = formatDialogAccesory
+        
         a.alertStyle = NSAlert.Style.informational
         
         a.beginSheetModal(for: self.view.window!, completionHandler: { (modalResponse) -> Void in
-            if modalResponse == NSApplication.ModalResponse.alertFirstButtonReturn {
-                GlobalVar.download_type = ".mp3"
+            print(modalResponse.rawValue)
+            GlobalVar.cancelled = false
+            // I do not know why, I do not know how, but somehow, I thought this is a good "solution".
+            // I am living in shame!
+            switch(modalResponse.rawValue) {
+            case 1000: do {
+                print("cancelled")
+                return
+            }
+            case 1001: do {
+                GlobalVar.download_type = "." + options[1]
                 self.initDownloadAll(type: GlobalVar.download_type, toDownload: GlobalVar.trackURL, name: GlobalVar.tracks)
-            } else if modalResponse == NSApplication.ModalResponse.alertSecondButtonReturn {
-                GlobalVar.download_type = ".flac"
+                break
+            }
+            case 1002: do {
+                GlobalVar.download_type = "." + options[2]
                 self.initDownloadAll(type: GlobalVar.download_type, toDownload: GlobalVar.trackURL, name: GlobalVar.tracks)
-            } else if modalResponse == NSApplication.ModalResponse.alertThirdButtonReturn {
-                GlobalVar.download_type = ".ogg"
+                break
+            }
+            case 1003: do {
+                GlobalVar.download_type = "." + options[3]
                 self.initDownloadAll(type: GlobalVar.download_type, toDownload: GlobalVar.trackURL, name: GlobalVar.tracks)
+                break
+            }
+            default:
+                print("Unknown button pressed! Value received: " + String(modalResponse.rawValue))
+                return
             }
         })
     }
     
     func initDownloadAll(type: String, toDownload: [String], name: [String]) {
+        if (GlobalVar.cancelled) {
+            GlobalVar.download_queue = [URL]()
+            GlobalVar.progressVal = Double(1)
+            GlobalVar.progressValNow = Double(0)
+            GlobalVar.nowDownload = ""
+            GlobalVar.nowDownloadDet = ""
+            GlobalVar.cancelled = false
+            return
+        }
         let completed_url = URL(string: "https://downloads.khinsider.com" + toDownload[currentTr])!
         let task = URLSession.shared.dataTask(with: completed_url) {(data, response, error) in
             self.recdata = String(data: data!, encoding: .utf8)!
@@ -540,7 +613,7 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
                             GlobalVar.download_queue.append(URL(string: url_prev)!)
                             if (GlobalVar.download_queue.count == GlobalVar.trackURL.count) {
                                 self.view.window?.title = "khinsiderripper".localized
-                                if (self.downloadWith.titleOfSelectedItem == "downloaddirect".localized) {
+                                if (GlobalVar.downloadDirect) {
                                     self.downloadAllRec()
                                     
                                 } else {
@@ -843,6 +916,15 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate {
     func load(url: [URL], name: [String], type: String) {
         print(inte)
         print("Got here with request " + url[inte].absoluteString)
+        if (GlobalVar.cancelled) {
+            GlobalVar.nowDownloadDet = "Cancelled download!"
+            GlobalVar.progressValNow = Double(1)
+            NotificationCenter.default.post(name: Notification.Name("progUp"), object: nil)
+            GlobalVar.trackURL = [String]()
+            GlobalVar.tracks = [String]()
+            GlobalVar.cancelled = false
+            return
+        }
         // create your document folder url
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! as URL
         let documentsFolderUrl = documentsUrl.appendingPathComponent("Khinsider/").appendingPathComponent(GlobalVar.AlbumName)
@@ -969,6 +1051,10 @@ struct GlobalVar {
     static var favs_link = [String]()
     
     static var favPressedNow = -1
+    
+    static var downloadDirect = true
+    
+    static var cancelled = false
 }
 
 extension String {
